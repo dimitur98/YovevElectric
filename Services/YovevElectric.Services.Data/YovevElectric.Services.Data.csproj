@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.10.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -20,8 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\YovevElectric.Data.Common\YovevElectric.Data.Common.csproj" />
-    <ProjectReference Include="..\..\Data\YovevElectric.Data.Models\YovevElectric.Data.Models.csproj" />
     <ProjectReference Include="..\..\Web\YovevElectric.Web.ViewModels\YovevElectric.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\..\YovevElectric.Common\YovevElectric.Common.csproj" />
     <ProjectReference Include="..\YovevElectric.Services.Mapping\YovevElectric.Services.Mapping.csproj" />
   </ItemGroup>
 

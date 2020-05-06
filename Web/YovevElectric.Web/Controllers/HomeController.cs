@@ -36,6 +36,7 @@
             {
                 AllProducts = products.Select(x => new ProductViewModel
                 {
+                    Id = x.Id,
                     Category = x.Category,
                     Description = x.Description,
                     ImgPath = x.ImgPath,

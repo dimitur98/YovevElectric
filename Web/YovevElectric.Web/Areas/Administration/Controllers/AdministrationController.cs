@@ -1,25 +1,28 @@
 ﻿namespace YovevElectric.Web.Areas.Administration.Controllers
 {
-    using YovevElectric.Common;
-    using YovevElectric.Web.Controllers;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using YovevElectric.Services.Data;
-    using System.Threading.Tasks;
-    using YovevElectric.Web.ViewModels.Product;
+    using YovevElectric.Common;
     using YovevElectric.Data.Models;
+    using YovevElectric.Services.Data;
+    using YovevElectric.Web.Controllers;
     using YovevElectric.Web.ViewModels.Home;
+    using YovevElectric.Web.ViewModels.Img;
+    using YovevElectric.Web.ViewModels.Product;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
     public class AdministrationController : BaseController
     {
         private readonly IProductsService productsService;
+        private readonly IImgService imgService;
 
-        public AdministrationController(IProductsService productsService)
+        public AdministrationController(IProductsService productsService, IImgService imgService)
         {
             this.productsService = productsService;
+            this.imgService = imgService;
         }
 
         public IActionResult Home()
@@ -35,19 +38,19 @@
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductInputModel input)
         {
-            await this.productsService.CreateProductAsync(input);
+            var id = await this.productsService.CreateProductAsync(input);
 
-            return this.Redirect("Home");
+            return this.Redirect($"/Administration/Img/ImgUpload?id={id}");
         }
 
         public async Task<IActionResult> EditProduct(string id)
         {
             var product = await this.productsService.GetProductByIdAsync(id);
-            var output = new ProductViewModel
+            var output = new EditProductInputModel
             {
+                Id = product.Id,
                 Category = product.Category,
                 Description = product.Description,
-                ImgPath = product.ImgPath,
                 Price = product.Price,
                 Title = product.Title,
             };
@@ -56,10 +59,10 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProduct(EditProductInputModel input)
+        public async Task<IActionResult> EditProduct(string id, EditProductInputModel input)
         {
-            await this.productsService.EditProductAsync(input);
-            return this.Redirect("Home");
+            await this.productsService.EditProductAsync(id, input);
+            return this.Redirect("/Home/Products");
         }
     }
 }

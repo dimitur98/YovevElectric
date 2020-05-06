@@ -1,0 +1,51 @@
+﻿@model YovevElectric.Web.ViewModels.Img.ImgUploadViewModel;
+@using YovevElectric.Common;
+@{
+    ViewData["Title"] = "ImgUpload";
+}
+<div id="page">
+    <section class="main-container col2-right-layout">
+        <div class="main container">
+            <div class="row">
+                <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                    <div class="my-account">
+
+                        <div class="box-account">
+                            <div style="display: none;" class="alert alert-success" role="alert" id="imgRemove">
+                                Снимката е изтрита!
+                            </div>
+                            <div style="display: none;" class="alert alert-success" role="alert" id="uploadedImg">
+                                Снимката е качена!
+                            </div>
+                            <div style="display: none;" class="alert alert-danger" role="alert" id="notUploadedImg">
+                                Снимката не е качена!
+                            </div>
+                            <div style="display: none;" class="alert alert-danger" role="alert" id="imgNotRemoved">
+                                Снимката не може да бъде изтрита!
+                            </div>
+                            <div class="alert alert-danger" role="alert" style="display: none" id="alert">
+                                Снимката не отговаря на изискванията!
+                            </div>
+                            <h3>Каче снимка.</h3>
+                            <form method="post" dasp-controller="Files" runat="server" enctype="multipart/form-data" asp-area="Administration" asp-controller="Img" asp-action="ImgUpload">
+                                <div id="pic1">
+                                    <br>
+                                    <input type="hidden" asp-for="@Model.ProductId" name="ProductId"/>
+                                    <img id="img" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                    <br>
+                                    <input type='file' asp-for="@Model.ProductId" name="productImg" onchange="readURL(this)" id="productImg" />
+                                    <br>
+                                    <button onclick="upload()" id="btnSubmit" type="submit" value="Upload Imgs" class="btn btn-primary">Качи снимката</button>
+                                    <br>
+                                    <button onclick="readURL(this);" type="button" id="btn" class="btn btn-outline-secondary">Изтрий снимката</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </section>
+                <partial name="_AccountNavPartial" />
+            </div>
+        </div>
+    </section>
+</div>

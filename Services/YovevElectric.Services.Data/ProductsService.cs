@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
+    using YovevElectric.Common;
     using YovevElectric.Data.Common.Repositories;
     using YovevElectric.Data.Models;
     using YovevElectric.Web.ViewModels.Product;
@@ -25,11 +26,11 @@
         public async Task<Product> GetProductByIdAsync(string id)
             => await this.productsRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task CreateProductAsync(CreateProductInputModel input)
+        public async Task<string> CreateProductAsync(CreateProductInputModel input)
         {
             var product = new Product
             {
-                ImgPath = input.ImgPath,
+                ImgPath = GlobalConstants.DefaultImgProduct,
                 Price = input.Price,
                 Title = input.Title,
                 Category = input.Category,
@@ -37,11 +38,13 @@
             };
             await this.productsRepository.AddAsync(product);
             await this.productsRepository.SaveChangesAsync();
+
+            return product.Id;
         }
 
-        public async Task EditProductAsync(EditProductInputModel input)
+        public async Task EditProductAsync(string id, EditProductInputModel input)
         {
-            var product = await this.productsRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == input.Id);
+            var product = await this.productsRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
 
             product.Price = input.Price;
             product.Title = input.Title;

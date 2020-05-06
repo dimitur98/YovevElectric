@@ -14,9 +14,9 @@
 
         Task<Product> GetProductByIdAsync(string id);
 
-        Task CreateProductAsync(CreateProductInputModel input);
+        Task<string> CreateProductAsync(CreateProductInputModel input);
 
-        Task EditProductAsync(EditProductInputModel input);
+        Task EditProductAsync(string id, EditProductInputModel input);
 
         Task DeleteProductAsync(string id);
 
