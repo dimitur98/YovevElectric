@@ -1,0 +1,38 @@
+﻿@model YovevElectric.Web.ViewModels.Category.CategoryInputModel;
+
+@{
+    ViewData["Title"] = "CreateCategory";
+}
+
+<body onload="loadCategories()">
+    <div id="page">
+        <section class="main-container col2-right-layout">
+            <div class="main container">
+                <div class="row">
+                    <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                        <div class="my-account">
+
+                            <div class="box-account">
+                                <div class="page-title">
+                                    <h2>Добави кагетория</h2>
+                                </div>
+                                <form id="form" asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory" method="post" class="form">
+                                    <div class="form-group">
+                                        <label asp-for="Name">Име</label>
+                                        <input asp-for="Name" type="text" placeholder="Име" class="form-control">
+                                        <span asp-validation-for="Name" class="text-danger" />
+                                    </div>                             
+                                    <button type="submit" title="submit" class="button"><span>Създай категория</span></button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <partial name="_AccountNavPartial" />
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+

@@ -1,0 +1,43 @@
+﻿@model YovevElectric.Web.ViewModels.Category.AllCategoriesAndSubCategoriesViewModell;
+@{
+    ViewData["Title"] = "AllCategoriesAndSubCategories";
+    var counter = 0;
+}
+    <body onload="loadCategories()">
+        <div id="page">
+            <section class="main-container col2-right-layout">
+                <div class="main container">
+                    <div class="row">
+                        <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                            <div class="my-account">
+
+                                <div class="box-account">
+                                    <div class="page-title">
+                                        <h2>Категории и подкатегории</h2>
+                                    </div>
+                                    <div class="box-content box-category">
+                                        <ul>
+                                            <form method="post" id="form"></form>
+                                            @foreach (var category in Model.Categories)
+                                            {
+                                                <li>
+                                                    <a>@category.Name  (@category.Statuse)</a><a asp-area="Administration" asp-controller="Administration" asp-action="DeleteUndeleteCategory" asp-route-name="@category.Name"><i class="fa fa-trash"></i></a> <span onclick="loadSubCategoriesToSideBarForAdmin('@category.Name',@counter)" class="subDropdown plus"></span>
+                                                    <ul style="display:none" id="subCategories@(counter++)"></ul>
+                                                </li>
+                                            }
+
+                                        </ul>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                        <partial name="_AccountNavPartial" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+
