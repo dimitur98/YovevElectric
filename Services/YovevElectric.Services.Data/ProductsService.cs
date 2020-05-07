@@ -43,6 +43,7 @@
                 Price = input.Price,
                 Title = input.Title,
                 Category = input.Category,
+                SubCategory = input.SubCategory,
                 Description = input.Description,
             };
             await this.productsRepository.AddAsync(product);
@@ -58,6 +59,7 @@
             product.Price = input.Price;
             product.Title = input.Title;
             product.Category = input.Category;
+            product.SubCategory = input.SubCategory;
             product.Description = input.Description;
 
             this.productsRepository.Update(product);
@@ -81,5 +83,7 @@
             this.productsRepository.Update(product);
             await this.productsRepository.SaveChangesAsync();
         }
+
+
     }
 }

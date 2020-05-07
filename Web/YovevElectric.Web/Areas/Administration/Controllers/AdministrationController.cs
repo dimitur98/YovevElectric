@@ -1,5 +1,6 @@
 ﻿namespace YovevElectric.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@
     using YovevElectric.Data.Models;
     using YovevElectric.Services.Data;
     using YovevElectric.Web.Controllers;
+    using YovevElectric.Web.ViewModels.Category;
     using YovevElectric.Web.ViewModels.Home;
     using YovevElectric.Web.ViewModels.Img;
     using YovevElectric.Web.ViewModels.Product;
@@ -18,17 +20,15 @@
     {
         private readonly IProductsService productsService;
         private readonly IImgService imgService;
+        private readonly ICategoryService categoryService;
 
-        public AdministrationController(IProductsService productsService, IImgService imgService)
+        public AdministrationController(IProductsService productsService, IImgService imgService, ICategoryService categoryService)
         {
             this.productsService = productsService;
             this.imgService = imgService;
+            this.categoryService = categoryService;
         }
 
-        public IActionResult Home()
-        {
-            return this.View();
-        }
 
         public IActionResult CreateProduct()
         {
@@ -74,6 +74,61 @@
         {
             await this.productsService.EditProductAsync(id, input.EditProductInputModel);
             return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
+        }
+
+        public IActionResult CreateCategory()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(CategoryInputModel input)
+        {
+            await this.categoryService.CreateCategoryAsync(input.Name);
+
+            return this.Redirect("/MyAccount/MyAccount");
+        }
+
+        public IActionResult CreateSubCategory()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSubCategory(SubCategoryInputModel input)
+        {
+            await this.categoryService.CreateSubCategoryAsync(input.SubCategoryName, input.CategoryName);
+
+            return this.Redirect("/MyAccount/MyAccount");
+        }
+
+        public async Task<IActionResult> AllCategoriesAndSubCategories()
+        {
+            var categories = await this.categoryService.GetAllCategoriesWithDeletedAsync();
+            var output = new AllCategoriesAndSubCategoriesViewModell
+            {
+                Categories = categories.Select(x => new CategoryViewModel
+                {
+                    Name = x.Name,
+                    IsDeleted = x.IsDeleted,
+                }).ToList(),
+            };
+
+            return this.View(output);
+        }
+
+        public async Task<IActionResult> DeleteUndeleteCategory(string name)
+        {
+            await this.categoryService.DeleteUnDeleteCategoryByNameAsync(name);
+
+            return this.RedirectToAction("AllCategoriesAndSubCategories");
+        }
+
+        public async Task<IActionResult> DeleteUndeleteSubCategory(string name)
+        {
+            await this.categoryService.DeleteUnDeleteSubCategoryByNameAsync(name);
+
+            return this.RedirectToAction("AllCategoriesAndSubCategories");
         }
     }
 }

@@ -11,28 +11,25 @@ using YovevElectric.Web.ViewModels.Administration.Product;
 
 namespace YovevElectric.Web.Areas.Administration.Controllers
 {
+    [Area("Administration")]
     [Authorize(Roles = "Administrator")]
     [ApiController]
     [Route("api/administration/[controller]/[action]")]
     public class ApiAdministrationController : Controller
     {
-        private readonly IProductsService productsService;
+        private readonly ICategoryService categoryService;
 
-        public ApiAdministrationController(IProductsService productsService)
+        public ApiAdministrationController(ICategoryService categoryService)
         {
-            this.productsService = productsService;
+            this.categoryService = categoryService;
         }
 
-        [HttpPost]
-        public async Task DeleteProduct(ApiProductInputModel input)
-        {
-            await this.productsService.DeleteProductAsync(input.Id);
-        }
+        
 
-        [HttpPost]
-        public async Task UnDeleteProduct(ApiProductInputModel input)
-        {
-            await this.productsService.UnDeleteProductAsync(input.Id);
-        }
+        //[HttpPut]
+        //public async Task UnDeleteProduct(ApiProductInputModel input)
+        //{
+        //    await this..UnDeleteProductAsync(input.Id);
+        //}
     }
 }

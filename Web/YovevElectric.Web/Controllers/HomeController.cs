@@ -15,10 +15,12 @@
     public class HomeController : BaseController
     {
         private readonly IProductsService productService;
+        private readonly ICategoryService categoryService;
 
-        public HomeController(IProductsService productService)
+        public HomeController(IProductsService productService, ICategoryService categoryService)
         {
             this.productService = productService;
+            this.categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -49,6 +51,7 @@
                 }).ToList(),
                 CurrentPage = page,
                 PagesCount = pagesCount == 0 ? 1 : pagesCount,
+                Categories = await this.categoryService.GetAllCategoriesAsync(),
             };
 
             return this.View(output);

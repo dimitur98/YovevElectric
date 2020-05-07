@@ -7,9 +7,12 @@
         <div class="block block-account">
             <div class="block-title"> My Account </div>
             <div class="block-content">
-                <ul>                  
-                        <li><span> <h3>ADMIN MENU</h3></span></li>
-                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Add product</span></a></li>
+                <ul>
+                    <li><span> <h3>ADMIN MENU</h3></span></li>
+                    <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Добави продукт</span></a></li>
+                    <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory"><span>Добави категория</span></a></li>
+                    <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateSubCategory"><span>Добави подкатегория</span></a></li>
+                    <li><a asp-area="Administration" asp-controller="Administration" asp-action="AllCategoriesAndSubCategories"><span>Всички категории и подкатегория</span></a></li>
                 </ul>
             </div>
         </div>

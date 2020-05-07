@@ -6,6 +6,7 @@
 @{
     ViewData["Title"] = "CreateProduct";
 }
+<body onload="loadCategories()">
     <div id="page">
         <section class="main-container col2-right-layout">
             <div class="main container">
@@ -17,7 +18,7 @@
                                 <div class="page-title">
                                     <h2>Добави продукт</h2>
                                 </div>
-                                <form id="form" asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct" method="post" class="form" >
+                                <form id="form" asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct" method="post" class="form">
                                     <div class="form-group">
                                         <label asp-for="Title">Заглавие</label>
                                         <input asp-for="Title" type="text" placeholder="Заглавие" class="form-control">
@@ -30,7 +31,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Category">Категория</label>
-                                        <select asp-for="Category" class="form-control" asp-items="@Html.GetEnumSelectList<Categories>()"></select>
+                                        <select asp-for="Category" onchange="loadSubCategoriesToDropDown()" class="form-control" id="categories"></select>
+                                    </div>
+                                    <div class="form-group" style="display: none;" id="subCategoryInput">
+                                        <label asp-for="SubCategory">Подкатегория</label>
+                                        <select asp-for="SubCategory" class="form-control" id="subCategories"></select>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Price">Цена</label>
@@ -38,7 +43,7 @@
                                         <span asp-validation-for="Price" class="text-danger" />
                                     </div>
 
-                                    <button type="submit" title="submit" class="button"><span>Create product</span></button>
+                                    <button type="submit" title="submit" class="button"><span>Създай продукт</span></button>
 
                                 </form>
 
@@ -51,4 +56,4 @@
             </div>
         </section>
     </div>
-
+</body>

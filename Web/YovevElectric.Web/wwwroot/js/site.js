@@ -26,7 +26,7 @@ function loadImg(input) {
         $("#btn").show();
         $("#btnSubmit").hide();
         $("#input").hide();
-        
+
         console.log(input);
     } else {
         $("#btn").hide();
@@ -45,5 +45,106 @@ function loadImg(input) {
         }
     }
 }
+
+function loadSubCategoriesToSideBar(input, num) {
+    var token = $("#form input[name=__RequestVerificationToken]").val();
+    $.ajax({
+        url: "/api/category/getSubCategories/"+input,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': token },
+        success: function (data) {
+            if ($('ul#subCategories' + num +' li').length == 0) {
+                data.forEach((item) => {
+                    console.log(item);
+                    $("#subCategories" + num).append("<li><a href='/Home/Products/subCategory?name='" + item + "'>" + item + "</a><span></span></li>");
+                });
+            }                       
+        }
+    });
+}
+
+function loadSubCategoriesToSideBarForAdmin(input, num) {
+    var token = $("#form input[name=__RequestVerificationToken]").val();
+    console.log("start");
+    $.ajax({
+        url: "/api/category/getSubCategories/" + input,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': token },
+        success: function (data) {
+            console.log(data);
+            if ($('ul#subCategories' + num + ' li').length == 0) {
+                data.forEach((item) => {
+                    $("#subCategories" + num).append("<li><a>" + item +"</a><a href='/Administration/Administration/DeleteUndeleteSubCategory?name="+item+"'><i class='fa fa - trash'></i></a></a><span></span></li>");
+                    console.log("<li><a>" + item + "</a><a asp-area='Administration' asp-controller='Administration' asp-action='DeleteUndeleteSubCategory' asp-route-name='" + item + "'><i class='fa fa-trash'></i></a><span></span></li>");
+                });
+            }
+        }
+    });
+}
+
+function loadSubCategoriesToDropDown(category) {
+    var token = $("#form input[name=__RequestVerificationToken]").val();
+    if (category == null) {
+        category = $('#categories').find(":selected").text();
+    }
+    $.ajax({
+        url: "/api/category/getSubCategories/" + category,
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': token },
+        success: function (data) {
+            if (data.length != 0) {
+                $("#subCategoryInput").show();
+                data.forEach((item) => {
+                    var choosen = "";
+                    if (choosen != null) {
+                        choosen = item == category ? selected = "selected='selected'" : "";
+                    }
+                    $("#subCategories").append("<option " + choosen + " value=" + item + ">" +
+                        item +
+                        "</option>");
+                });
+            } else {
+                $('#subCategories')
+                    .find('option')
+                    .remove()
+                    .end()
+                $("#subCategoryInput").hide();
+            }
+                           
+        }
+    });
+}
+
+function loadCategories(category) {
+    var token = $("#form input[name=__RequestVerificationToken]").val();
+    $.ajax({
+        url: "/api/category/getCategories/",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': token },
+        success: function (data) {
+
+            data.forEach((item) => {
+                var choosen = "";
+                if (choosen != null) {
+                    choosen = item == category ? selected = "selected='selected'" : "";
+                }
+                $("#categories").append(
+                    "<option " + choosen + " value=" + item + ">" +
+                    item +
+                    "</option>");                
+            })
+
+        }
+    });
+}
+
 
 
