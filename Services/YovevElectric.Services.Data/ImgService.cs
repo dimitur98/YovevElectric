@@ -10,6 +10,7 @@
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
     using YovevElectric.Common;
     using YovevElectric.Data.Common.Repositories;
     using YovevElectric.Data.Models;
@@ -103,6 +104,27 @@
             }
 
             return true;
+        }
+
+        public async Task<bool> DeleteProductImg(string id)
+        {
+            var product = await this.productRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            product.ImgPath = GlobalConstants.DefaultImgProduct;
+
+            this.productRepository.Update(product);
+            await this.productRepository.SaveChangesAsync();
+
+            if (product.ImgPath != GlobalConstants.DefaultImgProduct)
+            {
+                DeletionParams deletionParams = new DeletionParams(product.ImgPath)
+                {
+                    PublicId = product.ImgPath,
+                };
+                await this.cloudinary.DestroyAsync(deletionParams);
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -46,23 +46,34 @@
         public async Task<IActionResult> EditProduct(string id)
         {
             var product = await this.productsService.GetProductByIdAsync(id);
-            var output = new EditProductInputModel
+            var output = new EditProductModel
             {
-                Id = product.Id,
-                Category = product.Category,
-                Description = product.Description,
-                Price = product.Price,
-                Title = product.Title,
+                EditProductInputModel = new EditProductInputModel
+                {
+                    Id = product.Id,
+                    Category = product.Category,
+                    Description = product.Description,
+                    Price = product.Price,
+                    Title = product.Title,
+                },
+                ImgEditModel = new ImgEditModel
+                {
+                    ImgEditViewModel = new ImgEditViewModel
+                    {
+                        ImgPath = product.ImgPath,
+                        ProductId = product.Id,
+                    },
+                },
             };
 
             return this.View(output);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProduct(string id, EditProductInputModel input)
+        public async Task<IActionResult> EditProduct(string id, EditProductModel input)
         {
-            await this.productsService.EditProductAsync(id, input);
-            return this.Redirect("/Home/Products");
+            await this.productsService.EditProductAsync(id, input.EditProductInputModel);
+            return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
         }
     }
 }

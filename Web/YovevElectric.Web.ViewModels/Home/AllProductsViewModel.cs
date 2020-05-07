@@ -7,5 +7,9 @@
     public class AllProductsViewModel
     {
         public ICollection<ProductViewModel> AllProducts { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int PagesCount { get; set; }
     }
 }

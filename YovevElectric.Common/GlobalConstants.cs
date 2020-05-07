@@ -11,5 +11,7 @@
         public const string DefaultImgProduct = "http://res.cloudinary.com/daf7wgitd/image/upload/v1588784545/gnnqimydbiytu00fsmzg.png";
 
         public const string AdminUser = "Admin@admin.bg";
+
+        public const int ItemsPerPage = 3;
     }
 }

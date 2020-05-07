@@ -9,6 +9,8 @@
     using YovevElectric.Web.ViewModels.Home;
     using System.Linq;
     using System.Threading.Tasks;
+    using YovevElectric.Common;
+    using System;
 
     public class HomeController : BaseController
     {
@@ -29,9 +31,11 @@
             return this.View();
         }
 
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> Products(int page = 1)
         {
-            var products = await this.productService.GetAllProductsAsync();
+            var count = await this.productService.GetProductsCount();
+            var pagesCount = (int)Math.Ceiling((double)count / GlobalConstants.ItemsPerPage);
+            var products = await this.productService.GetAllProductsAsync((page - 1) * GlobalConstants.ItemsPerPage);
             var output = new AllProductsViewModel
             {
                 AllProducts = products.Select(x => new ProductViewModel
@@ -43,6 +47,8 @@
                     Price = x.Price,
                     Title = x.Title,
                 }).ToList(),
+                CurrentPage = page,
+                PagesCount = pagesCount == 0 ? 1 : pagesCount,
             };
 
             return this.View(output);

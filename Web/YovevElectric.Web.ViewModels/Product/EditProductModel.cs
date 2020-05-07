@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using YovevElectric.Web.ViewModels.Img;
 
 namespace YovevElectric.Web.ViewModels.Product
 {
@@ -8,6 +9,7 @@ namespace YovevElectric.Web.ViewModels.Product
     {
         public EditProductInputModel EditProductInputModel { get; set; }
 
-        public EditProductViewModel EditProductViewModel { get; set; }
+
+        public ImgEditModel ImgEditModel { get; set; }
     }
 }

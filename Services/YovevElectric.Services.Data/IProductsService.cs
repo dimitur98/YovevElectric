@@ -10,7 +10,7 @@
 
     public interface IProductsService
     {
-        Task<ICollection<Product>> GetAllProductsAsync();
+        Task<ICollection<Product>> GetAllProductsAsync(int skip = 0);
 
         Task<Product> GetProductByIdAsync(string id);
 
@@ -20,6 +20,10 @@
 
         Task DeleteProductAsync(string id);
 
+        Task<Product> GetProductWithDeletedByIdAsync(string id);
+
         Task UnDeleteProductAsync(string id);
+
+        Task<int> GetProductsCount();
     }
 }

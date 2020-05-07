@@ -21,9 +21,18 @@
             this.productsRepository = productsRepository;
         }
 
-        public async Task<ICollection<Product>> GetAllProductsAsync() => await this.productsRepository.All().ToListAsync();
+        public async Task<int> GetProductsCount() => await this.productsRepository.All().CountAsync();
+
+        public async Task<ICollection<Product>> GetAllProductsAsync( int skip = 0)
+        {
+            var products = await this.productsRepository.All().OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            return products;
+        }
 
         public async Task<Product> GetProductByIdAsync(string id)
+            => await this.productsRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<Product> GetProductWithDeletedByIdAsync(string id)
             => await this.productsRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<string> CreateProductAsync(CreateProductInputModel input)

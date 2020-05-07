@@ -13,6 +13,7 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
     using YovevElectric.Common;
     using YovevElectric.Services.Data;
     using YovevElectric.Web.ViewModels.Img;
+    using YovevElectric.Web.ViewModels.Product;
 
     [Area("Administration")]
     public class ImgController : Controller
@@ -47,22 +48,44 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
             var imgPath = await this.imgService.UploadImgAsync(input.ProductImg);
 
             await this.imgService.AddImgToCurrentProductAsync(imgPath, input.ProductId);
-            return this.Redirect("/MyAccount/MyAccount");
+            return this.Redirect($"/Administration/Administration/EditProduct?id={input.ProductId}");
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> DeleteProductImg(ImgDeleteInputModel input)
+        
+        
+
+        public async Task<IActionResult> EditImg(string id)
         {
+            var product = await this.productsService.GetProductWithDeletedByIdAsync(id);
 
-            await this.imgService.AddImgToCurrentProductAsync(GlobalConstants.DefaultImgProduct, input.ProductId);
-
-            DeletionParams deletionParams = new DeletionParams(input.ImgPath)
+            var output = new EditProductModel
             {
-                PublicId = input.ImgPath,
+                ImgEditModel = new ImgEditModel
+                {
+                    ImgEditViewModel = new ImgEditViewModel
+                    {
+                        ProductId = product.Id,
+                        ImgPath = product.ImgPath,
+                    },
+                },
             };
-            await this.cloudinary.DestroyAsync(deletionParams);
-            return this.View("EditProduct");
+
+            return this.RedirectToAction("EditProduct", output);
+        }
+
+
+        
+        public async Task<IActionResult> DeleteImg(string id)
+        {
+            var isDeleted = await this.imgService.DeleteProductImg(id);
+            if (isDeleted)
+            {
+                this.ViewBag["deleteImg"] = true;
+            }
+
+
+            return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
         }
 
         [HttpPost]

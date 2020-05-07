@@ -13,6 +13,8 @@
 
         Task AddImgToCurrentProductAsync(string imgPath, string id);
 
+        Task<bool> DeleteProductImg(string id);
+
         bool IsValidImg(string fileExtension, string contentType, long size);
     }
 }
