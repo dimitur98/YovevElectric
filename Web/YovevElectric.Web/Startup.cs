@@ -72,7 +72,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IProductsService, ProductsService>();
-            services.AddTransient<IShoppingCardService, ShoppingCardService>();
+            services.AddTransient<IBagService, BagService>();
             services.AddTransient<IImgService, ImgService>();
             services.AddTransient<ICategoryService, CategoryService>();
         }

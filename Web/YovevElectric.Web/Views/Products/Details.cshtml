@@ -1,0 +1,94 @@
+﻿@model YovevElectric.Web.ViewModels.Product.ProductDetailsModel;
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="main-container col1-layout wow bounceInUp animated">
+    <div class="main">
+        <div class="col-main">
+            <!-- Endif Next Previous Product -->
+            <div class="product-view wow bounceInUp animated" itemscope="" itemtype="http://schema.org/Product" itemid="#product_base">
+                <div id="messages_product_view"></div>
+                <!--product-next-prev-->
+                <div class="product-essential container">
+                    <div class="row">
+                            <!--End For version 1, 2, 6 -->
+                            <!-- For version 3 -->
+                            <div class="product-img-box col-lg-5 col-sm-5 col-xs-12">
+                                <div class="new-label new-top-left">Hot</div>
+                                <div class="product-image">
+                                    <div class="product-full"> <img id="product-zoom1" src="products-images/p46.jpg" data-zoom-image="products-images/p46.jpg" alt="product-image" /> </div>
+                                    <div class="more-views">
+                                        <div class="slider-items-products">
+                                            <div id="gallery_02" class="product-flexslider hidden-buttons product-img-thumb">
+                                                <div class="slider-items slider-width-col4 block-content">
+                                                    <div class="more-views-items"> <a href="#" data-image="@Model.ProductDetailsViewModel.ImgPath" data-zoom-image="@Model.ProductDetailsViewModel.ImgPath"> <img id="product-zoom0" src="@Model.ProductDetailsViewModel.ImgPath" alt="product-image" /> </a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: more-images -->
+                                <div class="toll-free"><a href="#"><i class="fa fa-phone"></i> +1 800 789 0000</a></div>
+                                <div class="ask-question"><a href="#" onClick="ShowMe();"><i class="fa fa-question"></i> Ask a Question</a></div>
+                                <div class="request-call"><a href="#" onClick="ShowMe1();"><i class="fa fa-money"></i> Finance Calculator</a></div>
+                            </div>
+                            <!--End For version 1,2,6-->
+                            <!-- For version 3 -->
+                            <div class="product-shop col-lg- col-sm-7 col-xs-12">
+                                <div class="brand">XPERIA</div>
+                                <div class="product-name">
+                                    <h1>@Model.ProductDetailsViewModel.Title</h1>
+                                </div>
+                                <div class="price-block">
+                                    <div class="price-box">
+                                        <p class="special-price"> <span class="price-label">Цена</span> <span id="product-price-48" class="price">@Model.ProductDetailsViewModel.Price</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class="spec-row" id="summarySpecs">
+                                    <h2>Описание</h2>
+                                    <table width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="label-spec"> Категория <span class="coln">:</span></td>
+                                                <td class="value-spec"> @Model.ProductDetailsViewModel.Category </td>
+                                            </tr>
+                                            @if (@Model.ProductDetailsViewModel.SubCategory != null)
+                                            {
+                                                <tr>
+                                                    <td class="label-spec">Подкатегория<span class="coln">:</span></td>
+                                                    <td class="value-spec">@Model.ProductDetailsViewModel.SubCategory</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="email-addto-box">
+                                    <form method="post" asp-area="" asp-controller="Bag" asp-action="AddToBag">
+                                        <ul class="add-to-links">
+                                            <li>
+                                                <button class="link-wishlist" type="submit"><span>Добави в кошница</span></button>
+                                                <input type="hidden" asp-for="@Model.AddToBagInputModel.ProductId" value="@Model.ProductDetailsViewModel.Id">
+                                                <input type="number" asp-for="@Model.AddToBagInputModel.Quantity">
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                                <ul class="shipping-pro">
+                                    <li>Free Servicing</li>
+                                    <li>Free Monthly Checkup</li>
+                                    <li>Extended Warrenty</li>
+                                </ul>
+                            </div>
+                            <!--product-shop-->
+                            <!--Detail page static block for version 3-->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

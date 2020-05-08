@@ -28,6 +28,10 @@ namespace YovevElectric.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
+        public string BagId { get; set; }
+
+        public Bag Bag { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }

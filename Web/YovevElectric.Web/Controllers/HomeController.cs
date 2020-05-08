@@ -33,28 +33,9 @@
             return this.View();
         }
 
-        public async Task<IActionResult> Products(int page = 1)
+        public IActionResult Test()
         {
-            var count = await this.productService.GetProductsCount();
-            var pagesCount = (int)Math.Ceiling((double)count / GlobalConstants.ItemsPerPage);
-            var products = await this.productService.GetAllProductsAsync((page - 1) * GlobalConstants.ItemsPerPage);
-            var output = new AllProductsViewModel
-            {
-                AllProducts = products.Select(x => new ProductViewModel
-                {
-                    Id = x.Id,
-                    Category = x.Category,
-                    Description = x.Description,
-                    ImgPath = x.ImgPath,
-                    Price = x.Price,
-                    Title = x.Title,
-                }).ToList(),
-                CurrentPage = page,
-                PagesCount = pagesCount == 0 ? 1 : pagesCount,
-                Categories = await this.categoryService.GetAllCategoriesAsync(),
-            };
-
-            return this.View(output);
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -8,15 +8,15 @@ namespace YovevElectric.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_ShoppingCards_ShoppingCardId",
+                name: "FK_Products_Bags_BagId",
                 table: "Products");
 
             migrationBuilder.DropIndex(
-                name: "IX_Products_ShoppingCardId",
+                name: "IX_Products_BagId",
                 table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "ShoppingCardId",
+                name: "BagId",
                 table: "Products");
 
             migrationBuilder.CreateTable(
@@ -31,7 +31,7 @@ namespace YovevElectric.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     ProductId = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
-                    ShoppingCardId = table.Column<string>(nullable: true)
+                    BagId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,9 +43,9 @@ namespace YovevElectric.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProductsQuantities_ShoppingCards_ShoppingCardId",
-                        column: x => x.ShoppingCardId,
-                        principalTable: "ShoppingCards",
+                        name: "FK_ProductsQuantities_Bags_BagId",
+                        column: x => x.BagId,
+                        principalTable: "Bags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -61,9 +61,9 @@ namespace YovevElectric.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsQuantities_ShoppingCardId",
+                name: "IX_ProductsQuantities_BagId",
                 table: "ProductsQuantities",
-                column: "ShoppingCardId");
+                column: "BagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -72,21 +72,21 @@ namespace YovevElectric.Data.Migrations
                 name: "ProductsQuantities");
 
             migrationBuilder.AddColumn<string>(
-                name: "ShoppingCardId",
+                name: "BagId",
                 table: "Products",
                 type: "nvarchar(450)",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ShoppingCardId",
+                name: "IX_Products_BagId",
                 table: "Products",
-                column: "ShoppingCardId");
+                column: "BagId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_ShoppingCards_ShoppingCardId",
+                name: "FK_Products_Bags_BagId",
                 table: "Products",
-                column: "ShoppingCardId",
-                principalTable: "ShoppingCards",
+                column: "BagId",
+                principalTable: "Bags",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }

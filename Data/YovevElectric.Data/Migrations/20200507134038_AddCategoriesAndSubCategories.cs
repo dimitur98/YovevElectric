@@ -13,7 +13,7 @@ namespace YovevElectric.Data.Migrations
 
             migrationBuilder.AddColumn<bool>(
                 name: "IsNew",
-                table: "ShoppingCards",
+                table: "Bags",
                 nullable: false,
                 defaultValue: false);
 
@@ -108,7 +108,7 @@ namespace YovevElectric.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "IsNew",
-                table: "ShoppingCards");
+                table: "Bags");
 
             migrationBuilder.DropColumn(
                 name: "CategoryId",

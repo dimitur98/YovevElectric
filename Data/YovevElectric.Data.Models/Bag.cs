@@ -5,9 +5,9 @@ using YovevElectric.Data.Common.Models;
 
 namespace YovevElectric.Data.Models
 {
-    public class ShoppingCard : BaseDeletableModel<string>
+    public class Bag : BaseDeletableModel<string>
     {
-        public ShoppingCard()
+        public Bag()
         {
             this.Id = Guid.NewGuid().ToString();
         }

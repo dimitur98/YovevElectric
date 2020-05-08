@@ -274,7 +274,7 @@ namespace YovevElectric.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ShoppingCardId")
+                    b.Property<string>("BagId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Title")
@@ -284,7 +284,7 @@ namespace YovevElectric.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("ShoppingCardId");
+                    b.HasIndex("BagId");
 
                     b.ToTable("Products");
                 });
@@ -321,7 +321,7 @@ namespace YovevElectric.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("YovevElectric.Data.Models.ShoppingCard", b =>
+            modelBuilder.Entity("YovevElectric.Data.Models.Bag", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -348,7 +348,7 @@ namespace YovevElectric.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ShoppingCards");
+                    b.ToTable("Bags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -404,9 +404,9 @@ namespace YovevElectric.Data.Migrations
 
             modelBuilder.Entity("YovevElectric.Data.Models.Product", b =>
                 {
-                    b.HasOne("YovevElectric.Data.Models.ShoppingCard", null)
+                    b.HasOne("YovevElectric.Data.Models.Bag", null)
                         .WithMany("Products")
-                        .HasForeignKey("ShoppingCardId");
+                        .HasForeignKey("BagId");
                 });
 #pragma warning restore 612, 618
         }

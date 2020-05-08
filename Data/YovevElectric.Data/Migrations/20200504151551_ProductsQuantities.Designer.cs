@@ -10,8 +10,8 @@ using YovevElectric.Data;
 namespace YovevElectric.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200507143532_ChangeCategoryInProducts")]
-    partial class ChangeCategoryInProducts
+    [Migration("20200504151551_ProductsQunatities")]
+    partial class ProductsQunatities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -245,40 +245,13 @@ namespace YovevElectric.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("YovevElectric.Data.Models.Category", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("YovevElectric.Data.Models.Product", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -396,9 +369,6 @@ namespace YovevElectric.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsNew")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -413,38 +383,6 @@ namespace YovevElectric.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Bags");
-                });
-
-            modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -507,13 +445,6 @@ namespace YovevElectric.Data.Migrations
                     b.HasOne("YovevElectric.Data.Models.Bag", "Bag")
                         .WithMany()
                         .HasForeignKey("BagId");
-                });
-
-            modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>
-                {
-                    b.HasOne("YovevElectric.Data.Models.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

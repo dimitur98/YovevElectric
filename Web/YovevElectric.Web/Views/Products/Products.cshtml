@@ -49,7 +49,7 @@
                                                             <div class="add_cart">
                                                                 <button class="button btn-cart" type="button"></button>
                                                             </div>
-                                                            <div class="product-detail-bnt"><a class="button detail-bnt"><span>Преглед</span></a></div>
+                                                            <div class="product-detail-bnt"><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="button detail-bnt"><span>Преглед</span></a></div>
                                                             @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                                                             {
                                                                 <div class="product-detail-bnt"><a href="/Administration/Administration/EditProduct?id=@product.Id" class="button edit-bnt"><span>Редактиране</span></a></div>

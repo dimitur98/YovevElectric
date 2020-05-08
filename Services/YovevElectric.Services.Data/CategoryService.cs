@@ -27,6 +27,9 @@ namespace YovevElectric.Services.Data
         public async Task<ICollection<SubCategory>> GetSubCategoriesByCategoryNameAsync(string name)
             => await this.subCategoryRepository.All().Where(x => x.Category.Name == name).ToListAsync();
 
+        public async Task<ICollection<SubCategory>> GetSubCategoriesWithDeletedByCategoryNameAsync(string name)
+           => await this.subCategoryRepository.AllWithDeleted().Where(x => x.Category.Name == name).ToListAsync();
+
         public async Task<string> GetCategoryIdByNameAsync(string name)
         {
             var category = await this.categoryRepository.All().FirstOrDefaultAsync(x => x.Name == name);

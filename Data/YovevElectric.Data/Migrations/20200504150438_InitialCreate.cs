@@ -73,7 +73,7 @@ namespace YovevElectric.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCards",
+                name: "Bags",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -86,7 +86,7 @@ namespace YovevElectric.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCards", x => x.Id);
+                    table.PrimaryKey("PK_Bags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,15 +209,15 @@ namespace YovevElectric.Data.Migrations
                     Category = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     ImgPath = table.Column<string>(nullable: true),
-                    ShoppingCardId = table.Column<string>(nullable: true)
+                    BagId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_ShoppingCards_ShoppingCardId",
-                        column: x => x.ShoppingCardId,
-                        principalTable: "ShoppingCards",
+                        name: "FK_Products_Bags_BagId",
+                        column: x => x.BagId,
+                        principalTable: "Bags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -277,9 +277,9 @@ namespace YovevElectric.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ShoppingCardId",
+                name: "IX_Products_BagId",
                 table: "Products",
-                column: "ShoppingCardId");
+                column: "BagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Settings_IsDeleted",
@@ -287,8 +287,8 @@ namespace YovevElectric.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShoppingCards_IsDeleted",
-                table: "ShoppingCards",
+                name: "IX_Bags_IsDeleted",
+                table: "Bags",
                 column: "IsDeleted");
         }
 
@@ -322,7 +322,7 @@ namespace YovevElectric.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ShoppingCards");
+                name: "Bags");
         }
     }
 }

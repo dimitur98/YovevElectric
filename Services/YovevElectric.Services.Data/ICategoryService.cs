@@ -16,6 +16,8 @@ namespace YovevElectric.Services.Data
 
         Task<ICollection<SubCategory>> GetSubCategoriesByCategoryNameAsync(string id);
 
+        Task<ICollection<SubCategory>> GetSubCategoriesWithDeletedByCategoryNameAsync(string name);
+
         Task<ICollection<Category>> GetAllCategoriesAsync();
 
         Task DeleteUnDeleteCategoryByNameAsync(string name);

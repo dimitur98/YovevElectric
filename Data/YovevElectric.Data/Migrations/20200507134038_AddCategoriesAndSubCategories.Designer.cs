@@ -338,7 +338,7 @@ namespace YovevElectric.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShoppingCardId")
+                    b.Property<string>("BagId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -347,7 +347,7 @@ namespace YovevElectric.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("ShoppingCardId");
+                    b.HasIndex("BagId");
 
                     b.ToTable("ProductsQuantities");
                 });
@@ -384,7 +384,7 @@ namespace YovevElectric.Data.Migrations
                     b.ToTable("Settings");
                 });
 
-            modelBuilder.Entity("YovevElectric.Data.Models.ShoppingCard", b =>
+            modelBuilder.Entity("YovevElectric.Data.Models.Bag", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -414,7 +414,7 @@ namespace YovevElectric.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("ShoppingCards");
+                    b.ToTable("Bags");
                 });
 
             modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>
@@ -513,9 +513,9 @@ namespace YovevElectric.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ProductId");
 
-                    b.HasOne("YovevElectric.Data.Models.ShoppingCard", "ShoppingCard")
+                    b.HasOne("YovevElectric.Data.Models.Bag", "Bag")
                         .WithMany()
-                        .HasForeignKey("ShoppingCardId");
+                        .HasForeignKey("BagId");
                 });
 
             modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>

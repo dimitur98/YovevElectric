@@ -23,10 +23,17 @@
         }
 
         [HttpGet("{name}")]
-        public async Task<ICollection<string>> GetSubCategories(string name)
+        public async Task<ICollection<SubCategory>> GetSubCategories(string name)
         {
             var subCategories = await this.categoryService.GetSubCategoriesByCategoryNameAsync(name);
-            return subCategories.Select(x => x.Name).ToList();
+            return subCategories.ToList();
+        }
+
+        [HttpGet("{name}")]
+        public async Task<ICollection<SubCategory>> GetSubCategoriesWithDeleted(string name)
+        {
+            var subCategories = await this.categoryService.GetSubCategoriesWithDeletedByCategoryNameAsync(name);
+            return subCategories.ToList();
         }
 
         [HttpGet]

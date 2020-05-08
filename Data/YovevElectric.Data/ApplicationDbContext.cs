@@ -28,7 +28,7 @@
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<ShoppingCard> ShoppingCards { get; set; }
+        public DbSet<Bag> Bags { get; set; }
 
         public DbSet<ProductQuantity> ProductsQuantities { get; set; }
 
@@ -80,7 +80,7 @@
                 .SelectMany(e => e.GetForeignKeys().Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
             foreach (var foreignKey in foreignKeys)
             {
-                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+                foreignKey.DeleteBehavior = DeleteBehavior.Cascade;
             }
         }
 

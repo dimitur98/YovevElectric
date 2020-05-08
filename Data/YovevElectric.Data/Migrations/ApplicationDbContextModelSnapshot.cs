@@ -172,6 +172,9 @@ namespace YovevElectric.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("BagId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -230,6 +233,8 @@ namespace YovevElectric.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BagId");
+
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("NormalizedEmail")
@@ -241,6 +246,39 @@ namespace YovevElectric.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("YovevElectric.Data.Models.Bag", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Sent")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Bags");
                 });
 
             modelBuilder.Entity("YovevElectric.Data.Models.Category", b =>
@@ -319,6 +357,9 @@ namespace YovevElectric.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BagId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -337,16 +378,13 @@ namespace YovevElectric.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShoppingCardId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BagId");
 
                     b.HasIndex("IsDeleted");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ShoppingCardId");
 
                     b.ToTable("ProductsQuantities");
                 });
@@ -381,39 +419,6 @@ namespace YovevElectric.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Settings");
-                });
-
-            modelBuilder.Entity("YovevElectric.Data.Models.ShoppingCard", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsNew")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Sent")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("ShoppingCards");
                 });
 
             modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>
@@ -499,15 +504,22 @@ namespace YovevElectric.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("YovevElectric.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("YovevElectric.Data.Models.Bag", "Bag")
+                        .WithMany()
+                        .HasForeignKey("BagId");
+                });
+
             modelBuilder.Entity("YovevElectric.Data.Models.ProductQuantity", b =>
                 {
+                    b.HasOne("YovevElectric.Data.Models.Bag", "Bag")
+                        .WithMany()
+                        .HasForeignKey("BagId");
+
                     b.HasOne("YovevElectric.Data.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
-
-                    b.HasOne("YovevElectric.Data.Models.ShoppingCard", "ShoppingCard")
-                        .WithMany()
-                        .HasForeignKey("ShoppingCardId");
                 });
 
             modelBuilder.Entity("YovevElectric.Data.Models.SubCategory", b =>

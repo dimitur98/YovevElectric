@@ -14,8 +14,8 @@
 
         public int Quantity { get; set; }
 
-        public string ShoppingCardId { get; set; }
+        public string BagId { get; set; }
 
-        public ShoppingCard ShoppingCard { get; set; }
+        public Bag Bag { get; set; }
     }
 }
