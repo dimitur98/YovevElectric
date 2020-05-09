@@ -86,6 +86,9 @@ function loadSubCategoriesToSideBarForAdmin(input, num) {
         }
     });
 }
+function loadCategoriesToDropDown() {
+
+}
 
 function loadSubCategoriesToDropDown(category) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
@@ -131,7 +134,7 @@ function loadCategories(category) {
         success: function (data) {
 
             data.forEach((item) => {
-
+                console.log(item)
                 choosen = item == category ? selected = "selected='selected'" : "";
 
                 $("#categories").append(
