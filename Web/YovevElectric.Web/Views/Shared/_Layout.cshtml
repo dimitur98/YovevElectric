@@ -1,8 +1,10 @@
 ﻿@using YovevElectric.Common
 @using YovevElectric.Data.Models
 @using Microsoft.AspNetCore.Identity
+@using YovevElectric.Services.Data;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,29 +58,6 @@
                                         <div class="no-js">
                                             <a title="" class="clicker"></a>
                                             <div class="fl-nav-links">
-                                                <div class="language-currency">
-                                                    <div class="fl-language">
-                                                        <h3>Language</h3>
-                                                        <ul class="lang">
-                                                            <li><a href="#"> <img src="~/images/english.png" alt="English"> <span>English</span> </a></li>
-                                                            <li><a href="#"> <img src="~/images/francais.png" alt="French"> <span>French</span> </a></li>
-                                                            <li><a href="#"> <img src="~/images/german.png" alt="German"> <span>German</span> </a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!--fl-language-->
-                                                    <!-- END For version 1,2,3,4,6 -->
-                                                    <!-- For version 1,2,3,4,6 -->
-                                                    <div class="fl-currency">
-                                                        <h3>Currency</h3>
-                                                        <ul class="currencies_list">
-                                                            <li><a href="#" title="EGP"> <strong>£</strong> Pound Sterling</a></li>
-                                                            <li><a href="#" title="EUR"> <strong>€</strong> Euro</a></li>
-                                                            <li><a href="#" title="USD"> <strong>$</strong> US Dollar</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!--fl-currency-->
-                                                    <!-- END For version 1,2,3,4,6 -->
-                                                </div>
                                                 <h3>My Acount</h3>
                                                 @if (this.SignInManager.IsSignedIn(this.User))
                                                 {
@@ -96,10 +75,9 @@
                                     </div>
                                     <div class="fl-cart-contain">
                                         <div class="mini-cart">
-                                            <div class="basket"> <a asp-area="" asp-controller="Bag" asp-action="Bag"><span> 2 </span></a> </div>                                            
+                                            <div class="basket"> <a asp-area="" asp-controller="Bag" asp-action="Bag"></a> </div>
                                         </div>
                                     </div>
-                                    <!--mini-cart-->
                                     <div class="collapse navbar-collapse">
                                         <form class="navbar-form" role="search">
                                             <div class="input-group">
@@ -110,13 +88,23 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!--links-->
                                 </div>
-
+                                <div class="fl-nav-menu">
+                                    <nav>
+                                        <div class="mm-toggle-wrap">
+                                            <div class="mm-toggle"><i class="fa fa-bars"></i><span class="mm-label">Menu</span> </div>
+                                        </div>
+                                        <div class="nav-inner">
+                                            <!-- BEGIN NAV -->
+                                            <ul id="nav" class="hidden-xs">
+                                                <li> <a class="level-top" asp-area="" asp-controller="Home" asp-action="Index"><span>Начална страница</span></a></li>
+                                                <li> <a class="level-top" asp-area="" asp-controller="Products" asp-action="Products"><span>Всички артикули</span></a></li>
+                                            </ul>
+                                            <!--nav-->
+                                        </div>
+                                    </nav>
+                                </div>
                             </div>
-
-                            <!--row-->
-
                         </div>
                     </div>
                 </div>
@@ -298,6 +286,7 @@
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
 
         <script type="text/javascript" src="~/js/jquery.min.js" asp-append-version="true"></script>

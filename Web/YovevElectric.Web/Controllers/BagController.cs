@@ -58,22 +58,16 @@ namespace YovevElectric.Web.Controllers
             return this.RedirectToAction("Bag");
         }
 
-        
         public async Task<IActionResult> MakeOrder(BagModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            var output = new ConfirmOrderModel
-            {
-                FirstName = input.Order.FirstName,
-                LastName = input.Order.LastName,
-                City = input.Order.City,
-                MobileNumber = input.Order.MobileNumber,
-                PostCode = input.Order.PostCode,
-                Products = await this.bagService.GetProductsFromBagByIdAsync(user.BagId),
-            };
+            await this.bagService.MakeOrderAsync(user.BagId, input.Order);
 
-            return this.View(output);
+            user.BagId = null;
+            await this.userManager.UpdateAsync(user);
+
+            return this.Redirect("/Products/Products");
         }
     }
 }

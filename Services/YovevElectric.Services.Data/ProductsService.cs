@@ -21,11 +21,37 @@
             this.productsRepository = productsRepository;
         }
 
-        public async Task<int> GetProductsCount() => await this.productsRepository.All().CountAsync();
-
-        public async Task<ICollection<Product>> GetAllProductsAsync( int skip = 0)
+        public async Task<int> GetProductsCount(string category = null, string subCategory = null)
         {
-            var products = await this.productsRepository.All().OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            if (category != null)
+            {
+                return await this.productsRepository.All().Where(x => x.Category == category).CountAsync();
+            }
+            else if (subCategory != null)
+            {
+                return await this.productsRepository.All().Where(x => x.SubCategory == subCategory).CountAsync();
+            }
+            else
+            {
+                return await this.productsRepository.All().CountAsync();
+            }
+        }
+
+        public async Task<ICollection<Product>> GetAllProductsAsync(int skip = 0, string category = null, string subCategory = null)
+        {
+            var products = new List<Product>();
+            if (subCategory != null)
+            {
+                products = await this.productsRepository.All().Where(x => x.SubCategory == subCategory).OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            }
+            else if (category != null)
+            {
+                products = await this.productsRepository.All().Where(x => x.Category == category).OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            }
+            else
+            {
+                products = await this.productsRepository.All().OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            }
             return products;
         }
 

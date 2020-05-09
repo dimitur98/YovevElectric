@@ -17,15 +17,18 @@
         private readonly IDeletableEntityRepository<Bag> bagRepository;
         private readonly IDeletableEntityRepository<ProductQuantity> productQuantityRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
+        private readonly IDeletableEntityRepository<OrderData> orderDataRepository;
 
         public BagService(
             IDeletableEntityRepository<Bag> bagRepository,
             IDeletableEntityRepository<ProductQuantity> productQuantityRepository,
-            IDeletableEntityRepository<ApplicationUser> userRepository)
+            IDeletableEntityRepository<ApplicationUser> userRepository,
+            IDeletableEntityRepository<OrderData> orderDataRepository)
         {
             this.bagRepository = bagRepository;
             this.productQuantityRepository = productQuantityRepository;
             this.userRepository = userRepository;
+            this.orderDataRepository = orderDataRepository;
         }
 
         public async Task AddProductToBagAsync(string userId, int quantity, string productId)
@@ -43,20 +46,44 @@
             await this.productQuantityRepository.SaveChangesAsync();
         }
 
-        public async Task MakeOrderAsync(string BagId)
+        public async Task MakeOrderAsync(string bagId, MakeOrderInputModel input)
         {
-            var Bag = await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == BagId);
-            Bag.Sent = true;
+            var bag = await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == bagId);
+            bag.Sent = true;
+            bag.DateOfSent = DateTime.UtcNow;
+            var orderData = new OrderData
+            {
+                Adress = input.Adress,
+                Bulstad = input.Bulstad,
+                City = input.City,
+                FirmName = input.FirmName,
+                FirstName = input.FirstName,
+                LastName = input.LastName,
+                MobileNumber = input.MobileNumber,
+                MOL = input.MOL,
+                PostCode = input.PostCode,
+            };
+            await this.orderDataRepository.AddAsync(orderData);
+            await this.orderDataRepository.SaveChangesAsync();
 
-            this.bagRepository.Update(Bag);
+            bag.OrderDataId = orderData.Id;
+
+            this.bagRepository.Update(bag);
             await this.bagRepository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<Bag>> GetAllSentBags()
-            => await this.bagRepository.All().Where(x => x.Sent == true).ToListAsync();
-
         public async Task<Bag> GetBagByIdAsync(string id)
             => await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == id && x.Sent == false);
+
+        public async Task<Bag> GetSentBagByIdAsync(string id)
+        {
+            var bag = await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == id && x.Sent == true);
+            bag.IsNew = false;
+
+            this.bagRepository.Update(bag);
+            await this.bagRepository.SaveChangesAsync();
+            return bag;
+        }
 
         public async Task IsNewBagAsync(string id)
         {
@@ -102,11 +129,17 @@
             await this.productQuantityRepository.SaveChangesAsync();
         }
 
+        public async Task<ICollection<AllSentBagViewModel>> GetAllSentBags() =>
+            await this.bagRepository.All().Where(x => x.Sent == true).OrderByDescending(x => x.IsNew).ThenByDescending(x => x.DateOfSent).To<AllSentBagViewModel>().ToListAsync();
+
+        public int GetCountOfProductsInBagByIdAsync(string id)
+            => this.productQuantityRepository.All().Where(x => x.BagId == id).Count();
+
         private async Task<string> CreateBagAsync(string userId)
         {
             var user = await this.userRepository.All().FirstOrDefaultAsync(x => x.Id == userId);
-
-            if (user.BagId == null)
+            var bag = await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == user.BagId && x.Sent == false);
+            if (bag == null)
             {
                 var newBag = new Bag
                 {
@@ -124,7 +157,6 @@
 
             return user.BagId;
         }
-       
 
     }
 }

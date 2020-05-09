@@ -15,9 +15,9 @@
 
         Task<Bag> GetBagByIdAsync(string id);
 
-        Task<ICollection<Bag>> GetAllSentBags();
+        Task<ICollection<AllSentBagViewModel>> GetAllSentBags();
 
-        Task MakeOrderAsync(string bagId);
+        Task MakeOrderAsync(string bagId, MakeOrderInputModel input);
 
         Task AddProductToBagAsync(string bagId, int quantity, string productId);
 
@@ -28,5 +28,9 @@
         Task<decimal> TotalPriceOfBagAsync(string id);
 
         Task DeleteProductFromBagByIdAsync(int id);
+
+        Task<Bag> GetSentBagByIdAsync(string id);
+
+        int GetCountOfProductsInBagByIdAsync(string id);
     }
 }

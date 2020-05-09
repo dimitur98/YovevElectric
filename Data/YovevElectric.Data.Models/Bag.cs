@@ -17,5 +17,11 @@ namespace YovevElectric.Data.Models
         public bool Sent { get; set; }
 
         public bool IsNew { get; set; }
+
+        public DateTime DateOfSent { get; set; }
+
+        public string OrderDataId { get; set; }
+
+        public OrderData OrderData { get; set; }
     }
 }

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using YovevElectric.Data.Common.Models;
 
-namespace YovevElectric.Web.ViewModels.Bag
+namespace YovevElectric.Data.Models
 {
-    public class MakeOrderInputModel
+    public class OrderData : BaseDeletableModel<string>
     {
+        public OrderData()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public string City { get; set; }
 
         public string PostCode { get; set; }
@@ -24,7 +30,6 @@ namespace YovevElectric.Web.ViewModels.Bag
 
         public string MOL { get; set; }
 
-        public ICollection<ProductInBagViewModel> Products { get; set; }
-
+        public bool IsNew { get; set; }
     }
 }

@@ -58,7 +58,7 @@ function loadSubCategoriesToSideBar(input, num) {
             if ($('ul#subCategories' + num + ' li').length == 0) {
                 data.forEach((item) => {
                     console.log(item["name"]);
-                    $("#subCategories" + num).append("<li><a href='/Home/Products/subCategory?name='" + item["name"] + "'>" + item["name"] + "</a><span></span></li>");
+                    $("#subCategories" + num).append("<li><a href='/Products/Products?category=" + input + "&subCategory=" + item["name"] + "'>" + item["name"] + "</a><span></span></li>");
                 });
             }
         }
@@ -102,12 +102,10 @@ function loadSubCategoriesToDropDown(category) {
             if (data.length != 0) {
                 $("#subCategoryInput").show();
                 data.forEach((item) => {
-                    var choosen = "";
-                    if (choosen != null) {
-                        choosen = item == category ? selected = "selected='selected'" : "";
-                    }
-                    $("#subCategories").append("<option " + choosen + " value=" + item + ">" +
-                        item +
+                    choosen = item == category ? selected = "selected='selected'" : "";
+
+                    $("#subCategories").append("<option " + choosen + " value=" + item["name"] + ">" +
+                        item["name"] +
                         "</option>");
                 });
             } else {
@@ -133,10 +131,9 @@ function loadCategories(category) {
         success: function (data) {
 
             data.forEach((item) => {
-                var choosen = "";
-                if (choosen != null) {
-                    choosen = item == category ? selected = "selected='selected'" : "";
-                }
+
+                choosen = item == category ? selected = "selected='selected'" : "";
+
                 $("#categories").append(
                     "<option " + choosen + " value=" + item + ">" +
                     item +
@@ -159,7 +156,19 @@ function invoiceFnc() {
         inputs.style.display = "none";
     }
 }
+$(function () {
+    moment.locale("bg");
+    $("time").each(function (i, e) {
+        const dateTimeValue = $(e).attr("datetime");
+        if (!dateTimeValue) {
+            return;
+        }
 
+        const time = moment.utc(dateTimeValue).local();
+        $(e).html(time.format("llll"));
+        $(e).attr("title", $(e).attr("datetime"));
+    });
+});
 
 
 

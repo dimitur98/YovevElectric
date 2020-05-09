@@ -105,35 +105,42 @@
                                     <li>
                                         <label for="region_id">Град/Село</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.City" type="text" placeholder="Град/Село">
+                                            <input asp-for="@Model.Order.City" type="text" class="input-text validate-postcode" placeholder="Град/Село" id="cityInput">
                                             <span asp-validation-for="@Model.Order.City" class="text-danger" />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label for="region_id">Адрес</label>
+                                        <div class="input-box">
+                                            <input asp-for="@Model.Order.Adress" type="text" class="input-text validate-postcode" placeholder="Адрес" id="adressInput">
+                                            <span asp-validation-for="@Model.Order.Adress" class="text-danger" />
                                         </div>
                                     </li>
                                     <li>
                                         <label for="postcode">Пощенски код</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.PostCode" class="input-text validate-postcode" type="text" placeholder="Пощенски код">
+                                            <input asp-for="@Model.Order.PostCode" class="input-text validate-postcode" type="text" placeholder="Пощенски код" id="postCodeInput">
                                             <span asp-validation-for="@Model.Order.PostCode" class="text-danger" />
                                         </div>
                                     </li>
                                     <li>
                                         <label for="postcode">Име</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.FirstName" class="input-text validate-postcode" type="text" placeholder="Име">
+                                            <input asp-for="@Model.Order.FirstName" class="input-text validate-postcode" type="text" id="nameInput" placeholder="Име">
                                             <span asp-validation-for="@Model.Order.FirstName" class="text-danger" />
                                         </div>
                                     </li>
                                     <li>
                                         <label for="postcode">Фамилия</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.LastName" class="input-text validate-postcode" type="text" placeholder="Фамилия">
+                                            <input asp-for="@Model.Order.LastName" class="input-text validate-postcode" id="lastNameInput" type="text" placeholder="Фамилия">
                                             <span asp-validation-for="@Model.Order.LastName" class="text-danger" />
                                         </div>
                                     </li>
                                     <li>
                                         <label for="postcode">Мобилен телефон</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.MobileNumber" class="input-text validate-postcode" type="text" placeholder="Мобилен телефон">
+                                            <input asp-for="@Model.Order.MobileNumber" class="input-text validate-postcode" id="telephoneInput" type="text" placeholder="Мобилен телефон">
                                             <span asp-validation-for="@Model.Order.MobileNumber" class="text-danger" />
                                         </div>
                                     </li>
@@ -157,10 +164,24 @@
                                 <p>Данни за фактура</p>
                                 <ul class="form-list">
                                     <li>
-                                        <label for="region_id">Град/Село</label>
+                                        <label for="region_id">Име на фирма</label>
                                         <div class="input-box">
-                                            <input asp-for="@Model.Order.City" type="text" placeholder="Град/Село">
-                                            <span asp-validation-for="@Model.Order.City" class="text-danger" />
+                                            <input asp-for="@Model.Order.FirmName" type="text" placeholder="Име на фирма" id="firmNameInput">
+                                            <span asp-validation-for="@Model.Order.FirmName" class="text-danger" />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label for="region_id">МОЛ</label>
+                                        <div class="input-box">
+                                            <input asp-for="@Model.Order.MOL" type="text" placeholder="МОЛ" id="MOLInput">
+                                            <span asp-validation-for="@Model.Order.MOL" class="text-danger" />
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label for="region_id">Булстад</label>
+                                        <div class="input-box">
+                                            <input asp-for="@Model.Order.Bulstad" type="text" placeholder="Булстад" id="bulstadInput">
+                                            <span asp-validation-for="@Model.Order.Bulstad" class="text-danger" />
                                         </div>
                                     </li>
                                 </ul>
@@ -219,7 +240,17 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Modal body text goes here.</p>
+                                                        <p id="city">Град: </p>
+                                                        <p id="adress">Адрес: </p>
+                                                        <p id="postCode">Пощенски код: </p>
+                                                        <p id="name">Име: </p>
+                                                        <p id="lastName">Фамилия: </p>
+                                                        <p id="telephone">Телефон: </p>
+                                                        <div id="invoiceData" style="display: none">
+                                                            <p id="firmName">Име на фирма: </p>
+                                                            <p id="MOL">МОЛ: </p>
+                                                            <p id="bulstad">Булстад: </p>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="button btn-proceed-checkout"><span>Направи поръчка</span></button>
@@ -250,5 +281,22 @@
     function myfunction() {
 
         $('#exampleModal').modal()
+        var checkBox = document.getElementById("invoiceBtn");
+        var invoiceData = document.getElementById("invoiceData");
+        $("#city").append($("#cityInput").val());
+        $("#adress").append($("#adressInput").val());
+        $("#name").append($("#nameInput").val());
+        $("#lastName").append($("#lastNameInput").val());
+        $("#postCode").append($("#postCodeInput").val());
+        $("#telephone").append($("#telephoneInput").val());
+        $("#bulstad").append($("#bulstadInput").val());
+        $("#MOL").append($("#MOLInput").val());
+        $("#firmName").append($("#firmNameInput").val());
+        if (checkBox.checked == true) {
+
+            invoiceData.style.display = "block";
+        } else {
+            invoiceData.style.display = "none";
+        }
     }
 </script>

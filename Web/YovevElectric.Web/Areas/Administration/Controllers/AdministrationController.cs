@@ -8,7 +8,9 @@
     using YovevElectric.Common;
     using YovevElectric.Data.Models;
     using YovevElectric.Services.Data;
+    using YovevElectric.Services.Mapping;
     using YovevElectric.Web.Controllers;
+    using YovevElectric.Web.ViewModels.Bag;
     using YovevElectric.Web.ViewModels.Category;
     using YovevElectric.Web.ViewModels.Home;
     using YovevElectric.Web.ViewModels.Img;
@@ -21,14 +23,20 @@
         private readonly IProductsService productsService;
         private readonly IImgService imgService;
         private readonly ICategoryService categoryService;
+        private readonly IBagService bagService;
 
-        public AdministrationController(IProductsService productsService, IImgService imgService, ICategoryService categoryService)
+        public AdministrationController(
+            IProductsService productsService,
+            IImgService imgService,
+            ICategoryService categoryService,
+            IBagService bagService)
         {
             this.productsService = productsService;
             this.imgService = imgService;
             this.categoryService = categoryService;
-        }
+            this.bagService = bagService;
 
+        }
 
         public IActionResult CreateProduct()
         {
@@ -129,6 +137,25 @@
             await this.categoryService.DeleteUnDeleteSubCategoryByNameAsync(name);
 
             return this.RedirectToAction("AllCategoriesAndSubCategories");
+        }
+
+        public async Task<IActionResult> Orders()
+        {
+            var output = new AllSentBagsViewModel
+            {
+                Bags = await this.bagService.GetAllSentBags(),
+            };
+
+            return this.View(output);
+        }
+
+        public async Task<IActionResult> OrderDetails(string id)
+        {
+            var bag = await this.bagService.GetSentBagByIdAsync(id);
+            var model = AutoMapperConfig.MapperInstance.Map<SentBagViewModel>(bag);
+            model.Products = await this.bagService.GetProductsFromBagByIdAsync(id);
+            model.Price = await this.bagService.TotalPriceOfBagAsync(id);
+            return this.View(model);
         }
     }
 }
