@@ -135,6 +135,9 @@
         public int GetCountOfProductsInBagByIdAsync(string id)
             => this.productQuantityRepository.All().Where(x => x.BagId == id).Count();
 
+        public async Task<int> GetProductsCountInBagAsync(string id)
+            => await this.productQuantityRepository.All().Where(x => x.BagId == id).CountAsync();
+
         private async Task<string> CreateBagAsync(string userId)
         {
             var user = await this.userRepository.All().FirstOrDefaultAsync(x => x.Id == userId);

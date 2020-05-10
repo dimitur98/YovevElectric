@@ -15,7 +15,7 @@
                                 <div class="page-title">
                                     <h2>Редактиране</h2>
                                 </div>
-                                <partial name="EditImg">
+                                <partial name="_EditImgPartial">
                                     <form id="form" asp-area="Administration" asp-controller="Administration" asp-action="EditProduct" asp-route-id="@Model.EditProductInputModel.Id" method="post" class="form">
                                         <div class="form-group">
                                             <label asp-for="@Model.EditProductInputModel.Title">Заглавие</label>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </section>
-                    <partial name="_AccountNavPartial" />
+                    <partial name="~/Views/Shared/_AccountNavPartial.cshtml" />
                 </div>
             </div>
         </section>

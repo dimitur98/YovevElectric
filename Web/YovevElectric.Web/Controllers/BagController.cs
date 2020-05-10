@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using YovevElectric.Web.ViewModels.Product;
 
 namespace YovevElectric.Web.Controllers
 {
+    [Authorize]
     public class BagController : Controller
     {
         private readonly IBagService bagService;

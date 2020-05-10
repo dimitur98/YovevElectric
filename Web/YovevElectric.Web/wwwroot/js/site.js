@@ -134,11 +134,13 @@ function loadCategories(category) {
         success: function (data) {
 
             data.forEach((item) => {
-                console.log(item)
                 choosen = item == category ? selected = "selected='selected'" : "";
-
+                console.log(item);
                 $("#categories").append(
                     "<option " + choosen + " value=" + item + ">" +
+                    item +
+                    "</option>");
+                console.log("<option " + choosen + " value=" + item + ">" +
                     item +
                     "</option>");
             })
@@ -173,6 +175,19 @@ $(function () {
     });
 });
 
+function searchByTitle() {
+    var input = document.getElementById("titleInput");
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keypress", function (event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("searchForm").submit();
+        }
+    });
+}
 
 
 

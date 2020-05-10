@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace YovevElectric.Services.Data
     {
         Task CreateSubCategoryAsync(string subCategoryName, string categoryName);
 
-        Task CreateCategoryAsync(string name);
+        Task CreateCategoryAsync(string name, IFormFile img);
 
         Task<string> GetCategoryIdByNameAsync(string name);
 

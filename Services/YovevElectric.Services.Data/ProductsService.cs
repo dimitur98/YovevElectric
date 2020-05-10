@@ -21,7 +21,7 @@
             this.productsRepository = productsRepository;
         }
 
-        public async Task<int> GetProductsCount(string category = null, string subCategory = null)
+        public async Task<int> GetProductsCount(string category = null, string subCategory = null, string title = null)
         {
             if (category != null)
             {
@@ -31,28 +31,53 @@
             {
                 return await this.productsRepository.All().Where(x => x.SubCategory == subCategory).CountAsync();
             }
+            else if (title != null)
+            {
+                title = title.ToLower().Replace(" ", string.Empty);
+                return await this.productsRepository.All().Where(x => x.Title.ToLower().Replace(" ", string.Empty).Contains(title)).CountAsync();
+            }
             else
             {
                 return await this.productsRepository.All().CountAsync();
             }
         }
 
-        public async Task<ICollection<Product>> GetAllProductsAsync(int skip = 0, string category = null, string subCategory = null)
+        public async Task<ICollection<Product>> GetAllProductsAsync(int skip = 0, string category = null, string subCategory = null, string title = null, string orderBy = null)
         {
-            var products = new List<Product>();
+            var products = this.productsRepository.All();
+
+            switch (orderBy)
+            {
+                case "Име а-я": products = products.OrderBy(x => x.Title).ThenByDescending(x => x.CreatedOn); break;
+                case "Име я-а": products = products.OrderByDescending(x => x.Title).ThenByDescending(x => x.CreatedOn); break;
+                case "Цена-низходяща": products = products.OrderByDescending(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
+                case "Цена-възходяща": products = products.OrderBy(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
+                default:
+                    products = products.OrderByDescending(x => x.CreatedOn);
+                    break;
+            }
+
+
+            var result = new List<Product>();
             if (subCategory != null)
             {
-                products = await this.productsRepository.All().Where(x => x.SubCategory == subCategory).OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+                result = await products.Where(x => x.SubCategory == subCategory).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
             }
             else if (category != null)
             {
-                products = await this.productsRepository.All().Where(x => x.Category == category).OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+                result = await products.Where(x => x.Category == category).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+            }
+            else if (title != null)
+            {
+                title = title.ToLower().Replace(" ", string.Empty);
+                result = await products.Where(x => x.Title.ToLower().Replace(" ", string.Empty).Contains(title)).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
             }
             else
             {
-                products = await this.productsRepository.All().OrderByDescending(x => x.CreatedOn).Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
+                result = await products.Skip(skip).Take(GlobalConstants.ItemsPerPage).ToListAsync();
             }
-            return products;
+
+            return result;
         }
 
         public async Task<Product> GetProductByIdAsync(string id)

@@ -17,5 +17,8 @@
         public string BagId { get; set; }
 
         public Bag Bag { get; set; }
+
+        public string UserId { get; set; }
+
     }
 }

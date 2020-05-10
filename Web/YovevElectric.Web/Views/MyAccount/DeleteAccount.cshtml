@@ -1,0 +1,38 @@
+﻿@model YovevElectric.Web.ViewModels.MyAccount.DeleteAccountInputModel;
+@{
+    ViewData["Title"] = "DeleteAccount";
+}
+
+    <div id="page">
+        <section class="main-container col2-right-layout">
+            <div class="main container">
+                <div class="row">
+                    <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                        <div class="my-account">
+                            <form asp-controller="MyAccount" asp-action="DeleteAccount" method="post" id="login-form">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
+                                <div class="col-2 registered-users">
+                                    <strong>Изтрива се потребителския акаунт пермаментно!</strong>
+                                    <div class="content">
+
+                                        <ul class="form-list">
+                                            <li>
+                                                <label>Имейл</label>
+                                                <input type="text" asp-for="Email" class="input-text" title="Email" placeholder="Имейл">
+                                                <span asp-validation-for="Email" class="text-danger" />
+                                            </li>                                            
+                                        </ul>
+
+                                    </div>
+                                    <button type="submit" class="button login" title="Change Password"><span>Изтрий акаунта</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <partial name="_AccountNavPartial" />
+                </div>
+            </div>
+        </section>
+    </div>
+

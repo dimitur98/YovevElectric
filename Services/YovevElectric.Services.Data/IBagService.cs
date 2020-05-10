@@ -32,5 +32,7 @@
         Task<Bag> GetSentBagByIdAsync(string id);
 
         int GetCountOfProductsInBagByIdAsync(string id);
+
+        Task<int> GetProductsCountInBagAsync(string id);
     }
 }

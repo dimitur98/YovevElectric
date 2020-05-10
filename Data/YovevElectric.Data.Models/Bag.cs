@@ -23,5 +23,8 @@ namespace YovevElectric.Data.Models
         public string OrderDataId { get; set; }
 
         public OrderData OrderData { get; set; }
+
+        public string UserId { get; set; }
+
     }
 }

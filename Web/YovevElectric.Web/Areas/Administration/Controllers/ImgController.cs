@@ -9,12 +9,14 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
 
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using YovevElectric.Common;
     using YovevElectric.Services.Data;
     using YovevElectric.Web.ViewModels.Img;
     using YovevElectric.Web.ViewModels.Product;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
     public class ImgController : Controller
     {

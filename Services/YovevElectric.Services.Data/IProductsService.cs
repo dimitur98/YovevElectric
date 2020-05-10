@@ -10,7 +10,7 @@
 
     public interface IProductsService
     {
-        Task<ICollection<Product>> GetAllProductsAsync(int skip = 0, string category = null, string subCategory = null);
+        Task<ICollection<Product>> GetAllProductsAsync(int skip = 0, string category = null, string subCategory = null, string title = null, string orderBy = null);
 
         Task<Product> GetProductByIdAsync(string id);
 
@@ -24,6 +24,6 @@
 
         Task UnDeleteProductAsync(string id);
 
-        Task<int> GetProductsCount(string category = null, string subCategory = null);
+        Task<int> GetProductsCount(string category = null, string subCategory = null, string title = null);
     }
 }

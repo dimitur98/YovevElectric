@@ -1,5 +1,5 @@
 ﻿@model YovevElectric.Web.ViewModels.Category.CategoryInputModel;
-
+@using YovevElectric.Common;
 @{
     ViewData["Title"] = "CreateCategory";
 }
@@ -16,12 +16,21 @@
                                 <div class="page-title">
                                     <h2>Добави кагетория</h2>
                                 </div>
-                                <form id="form" asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory" method="post" class="form">
+                                <form id="form" dasp-controller="Files" runat="server" enctype="multipart/form-data" asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory" method="post" class="form">
+                                    <div id="pic1">
+                                        <br>
+                                        <img id="img" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                        <br>
+                                        <input type='file' name="img" onchange="readURL(this)" id="productImg" />
+                                        <br>
+                                        <br>
+                                    </div>
+
                                     <div class="form-group">
                                         <label asp-for="Name">Име</label>
                                         <input asp-for="Name" type="text" placeholder="Име" class="form-control">
                                         <span asp-validation-for="Name" class="text-danger" />
-                                    </div>                             
+                                    </div>
                                     <button type="submit" title="submit" class="button"><span>Създай категория</span></button>
                                 </form>
 
@@ -29,7 +38,7 @@
                             </div>
                         </div>
                     </section>
-                    <partial name="_AccountNavPartial" />
+                    <partial name="~/Views/Shared/_AccountNavPartial.cshtml" />
                 </div>
             </div>
         </section>

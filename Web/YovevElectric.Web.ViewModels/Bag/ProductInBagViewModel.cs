@@ -10,6 +10,8 @@ namespace YovevElectric.Web.ViewModels.Bag
     {
         public string Id { get; set; }
 
+        public string ProductId { get; set; }
+
         public string ProductTitle { get; set; }
 
         public decimal ProductPrice { get; set; }

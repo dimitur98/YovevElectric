@@ -16,7 +16,7 @@
     using YovevElectric.Web.ViewModels.Img;
     using YovevElectric.Web.ViewModels.Product;
 
-    //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
     public class AdministrationController : BaseController
     {
@@ -92,9 +92,9 @@
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryInputModel input)
         {
-            await this.categoryService.CreateCategoryAsync(input.Name);
+            await this.categoryService.CreateCategoryAsync(input.Name, input.Img);
 
-            return this.Redirect("/MyAccount/MyAccount");
+            return this.Redirect("/");
         }
 
         public IActionResult CreateSubCategory()
@@ -107,7 +107,7 @@
         {
             await this.categoryService.CreateSubCategoryAsync(input.SubCategoryName, input.CategoryName);
 
-            return this.Redirect("/MyAccount/MyAccount");
+            return this.Redirect("/");
         }
 
         public async Task<IActionResult> AllCategoriesAndSubCategories()

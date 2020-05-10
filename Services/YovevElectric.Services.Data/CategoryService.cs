@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,16 @@ namespace YovevElectric.Services.Data
     {
         private readonly IDeletableEntityRepository<Category> categoryRepository;
         private readonly IDeletableEntityRepository<SubCategory> subCategoryRepository;
+        private readonly IImgService imgService;
 
-        public CategoryService(IDeletableEntityRepository<Category> categoryRepository, IDeletableEntityRepository<SubCategory> subCategoryRepository)
+        public CategoryService(
+            IDeletableEntityRepository<Category> categoryRepository,
+            IDeletableEntityRepository<SubCategory> subCategoryRepository,
+            IImgService imgService)
         {
             this.categoryRepository = categoryRepository;
             this.subCategoryRepository = subCategoryRepository;
+            this.imgService = imgService;
         }
 
         public async Task<ICollection<Category>> GetAllCategoriesAsync() => await this.categoryRepository.All().ToListAsync();
@@ -36,11 +42,14 @@ namespace YovevElectric.Services.Data
             return category.Id;
         }
 
-        public async Task CreateCategoryAsync(string name)
+        public async Task CreateCategoryAsync(string name, IFormFile img)
         {
+            var imgPath = await this.imgService.UploadImgAsync(img);
+
             var category = new Category
             {
                 Name = name,
+                ImgPath = imgPath,
             };
 
             await this.categoryRepository.AddAsync(category);

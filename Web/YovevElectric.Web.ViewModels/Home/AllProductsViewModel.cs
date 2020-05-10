@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     using YovevElectric.Data.Models;
+    using YovevElectric.Web.ViewModels.Bag;
 
     public class AllProductsViewModel
     {
@@ -14,5 +15,13 @@
         public int PagesCount { get; set; }
 
         public ICollection<Category> Categories { get; set; }
+
+        public ICollection<ProductInBagViewModel> ProductsInBag { get; set; }
+
+        public decimal TotalSum { get; set; }
+
+        public int ProductsCount { get; set; }
+
+        public string OrderBy { get; set; }
     }
 }

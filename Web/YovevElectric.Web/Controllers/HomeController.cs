@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
     using YovevElectric.Common;
     using System;
+    using YovevElectric.Web.ViewModels.Category;
 
     public class HomeController : BaseController
     {
@@ -23,9 +24,18 @@
             this.categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return this.View();
+            var categories = await this.categoryService.GetAllCategoriesAsync();
+            var output = new AllCategoriesAndSubCategoriesViewModell
+            {
+                Categories = categories.Select(x => new CategoryViewModel
+                {
+                    Name = x.Name,
+                    ImgPath = x.ImgPath,
+                }).ToList(),
+            };
+            return this.View(output);
         }
 
         public IActionResult Privacy()
