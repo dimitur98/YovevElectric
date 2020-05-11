@@ -1,0 +1,103 @@
+﻿@model YovevElectric.Web.ViewModels.Home.SiteMapViewModel;
+@using YovevElectric.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "SiteMap";
+    var counter = 0;
+}
+
+<body onload="loadAllSubCategories()">
+    <div id="page">
+
+
+        <!-- BEGIN Main Container col2-right -->
+        <section class="main-container col2-right-layout">
+            <div class="main container">
+                <div class="row">
+                    <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                        <div class="my-account">
+
+                            <!--page-title-->
+                            <!-- BEGIN DASHBOARD-->
+                            <div class="dashboard">
+
+                                <div class="recent-orders">
+                                    <div class="table-responsive">
+                                        <table class="data-table table-striped" id="my-orders-table">
+                                            <colgroup>
+                                                <col width="">
+                                                <col width="">
+                                                <col>
+                                                <col width="1">
+                                                <col width="1">
+                                                <col width="20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="first last">
+                                                    <th>Начална страница</th>
+                                                    <th>Категории</th>
+                                                    <th>Акаунт</th>
+                                                    <th>Страници</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr class="first odd">
+                                                    <td><span class="nobr"><a asp-area="" asp-controller="Home" asp-action="Index">Начална страница</a></span></td>
+                                                    <td>
+                                                        <ul>
+
+                                                            @foreach (var category in Model.Categories)
+                                                            {
+                                                                <li>
+                                                                    <a asp-area="" asp-controller="Products" asp-action="Products" asp-route-category="@category.Name">@category.Name</a>
+                                                                    <span onclick="loadSubCategoriesToSideBar('@category.Name',@counter)" class="subDropdown plus"></span>
+                                                                    <ul id="subCategories@(counter++)"></ul>
+                                                                </li>
+
+                                                            }
+
+                                                        </ul>
+                                                    </td>
+
+                                                    <td class="a-center last details">
+                                                        @if (this.SignInManager.IsSignedIn(this.User))
+                                                        {
+                                                            <ul>
+                                                                <li>Вход</li>
+                                                                <li>Регистрация</li>
+                                                            </ul>
+                                                        }
+                                                        else
+                                                        {
+                                                            <ul>
+                                                                <li><a asp-area="Identity" asp-controller="Account" asp-action="Login">Вход</a></li>
+                                                                <li><a asp-area="Identity" asp-controller="Account" asp-action="Register" title="Wishlist">Регистрация</a></li>
+                                                            </ul>
+                                                        }
+                                                    </td>
+                                                </tr>
+
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--table-responsive-->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+</body>
+

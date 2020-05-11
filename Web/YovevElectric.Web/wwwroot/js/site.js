@@ -45,6 +45,22 @@ function loadImg(input) {
         }
     }
 }
+function loadAllSubCategories() {
+    var token = $("#form input[name=__RequestVerificationToken]").val();
+    $.ajax({
+        url: "/api/category/getCategories/",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': token },
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                loadSubCategoriesToSideBar(data[i], i);
+            }
+        }
+    });
+    
+}
 
 function loadSubCategoriesToSideBar(input, num) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
@@ -57,7 +73,6 @@ function loadSubCategoriesToSideBar(input, num) {
         success: function (data) {
             if ($('ul#subCategories' + num + ' li').length == 0) {
                 data.forEach((item) => {
-                    console.log(item["name"]);
                     $("#subCategories" + num).append("<li><a href='/Products/Products?category=" + input + "&subCategory=" + item["name"] + "'>" + item["name"] + "</a><span></span></li>");
                 });
             }

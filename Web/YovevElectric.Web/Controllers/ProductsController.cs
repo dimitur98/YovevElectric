@@ -42,7 +42,7 @@ namespace YovevElectric.Web.Controllers
                 user = new ApplicationUser();
                 user.BagId = string.Empty;
             }
-
+            var productsInBag = await this.bagService.GetProductsFromBagByIdAsync(user.BagId);
             var output = new AllProductsViewModel
             {
                 AllProducts = products.Select(x => new ProductViewModel
@@ -58,7 +58,7 @@ namespace YovevElectric.Web.Controllers
                 PagesCount = pagesCount == 0 ? 1 : pagesCount,
                 Categories = await this.categoryService.GetAllCategoriesAsync(),
                 ProductsCount = await this.bagService.GetProductsCountInBagAsync(user.BagId),
-                ProductsInBag = await this.bagService.GetProductsFromBagByIdAsync(user.BagId),
+                ProductsInBag = productsInBag.Take(4).ToList(),
                 TotalSum = await this.bagService.TotalPriceOfBagAsync(user.BagId),
                 OrderBy = orderBy == null ? string.Empty : orderBy,
             };

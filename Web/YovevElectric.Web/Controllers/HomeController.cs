@@ -54,5 +54,20 @@
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> SiteMap()
+        {
+            var categories = new SiteMapViewModel
+            {
+                Categories = await this.categoryService.GetAllCategoriesAsync(),
+            };
+
+            return this.View(categories);
+        }
+
+        public IActionResult AboutUs()
+        {
+            return this.View();
+        }
     }
 }
