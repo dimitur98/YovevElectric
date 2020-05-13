@@ -3,288 +3,288 @@
     ViewData["Title"] = "Bag";
 }
 
-<div class="main-container col1-layout wow bounceInUp animated">
+    <div class="main-container col1-layout wow bounceInUp animated">
 
-    <div class="main">
-        <div class="cart wow bounceInUp animated">
+        <div class="main">
+            <div class="cart wow bounceInUp animated">
 
-            <div class="table-responsive shopping-cart-tbl  container">
-                <form action="#" method="post">
-                    <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
-                    <fieldset>
-                        <table id="shopping-cart-table" class="data-table cart-table table-striped">
-                            <colgroup>
-                                <col width="1">
-                                <col>
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
+                <div class="table-responsive shopping-cart-tbl  container">
+                    <form action="#" method="post">
+                        <input name="form_key" type="hidden" value="EPYwQxF6xoWcjLUr">
+                        <fieldset>
+                            <table id="shopping-cart-table" class="data-table cart-table table-striped">
+                                <colgroup>
+                                    <col width="1">
+                                    <col>
+                                    <col width="1">
+                                    <col width="1">
+                                    <col width="1">
+                                    <col width="1">
+                                    <col width="1">
 
-                            </colgroup>
-                            <thead>
-                                <tr class="first last">
-                                    <th rowspan="1">&nbsp;</th>
-                                    <th rowspan="1"><span class="nobr">Име на продукт</span></th>
-                                    <th rowspan="1"></th>
-                                    <th class="a-center" colspan="1"><span class="nobr">Цена за бр.</span></th>
-                                    <th rowspan="1" class="a-center">Количество</th>
-                                    <th class="a-center" colspan="1">Обща сума</th>
-                                    <th rowspan="1" class="a-center">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr class="first last">
-                                    <td colspan="50" class="a-right last">
-                                        <a asp-area="" asp-controller="Products" asp-action="Products" class="button btn-continue"><span><span>Продължи пазаруването</span></span></a>
-                                        <a asp-area="" asp-controller="Bag" asp-action="ClearBag" class="button btn-empty" id="empty_cart_button"><span><span>Премахни всичко</span></span></a>
+                                </colgroup>
+                                <thead>
+                                    <tr class="first last">
+                                        <th rowspan="1">&nbsp;</th>
+                                        <th rowspan="1"><span class="nobr">Име на продукт</span></th>
+                                        <th rowspan="1"></th>
+                                        <th class="a-center" colspan="1"><span class="nobr">Цена за бр.</span></th>
+                                        <th rowspan="1" class="a-center">Количество</th>
+                                        <th class="a-center" colspan="1">Обща сума</th>
+                                        <th rowspan="1" class="a-center">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr class="first last">
+                                        <td colspan="50" class="a-right last">
+                                            <a asp-area="" asp-controller="Products" asp-action="Products" class="button btn-continue"><span><span>Продължи пазаруването</span></span></a>
+                                            <a asp-area="" asp-controller="Bag" asp-action="ClearBag" class="button btn-empty" id="empty_cart_button"><span><span>Премахни всичко</span></span></a>
 
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @foreach (var product in Model.Products)
-                                {
-                                    <tr class="first last odd">
-                                        <td class="image hidden-table">
-                                            <a href="product-detail.html" title="product" class="product-image"><img src="@product.ProductImgPath" width="75" alt="product"></a>
-                                        </td>
-                                        <td>
-                                            <h2 class="product-name">
-                                                <a href="product-detail.html">@product.ProductTitle</a>
-                                            </h2>
-                                        </td>
-                                        <td class="a-center hidden-table">
-                                            <a href="#" title="Edit item parameters"></a>
-                                        </td>
-                                        <td class="a-right hidden-table">
-                                            <span class="cart-price">
-                                                <span class="price">@product.ProductPrice</span>
-                                            </span>
-                                        </td>
-                                        <td class="a-center movewishlist">
-                                            <span style="float: right;" class="input-text qty">@product.Quantity</span>
-                                        </td>
-                                        <td class="a-right movewishlist">
-                                            <span class="cart-price">
-
-                                                <span class="price">@product.TotalPrice</span>
-                                            </span>
-                                        </td>
-                                        <td class="a-center last">
-                                            <a asp-area="" asp-controller="Bag" asp-action="DeleteProductFromBag" asp-route-id="@product.Id" title="Премахни" class="button remove-item"><span><span>Премахни</span></span></a>
                                         </td>
                                     </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var product in Model.Products)
+                                    {
+                                        <tr class="first last odd">
+                                            <td class="image hidden-table">
+                                                <a href="product-detail.html" title="product" class="product-image"><img src="@product.ProductImgPath" width="75" alt="product"></a>
+                                            </td>
+                                            <td>
+                                                <h2 class="product-name">
+                                                    <a href="product-detail.html">@product.ProductTitle</a>
+                                                </h2>
+                                            </td>
+                                            <td class="a-center hidden-table">
+                                                <a href="#" title="Edit item parameters"></a>
+                                            </td>
+                                            <td class="a-right hidden-table">
+                                                <span class="cart-price">
+                                                    <span class="price">@product.ProductPrice</span>
+                                                </span>
+                                            </td>
+                                            <td class="a-center movewishlist">
+                                                <span style="float: right;" class="input-text qty">@product.Quantity</span>
+                                            </td>
+                                            <td class="a-right movewishlist">
+                                                <span class="cart-price">
 
-                                }
+                                                    <span class="price">@product.TotalPrice</span>
+                                                </span>
+                                            </td>
+                                            <td class="a-center last">
+                                                <a asp-area="" asp-controller="Bag" asp-action="DeleteProductFromBag" asp-route-id="@product.Id" title="Премахни" class="button remove-item"><span><span>Премахни</span></span></a>
+                                            </td>
+                                        </tr>
 
-                            </tbody>
-                        </table>
+                                    }
 
-                    </fieldset>
-                </form>
-            </div>
+                                </tbody>
+                            </table>
 
-            <!-- BEGIN CART COLLATERALS -->
+                        </fieldset>
+                    </form>
+                </div>
 
-            <form asp-area="" asp-controller="Bag" asp-action="MakeOrder" method="get" id="shipping-zip-form">
-                <div class="cart-collaterals container">
-                    <!-- BEGIN COL2 SEL COL 1 -->
-                    <!-- BEGIN TOTALS COL 2 -->
-                    <div class="col-sm-4">
+                <!-- BEGIN CART COLLATERALS -->
 
-
-                        <div class="shipping">
-
-                            <h3>Данни за купувача</h3>
-                            <div class="shipping-form">
-
-                                <p>Въведете данните си.</p>
-                                <ul class="form-list">
-                                    <li>
-                                        <label for="region_id">Град/Село</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.City" type="text" class="input-text validate-postcode" placeholder="Град/Село" id="cityInput">
-                                            <span asp-validation-for="@Model.Order.City" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="region_id">Адрес</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.Adress" type="text" class="input-text validate-postcode" placeholder="Адрес" id="adressInput">
-                                            <span asp-validation-for="@Model.Order.Adress" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="postcode">Пощенски код</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.PostCode" class="input-text validate-postcode" type="text" placeholder="Пощенски код" id="postCodeInput">
-                                            <span asp-validation-for="@Model.Order.PostCode" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="postcode">Име</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.FirstName" class="input-text validate-postcode" type="text" id="nameInput" placeholder="Име">
-                                            <span asp-validation-for="@Model.Order.FirstName" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="postcode">Фамилия</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.LastName" class="input-text validate-postcode" id="lastNameInput" type="text" placeholder="Фамилия">
-                                            <span asp-validation-for="@Model.Order.LastName" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="postcode">Мобилен телефон</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.MobileNumber" class="input-text validate-postcode" id="telephoneInput" type="text" placeholder="Мобилен телефон">
-                                            <span asp-validation-for="@Model.Order.MobileNumber" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="postcode">Допълнителна информация</label>
-                                        <div class="input-box">
-                                            <textarea asp-for="@Model.Order.MoreInfo" class="input-text validate-postcode" id="moreInfoInput" cols="30" rows="5" placeholder="Допълнителна информация"></textarea>
-                                            <span asp-validation-for="@Model.Order.MoreInfo" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="invoiceBtn">Издаване на фактура</label><br>
-                                        <input type="checkbox" id="invoiceBtn" onclick="invoiceFnc()">
-                                    </li>
-                                </ul>
+                <form asp-area="" asp-controller="Bag" asp-action="MakeOrder" method="post" id="shipping-zip-form">
+                    <div class="cart-collaterals container">
+                        <!-- BEGIN COL2 SEL COL 1 -->
+                        <!-- BEGIN TOTALS COL 2 -->
+                        <div class="col-sm-4">
 
 
+                            <div class="shipping">
 
+                                <h3>Данни за купувача</h3>
+                                <div class="shipping-form">
+
+                                    <p>Въведете данните си.</p>
+                                    <ul class="form-list">
+                                        <li>
+                                            <label for="region_id">Град/Село</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.City" type="text" class="input-text validate-postcode" placeholder="Град/Село" id="cityInput">
+                                                <span asp-validation-for="@Model.Order.City" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="region_id">Адрес</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.Adress" type="text" class="input-text validate-postcode" placeholder="Адрес" id="adressInput">
+                                                <span asp-validation-for="@Model.Order.Adress" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="postcode">Пощенски код</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.PostCode" class="input-text validate-postcode" type="text" placeholder="Пощенски код" id="postCodeInput">
+                                                <span asp-validation-for="@Model.Order.PostCode" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="postcode">Име</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.FirstName" class="input-text validate-postcode" type="text" id="nameInput" placeholder="Име">
+                                                <span asp-validation-for="@Model.Order.FirstName" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="postcode">Фамилия</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.LastName" class="input-text validate-postcode" id="lastNameInput" type="text" placeholder="Фамилия">
+                                                <span asp-validation-for="@Model.Order.LastName" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="postcode">Мобилен телефон</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.MobileNumber" class="input-text validate-postcode" id="telephoneInput" type="text" placeholder="Мобилен телефон">
+                                                <span asp-validation-for="@Model.Order.MobileNumber" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="postcode">Допълнителна информация</label>
+                                            <div class="input-box">
+                                                <textarea asp-for="@Model.Order.MoreInfo" class="input-text validate-postcode" id="moreInfoInput" cols="30" rows="5" placeholder="Допълнителна информация"></textarea>
+                                                <span asp-validation-for="@Model.Order.MoreInfo" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="invoiceBtn">Издаване на фактура</label><br>
+                                            <input type="checkbox" id="invoiceBtn" onclick="invoiceFnc()">
+                                        </li>
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="discount" id="invoiceInput" style="display: none">
+
+                                <h3>Фактура</h3>
+                                <div class="shipping-form">
+                                    <p>Данни за фактура</p>
+                                    <ul class="form-list">
+                                        <li>
+                                            <label for="region_id">Име на фирма</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.FirmName" type="text" placeholder="Име на фирма" id="firmNameInput">
+                                                <span asp-validation-for="@Model.Order.FirmName" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="region_id">МОЛ</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.MOL" type="text" placeholder="МОЛ" id="MOLInput">
+                                                <span asp-validation-for="@Model.Order.MOL" class="text-danger" />
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label for="region_id">Булстад</label>
+                                            <div class="input-box">
+                                                <input asp-for="@Model.Order.Bulstad" type="text" placeholder="Булстад" id="bulstadInput">
+                                                <span asp-validation-for="@Model.Order.Bulstad" class="text-danger" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="discount" id="invoiceInput" style="display: none">
 
-                            <h3>Фактура</h3>
-                            <div class="shipping-form">
-                                <p>Данни за фактура</p>
-                                <ul class="form-list">
-                                    <li>
-                                        <label for="region_id">Име на фирма</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.FirmName" type="text" placeholder="Име на фирма" id="firmNameInput">
-                                            <span asp-validation-for="@Model.Order.FirmName" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="region_id">МОЛ</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.MOL" type="text" placeholder="МОЛ" id="MOLInput">
-                                            <span asp-validation-for="@Model.Order.MOL" class="text-danger" />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="region_id">Булстад</label>
-                                        <div class="input-box">
-                                            <input asp-for="@Model.Order.Bulstad" type="text" placeholder="Булстад" id="bulstadInput">
-                                            <span asp-validation-for="@Model.Order.Bulstad" class="text-danger" />
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="col-sm-4">
+                            <div class="totals">
+                                <h3>Shopping Cart Total</h3>
+                                <div class="inner">
 
+                                    <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
+                                        <colgroup>
+                                            <col>
+                                            <col width="1">
+                                        </colgroup>
+                                        <tfoot>
+                                            <tr>
+                                                <td style="" class="a-left" colspan="1">
+                                                    <strong>Сума с отстъпка</strong>
+                                                </td>
+                                                <td style="" class="a-right">
+                                                    <strong><span class="price">@Model.TotalPrice лв.</span></strong>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <tr>
+                                                <td style="" class="a-left" colspan="1">
+                                                    Обща сума
+                                                </td>
+                                                <td style="" class="a-right">
+                                                    <span class="price">@Model.Price лв.</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                    <div class="col-sm-4">
-                        <div class="totals">
-                            <h3>Shopping Cart Total</h3>
-                            <div class="inner">
+                                    <ul class="checkout">
+                                        <li>
 
-                                <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
-                                    <colgroup>
-                                        <col>
-                                        <col width="1">
-                                    </colgroup>
-                                    <tfoot>
-                                        <tr>
-                                            <td style="" class="a-left" colspan="1">
-                                                <strong>Сума с отстъпка</strong>
-                                            </td>
-                                            <td style="" class="a-right">
-                                                <strong><span class="price">@Model.TotalPrice лв.</span></strong>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td style="" class="a-left" colspan="1">
-                                                Обща сума
-                                            </td>
-                                            <td style="" class="a-right">
-                                                <span class="price">@Model.Price лв.</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <button type="button" class="button btn-proceed-checkout"  onclick="myfunction()">
+                                                <span>Направи поръчка</span>
+                                            </button>
 
-                                <ul class="checkout">
-                                    <li>
-
-                                        <button type="button" class="button btn-proceed-checkout" onclick="myfunction()">
-                                            <span>Направи поръчка</span>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Данни за поръчка</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p id="city">Град: </p>
-                                                        <p id="adress">Адрес: </p>
-                                                        <p id="postCode">Пощенски код: </p>
-                                                        <p id="name">Име: </p>
-                                                        <p id="lastName">Фамилия: </p>
-                                                        <p id="telephone">Телефон: </p>
-                                                        <p id="moreInfo">Допълнителна информация: </p>
-                                                        <div id="invoiceData" style="display: none">
-                                                            <p id="firmName">Име на фирма: </p>
-                                                            <p id="MOL">МОЛ: </p>
-                                                            <p id="bulstad">Булстад: </p>
+                                            <!-- Modal -->
+                                            <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Данни за поръчка</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="button btn-proceed-checkout"><span>Направи поръчка</span></button>
+                                                        <div class="modal-body">
+                                                            <p id="city">Град: </p>
+                                                            <p id="adress">Адрес: </p>
+                                                            <p id="postCode">Пощенски код: </p>
+                                                            <p id="name">Име: </p>
+                                                            <p id="lastName">Фамилия: </p>
+                                                            <p id="telephone">Телефон: </p>
+                                                            <p id="moreInfo">Допълнителна информация: </p>
+                                                            <div id="invoiceData" style="display: none">
+                                                                <p id="firmName">Име на фирма: </p>
+                                                                <p id="MOL">МОЛ: </p>
+                                                                <p id="bulstad">Булстад: </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="button btn-proceed-checkout"><span>Направи поръчка</span></button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                    </li>
-                                    <br>
-                                </ul>
-                            </div><!--inner-->
-                        </div><!--totals-->
-                    </div> <!--col-sm-4-->
-
-
-                </div> <!--cart-collaterals-->
-            </form>
+                                        </li>
+                                        <br>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
 
-        </div>  <!--cart-->
+                    </div>
+                </form>
 
-    </div><!--main-container-->
 
-</div> <!--col1-layout-->
-<!-- For version 1,2,3,4,6 -->
+            </div>
+
+        </div>
+        <div style="display: none;">@(this.TempData["orderSent"]=true);</div>
+
+    </div>
 <script>
     function myfunction() {
 

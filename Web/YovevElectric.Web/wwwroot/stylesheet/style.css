@@ -10432,6 +10432,7 @@ button.button.btn-proceed-checkout {
 	width: 100%;
 	border-bottom: 3px solid #c54845;
 }
+
 button.button.btn-proceed-checkout:hover {
 	background: #3e6274;
 	color: #fff;
@@ -13457,20 +13458,19 @@ select#shipping-address-select {
 }
 
 
-.b-filter__inner:before {
-    content: "";
-    display: block;
-    background: url(../images/pattern.svg) repeat 0px -0px;
-    /* background-repeat: repeat; */
-    /* background-position: top left; */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    opacity: .1;
-    top: 0;
-
-}
+	.b-filter__inner:before {
+		content: "";
+		display: block;
+		background: url(../images/pattern.svg) repeat 0px -0px;
+		/* background-repeat: repeat; */
+		/* background-position: top left; */
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		opacity: .1;
+		top: 0;
+	}
 
 .b-filter .selectpicker {
     height: 50px;

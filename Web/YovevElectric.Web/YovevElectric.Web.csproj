@@ -294,6 +294,9 @@
     <Content Update="wwwroot\images\to-top-arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\images\yovev.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\js\bootstrap-select.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -13,6 +13,12 @@
 <section class="main-container col2-left-layout bounceInUp animated">
     <!-- For version 1, 2, 3, 8 -->
     <!-- For version 1, 2, 3 -->
+    @if (TempData["orderSent"] != null)
+    {
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            Поръчката е изпратена успешно!
+        </div>
+    }
     <div class="container">
         <div class="row">
             <div class="col-main col-sm-9 col-sm-push-3 product-grid">
@@ -48,6 +54,20 @@
                                         }
 
                                         <ul>
+
+                                            @if (Model.OrderBy != string.Empty)
+                                            {
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-page="@Model.CurrentPage"
+                                                       asp-route-orderBy="Добавени"><span class="right-arrow">Добавени</span></a>
+                                                </li>
+                                            }
                                             <li>
                                                 <a asp-area=""
                                                    asp-controller="Products"
@@ -76,7 +96,7 @@
                                                    asp-route-subCategory="@this.ViewData["subCategory"]"
                                                    asp-route-title="@this.ViewData["name"]"
                                                    asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Цена-низходяща">Цена-низходяща</a>
+                                                   asp-route-orderBy="Ценa: най-висока">Ценa: най-висока</a>
                                             </li>
                                             <li>
                                                 <a asp-area=""
@@ -86,7 +106,7 @@
                                                    asp-route-subCategory="@this.ViewData["subCategory"]"
                                                    asp-route-title="@this.ViewData["name"]"
                                                    asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Цена-възходяща">Цена-възходяща</a>
+                                                   asp-route-orderBy="Цена: най-ниска">Цена: най-ниска</a>
                                             </li>
                                         </ul>
                                     </li>

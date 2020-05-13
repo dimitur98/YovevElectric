@@ -24,22 +24,21 @@
 
             <!--Category slider Start-->
             <div class="section-filter">
-                <div class=" bg-grey container" style="content: '~/images/FON.jpg'">
-                    <img src="~/images/FON.jpg" style="width: 1300px; ">
-                    <div class="container" style="margin-bottom:250px;">
+                <div class="b-filter__inner bg-grey container" >
+                    <div class="container bg-img">
                         <h2></h2>
                         <form class="b-filter" method="get" asp-area="" asp-controller="Products" asp-action="Products">
                             <!--<div class="row" style="border:1px solid grey; border-spacing:-10px">-->
-                                <div class="form-group" style="display:inline; width:100px;">
-                                    <select class="form-group" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">
+                                <div class="form-group" style="display:inline;">
+                                    <select class="form-group" style="width: 618px;" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">
                                     </select>
                                 </div>
                                 <div class="form-group" style="display:inline;">
-                                    <select class="form-group" name="subCategory" id="subCategories">
+                                    <select class="form-group" style="width: 618px;" name="subCategory" id="subCategories">
                                     </select>
                                 </div>
-                                <div class="b-filter__btns" style="display:inline;">
-                                    <button class="btn btn-lg btn-primary"  data-width="100%" tabindex="-98">Търси</button>
+                                <div class="b-filter__btns">
+                                    <button class="btn btn-lg btn-primary" style="width: 1236px;">Търси</button>
                                 </div>
                         </form>
                     </div>
@@ -152,28 +151,24 @@
         <!--page-->
 </body>
 
-<script>
-    function test() {
-        var token = $("#form input[name=__RequestVerificationToken]").val();
-        var json = { testt: "test" };
-        console.log(json)
-        $.ajax({
-            url: "/api/apiTest",
-            type: "POST",
-            data: JSON.stringify(json),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            headers: { 'X-CSRF-TOKEN': token },
-            success: function (data) {
-                console.log("success")
-            }
-
-        });
-    }
-</script>
 <style>
-    #fon {
-        content: url("~/images/FON.jpg");
+    body, html {
+        height: 100%;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .bg-img {
+        /* The image used */
+        background-image: url("~/images/FON.jpg");
+        /* Control the height of the image */
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
 </style>
 

@@ -60,6 +60,7 @@ namespace YovevElectric.Web.Controllers
             return this.RedirectToAction("Bag");
         }
 
+        [HttpPost]
         public async Task<IActionResult> MakeOrder(BagModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);

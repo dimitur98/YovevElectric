@@ -23,5 +23,6 @@
         public int ProductsCount { get; set; }
 
         public string OrderBy { get; set; }
+
     }
 }

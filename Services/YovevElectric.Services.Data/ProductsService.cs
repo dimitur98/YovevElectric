@@ -50,13 +50,12 @@
             {
                 case "Име а-я": products = products.OrderBy(x => x.Title).ThenByDescending(x => x.CreatedOn); break;
                 case "Име я-а": products = products.OrderByDescending(x => x.Title).ThenByDescending(x => x.CreatedOn); break;
-                case "Цена-низходяща": products = products.OrderByDescending(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
-                case "Цена-възходяща": products = products.OrderBy(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
+                case "Ценa: най-висока": products = products.OrderByDescending(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
+                case "Ценa: най-ниска": products = products.OrderBy(x => x.Price).ThenByDescending(x => x.CreatedOn); break;
                 default:
                     products = products.OrderByDescending(x => x.CreatedOn);
                     break;
             }
-
 
             var result = new List<Product>();
             if (subCategory != null)
