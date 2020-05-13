@@ -48,6 +48,10 @@
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductInputModel input)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
             var id = await this.productsService.CreateProductAsync(input);
 
             return this.Redirect($"/Administration/Img/ImgUpload?id={id}");
@@ -82,6 +86,11 @@
         [HttpPost]
         public async Task<IActionResult> EditProduct(string id, EditProductModel input)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             await this.productsService.EditProductAsync(id, input.EditProductInputModel);
             return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
         }
@@ -94,6 +103,11 @@
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryInputModel input)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             await this.categoryService.CreateCategoryAsync(input.Name, input.Img);
 
             return this.Redirect("/");
@@ -107,6 +121,11 @@
         [HttpPost]
         public async Task<IActionResult> CreateSubCategory(SubCategoryInputModel input)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             await this.categoryService.CreateSubCategoryAsync(input.SubCategoryName, input.CategoryName);
 
             return this.Redirect("/");

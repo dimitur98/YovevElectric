@@ -69,5 +69,30 @@
         {
             return this.View();
         }
+
+        public IActionResult Shippment()
+        {
+            return this.View();
+        }
+
+        public IActionResult Refusal()
+        {
+            return this.View();
+        }
+
+        public IActionResult TermsAndConditionsOfUse()
+        {
+            return this.View();
+        }
+
+        public IActionResult CookiePolicy()
+        {
+            return this.View();
+        }
+
+        public IActionResult LegalNotice()
+        {
+            return this.View();
+        }
     }
 }

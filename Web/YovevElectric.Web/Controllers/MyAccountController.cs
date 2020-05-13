@@ -58,6 +58,7 @@
             {
                 return this.View(input);
             }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
             if (user.Email == input.Email)

@@ -48,7 +48,7 @@
                                         <div class="assetBlock">
                                             <div style="height: 20px; overflow: hidden;" id="slideshow">
                                                 @*<p style="display: block;">Hot days! - <span>50%</span> Get ready for summer! </p>
-                                                <p style="display: none;">Save up to <span>40%</span> Hurry limited offer!</p>*@
+                                                    <p style="display: none;">Save up to <span>40%</span> Hurry limited offer!</p>*@
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,6 @@
                                                     <ul class="links">
                                                         <li><a asp-area="" asp-controller="MyAccount" asp-action="ChangePassword"><span>Промени парола</span></a></li>
                                                         <li><a asp-area="" asp-controller="MyAccount" asp-action="DeleteAccount"><span> Изтрии акаунт</span></a></li>
-                                                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy"><span> Privacy</span></a></li>
                                                     </ul>
                                                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@(this.Url.Action("Index", "Home", new { area = string.Empty }))">
                                                         <br />
@@ -140,120 +139,125 @@
         </div>
 
         <footer class="border-top footer text-muted">
-            
-                <!-- BEGIN INFORMATIVE FOOTER -->
-                <div class="footer-inner">
-                    <div class="our-features-box wow bounceInUp animated animated">
-                        <div class="container">
-                            <ul>
-                                <li>
-                                    <div class="feature-box">
-                                        <div class="icon-truck"><img src="~/images/world-icon.png" alt="Image"></div>
-                                        <div class="content">
-                                            <h6>World's #1</h6>
-                                            <p>Largest Auto portal</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="feature-box">
-                                        <div class="icon-support"><img src="~/images/car-sold-icon.png" alt="Image"></div>
-                                        <div class="content">
-                                            <h6>Car Sold</h6>
-                                            <p>Every 4 minute</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="feature-box">
-                                        <div class="icon-money"><img src="~/images/tag-icon.png" alt="Image"></div>
-                                        <div class="content">
-                                            <h6>Offers</h6>
-                                            <p>Stay updated pay less</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="last">
-                                    <div class="feature-box">
-                                        <div class="icon-return"><img src="~/images/compare-icon.png" alt="Image"></div>
-                                        <div class="content">
-                                            <h6>Compare</h6>
-                                            <p>Decode the right car</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
+            <!-- BEGIN INFORMATIVE FOOTER -->
+            <div class="footer-inner">
+                <div class="our-features-box wow bounceInUp animated animated">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4 col-xs-12 col-lg-4">
-                                <div class="co-info">
-                                    <h4>За нас</h4>
-                                    <address>
-                                        <div>
-                                            <span>
-                                                Булевард Христо Ботев 16, гр. Лясковец
-                                            </span>
-                                        </div>
-                                        <div> <span> +1 800 789 0000</span></div>
-                                        <div> <span><a>yovevelectric2@gmail.com</a></span></div>
-                                        <div> <span>Понеделни - Събота : от 8:30 до 18:30</span></div>
-                                    </address>
+                        <ul>
+                            <li>
+                                <div class="feature-box">
+                                    <div class="icon-truck"><img src="~/images/world-icon.png" alt="Image"></div>
+                                    <div class="content">
+                                        <h6>World's #1</h6>
+                                        <p>Largest Auto portal</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-8 col-xs-12 col-lg-8">
-                                <div class="footer-column">
-                                    
+                            </li>
+                            <li>
+                                <div class="feature-box">
+                                    <div class="icon-support"><img src="~/images/car-sold-icon.png" alt="Image"></div>
+                                    <div class="content">
+                                        <h6>Car Sold</h6>
+                                        <p>Every 4 minute</p>
+                                    </div>
                                 </div>
-                                <div class="footer-column">
-                                    
+                            </li>
+                            <li>
+                                <div class="feature-box">
+                                    <div class="icon-money"><img src="~/images/tag-icon.png" alt="Image"></div>
+                                    <div class="content">
+                                        <h6>Offers</h6>
+                                        <p>Stay updated pay less</p>
+                                    </div>
                                 </div>
-                                <div class="footer-column">
-                                    <h4>Информация</h4>
-                                    <ul class="links">
-                                        <li><a asp-area="" asp-controller="Home" asp-action="AboutUs" >За нас</a></li>
-                                        <li><a href="#">Доставчици</a></li>
-                                        <li><a asp-area="" asp-controller="Home" asp-action="SiteMap">Карта на сайта</a></li>
-                                        <li><a href="#">Отстъпки</a></li>
-                                        <li><a title="FAQs" href="#">FAQs</a></li>
-                                        <li><a title="Shipment" href="#">Доставка</a></li>
-                                    </ul>
+                            </li>
+                            <li class="last">
+                                <div class="feature-box">
+                                    <div class="icon-return"><img src="~/images/compare-icon.png" alt="Image"></div>
+                                    <div class="content">
+                                        <h6>Compare</h6>
+                                        <p>Decode the right car</p>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!--col-sm-12 col-xs-12 col-lg-8-->
-                            <!--col-xs-12 col-lg-4-->
-                        </div>
-                        <!--row-->
-
-                    </div>
-
-                    <!--container-->
-                </div>
-                <!--footer-inner-->
-
-                <div class="footer-top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="social">
-                                    <ul>
-                                        <li class="fb"><a></a></li>
-                                        <li class="googleplus"><a></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-xs-12 coppyright"><a>YovevElectric</a></div>
-                            <div class="col-xs-12 col-sm-4">
-                                <div class="payment-accept"> <img src="~/images/payment-1.png" alt=""> </div>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- BEGIN SIMPLE FOOTER -->
-            </footer>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12 col-lg-4">
+                            <div class="co-info">
+                                <h4>За нас</h4>
+                                <address>
+                                    <div>
+                                        <span>
+                                            Булевард Христо Ботев 16, гр. Лясковец
+                                        </span>
+                                    </div>
+                                    <div> <span> +1 800 789 0000</span></div>
+                                    <div> <span><a>yovevelectric2@gmail.com</a></span></div>
+                                    <div> <span>Понеделни - Събота : от 8:30 до 18:30</span></div>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-xs-12 col-lg-8">
+                            <div class="footer-column">
+
+                            </div>
+                            <div class="footer-column">
+                                <h4>Информация</h4>
+
+                                <ul class="links">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Shippment">Доставка и плащане</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Refusal">Право на отказ</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="TermsAndConditionsOfUse">Правила за ползване на сайта</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="CookiePolicy">Политика за бисквитки ("cookies")</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="LegalNotice">Решаване на спорове</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-column">
+                                <h4>Полезно</h4>
+                                <ul class="links">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="SiteMap">Карта на сайта</a></li>
+                                    <li><a href="#">Отстъпки</a></li>                                   
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--col-sm-12 col-xs-12 col-lg-8-->
+                        <!--col-xs-12 col-lg-4-->
+                    </div>
+                    <!--row-->
+
+                </div>
+
+                <!--container-->
+            </div>
+            <!--footer-inner-->
+
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="social">
+                                <ul>
+                                    <li class="fb"><a></a></li>
+                                    <li class="googleplus"><a></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12 coppyright"><a>YovevElectric</a></div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="payment-accept"> <img src="~/images/payment-1.png" alt=""> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BEGIN SIMPLE FOOTER -->
+        </footer>
         </footer>
 
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
