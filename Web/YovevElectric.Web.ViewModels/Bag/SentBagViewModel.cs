@@ -8,23 +8,25 @@ namespace YovevElectric.Web.ViewModels.Bag
 {
     public class SentBagViewModel : IMapFrom<YovevElectric.Data.Models.Bag>
     {
-        public string OrderDataCity { get; set; }
+        public string City { get; set; }
 
-        public string OrderDataPostCode { get; set; }
+        public string PostCode { get; set; }
 
-        public string OrderDataFirstName { get; set; }
+        public string FirstName { get; set; }
 
-        public string OrderDataLastName { get; set; }
+        public string LastName { get; set; }
 
-        public string OrderDataAdress { get; set; }
+        public string Adress { get; set; }
 
-        public string OrderDataMobileNumber { get; set; }
+        public string MobileNumber { get; set; }
 
-        public string OrderDataFirmName { get; set; }
+        public string FirmName { get; set; }
 
-        public string OrderDataBulstad { get; set; }
+        public string Bulstad { get; set; }
 
-        public string OrderDataMOL { get; set; }
+        public string MOL { get; set; }
+
+        public string MoreInfo { get; set; }
 
         public decimal Price { get; set; }
 

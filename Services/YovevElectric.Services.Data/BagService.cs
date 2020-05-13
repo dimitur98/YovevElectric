@@ -18,17 +18,20 @@
         private readonly IDeletableEntityRepository<ProductQuantity> productQuantityRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
         private readonly IDeletableEntityRepository<OrderData> orderDataRepository;
+        private readonly IOrderDataService orderDataService;
 
         public BagService(
             IDeletableEntityRepository<Bag> bagRepository,
             IDeletableEntityRepository<ProductQuantity> productQuantityRepository,
             IDeletableEntityRepository<ApplicationUser> userRepository,
-            IDeletableEntityRepository<OrderData> orderDataRepository)
+            IDeletableEntityRepository<OrderData> orderDataRepository,
+            IOrderDataService orderDataService)
         {
             this.bagRepository = bagRepository;
             this.productQuantityRepository = productQuantityRepository;
             this.userRepository = userRepository;
             this.orderDataRepository = orderDataRepository;
+            this.orderDataService = orderDataService;
         }
 
         public async Task AddProductToBagAsync(string userId, int quantity, string productId)
@@ -51,22 +54,8 @@
             var bag = await this.bagRepository.All().FirstOrDefaultAsync(x => x.Id == bagId);
             bag.Sent = true;
             bag.DateOfSent = DateTime.UtcNow;
-            var orderData = new OrderData
-            {
-                Adress = input.Adress,
-                Bulstad = input.Bulstad,
-                City = input.City,
-                FirmName = input.FirmName,
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                MobileNumber = input.MobileNumber,
-                MOL = input.MOL,
-                PostCode = input.PostCode,
-            };
-            await this.orderDataRepository.AddAsync(orderData);
-            await this.orderDataRepository.SaveChangesAsync();
 
-            bag.OrderDataId = orderData.Id;
+            bag.OrderDataId = await this.orderDataService.CreateNewOrderData(input);
 
             this.bagRepository.Update(bag);
             await this.bagRepository.SaveChangesAsync();

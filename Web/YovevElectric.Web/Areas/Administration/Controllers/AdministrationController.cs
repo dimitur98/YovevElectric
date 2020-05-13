@@ -24,18 +24,20 @@
         private readonly IImgService imgService;
         private readonly ICategoryService categoryService;
         private readonly IBagService bagService;
+        private readonly IOrderDataService orderDataService;
 
         public AdministrationController(
             IProductsService productsService,
             IImgService imgService,
             ICategoryService categoryService,
-            IBagService bagService)
+            IBagService bagService,
+            IOrderDataService orderDataService)
         {
             this.productsService = productsService;
             this.imgService = imgService;
             this.categoryService = categoryService;
             this.bagService = bagService;
-
+            this.orderDataService = orderDataService;
         }
 
         public IActionResult CreateProduct()
@@ -152,9 +154,23 @@
         public async Task<IActionResult> OrderDetails(string id)
         {
             var bag = await this.bagService.GetSentBagByIdAsync(id);
-            var model = AutoMapperConfig.MapperInstance.Map<SentBagViewModel>(bag);
-            model.Products = await this.bagService.GetProductsFromBagByIdAsync(id);
-            model.Price = await this.bagService.TotalPriceOfBagAsync(id);
+            var orderData = await this.orderDataService.GetOrderDataByIdAsync(bag.OrderDataId);
+            var model = new SentBagViewModel
+            {
+                Adress = orderData.Adress,
+                Bulstad = orderData.Bulstad,
+                City = orderData.City,
+                FirmName = orderData.FirmName,
+                FirstName = orderData.FirstName,
+                LastName = orderData.LastName,
+                MobileNumber = orderData.MobileNumber,
+                MOL = orderData.MOL,
+                PostCode = orderData.PostCode,
+                MoreInfo = orderData.MoreInfo,
+                Products = await this.bagService.GetProductsFromBagByIdAsync(id),
+                Price = await this.bagService.TotalPriceOfBagAsync(id),
+            };
+
             return this.View(model);
         }
     }

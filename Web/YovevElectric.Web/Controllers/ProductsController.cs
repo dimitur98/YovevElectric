@@ -37,6 +37,7 @@ namespace YovevElectric.Web.Controllers
             var count = await this.productsService.GetProductsCount(category, subCategory, title);
             var pagesCount = (int)Math.Ceiling((double)count / GlobalConstants.ItemsPerPage);
             var user = await this.userManager.GetUserAsync(this.User);
+
             if (user == null)
             {
                 user = new ApplicationUser();

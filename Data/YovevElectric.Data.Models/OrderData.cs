@@ -24,6 +24,8 @@ namespace YovevElectric.Data.Models
 
         public string MobileNumber { get; set; }
 
+        public string MoreInfo { get; set; }
+
         public string FirmName { get; set; }
 
         public string Bulstad { get; set; }

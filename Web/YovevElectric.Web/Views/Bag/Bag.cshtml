@@ -145,6 +145,13 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <label for="postcode">Допълнителна информация</label>
+                                        <div class="input-box">
+                                            <textarea asp-for="@Model.Order.MoreInfo" class="input-text validate-postcode" id="moreInfoInput" cols="30" rows="5" placeholder="Допълнителна информация"></textarea>
+                                            <span asp-validation-for="@Model.Order.MoreInfo" class="text-danger" />
+                                        </div>
+                                    </li>
+                                    <li>
                                         <label for="invoiceBtn">Издаване на фактура</label><br>
                                         <input type="checkbox" id="invoiceBtn" onclick="invoiceFnc()">
                                     </li>
@@ -246,6 +253,7 @@
                                                         <p id="name">Име: </p>
                                                         <p id="lastName">Фамилия: </p>
                                                         <p id="telephone">Телефон: </p>
+                                                        <p id="moreInfo">Допълнителна информация: </p>
                                                         <div id="invoiceData" style="display: none">
                                                             <p id="firmName">Име на фирма: </p>
                                                             <p id="MOL">МОЛ: </p>
@@ -289,6 +297,7 @@
         $("#lastName").append($("#lastNameInput").val());
         $("#postCode").append($("#postCodeInput").val());
         $("#telephone").append($("#telephoneInput").val());
+        $("#moreInfo").append($("#moreInfoInput").val());
         $("#bulstad").append($("#bulstadInput").val());
         $("#MOL").append($("#MOLInput").val());
         $("#firmName").append($("#firmNameInput").val());

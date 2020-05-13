@@ -79,39 +79,38 @@
                         <div class="shipping-form">
                             <ul class="form-list">
                                 <li>
-                                    <label for="region_id">Град/Село</label>
                                     <div class="input-box">
-                                        @Model.OrderDataCity
+                                        Град/Село: @Model.City
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="region_id">Адрес</label>
                                     <div class="input-box">
-                                        @Model.OrderDataAdress
+                                        Адрес: @Model.Adress
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="postcode">Пощенски код</label>
                                     <div class="input-box">
-                                        @Model.OrderDataPostCode
+                                        Пощенски код: @Model.PostCode
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="postcode">Име</label>
                                     <div class="input-box">
-                                        @Model.OrderDataFirstName
+                                        Име: @Model.FirstName
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="postcode">Фамилия</label>
                                     <div class="input-box">
-                                        @Model.OrderDataLastName
+                                        Фамилия: @Model.LastName
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="postcode">Мобилен телефон</label>
                                     <div class="input-box">
-                                        @Model.OrderDataMobileNumber
+                                        Мобилен телефон: @Model.MobileNumber
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="input-box">
+                                        Добълнителна информация: @Model.MoreInfo
                                     </div>
                                 </li>
                             </ul>
@@ -127,26 +126,23 @@
 
                         <h3>Фактура</h3>
                         <div class="shipping-form">
-                            <p>Данни за фактура</p>
                             <ul class="form-list">
                                 <li>
-                                    <label for="region_id">Име на фирма</label>
                                     <div class="input-box">
-                                        @Model.OrderDataFirmName
+                                        Име на фирма: @Model.FirmName
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="region_id">МОЛ</label>
                                     <div class="input-box">
-                                        @Model.OrderDataMOL
+                                        МОЛ: @Model.MOL
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="region_id">Булстад</label>
                                     <div class="input-box">
-                                        @Model.OrderDataBulstad
+                                        Булстад: @Model.Bulstad
                                     </div>
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -155,7 +151,7 @@
 
                 <div class="col-sm-4">
                     <div class="totals">
-                        <h3>Shopping Cart Total</h3>
+                        <h3>Обща сума</h3>
                         <div class="inner">
 
                             <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">

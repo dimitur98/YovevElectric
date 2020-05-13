@@ -23,27 +23,29 @@
             </div>
 
             <!--Category slider Start-->
-            <div class="section-filter" >
-                <div class="container">
-                    <h2></h2>
-                    <form class="b-filter" method="get" asp-area="" asp-controller="Products" asp-action="Products">
-                        <div class="row" style="border:1px solid grey; border-spacing:-10px">
-                            <div class="form-group" style="display:inline; width:100px;">
-                                <select class="form-group" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">                                    
-                                </select>
-                            </div>
-                            <div class="form-group" style="display:inline;">
-                                <select class="form-group" name="subCategory" id="subCategories">
-                                </select>
-                            </div>
-                            <div class="form-group" style="display:inline;">
-                                <button class="selectpicker" style="width:390px; height: 45px;" data-width="100%" tabindex="-98">Търси</button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="section-filter">
+                <div class=" bg-grey container" style="content: '~/images/FON.jpg'">
+                    <img src="~/images/FON.jpg" style="width: 1300px; ">
+                    <div class="container" style="margin-bottom:250px;">
+                        <h2></h2>
+                        <form class="b-filter" method="get" asp-area="" asp-controller="Products" asp-action="Products">
+                            <!--<div class="row" style="border:1px solid grey; border-spacing:-10px">-->
+                                <div class="form-group" style="display:inline; width:100px;">
+                                    <select class="form-group" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">
+                                    </select>
+                                </div>
+                                <div class="form-group" style="display:inline;">
+                                    <select class="form-group" name="subCategory" id="subCategories">
+                                    </select>
+                                </div>
+                                <div class="b-filter__btns" style="display:inline;">
+                                    <button class="btn btn-lg btn-primary"  data-width="100%" tabindex="-98">Търси</button>
+                                </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <br/>
+            <br />
             <!-- best Pro Slider -->
             <section class=" wow bounceInUp animated">
                 <div class="hot_deals slider-items-products container">
@@ -169,5 +171,9 @@
         });
     }
 </script>
-
+<style>
+    #fon {
+        content: url("~/images/FON.jpg");
+    }
+</style>
 

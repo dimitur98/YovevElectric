@@ -18,6 +18,8 @@ namespace YovevElectric.Web.ViewModels.Bag
 
         public string MobileNumber { get; set; }
 
+        public string MoreInfo { get; set; }
+
         public string FirmName { get; set; }
 
         public string Bulstad { get; set; }

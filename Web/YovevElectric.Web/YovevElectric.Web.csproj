@@ -183,6 +183,9 @@
     <Content Update="wwwroot\images\english.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\images\FON.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\francais.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
