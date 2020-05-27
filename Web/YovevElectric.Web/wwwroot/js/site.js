@@ -203,6 +203,33 @@ function searchByTitle() {
         }
     });
 }
+function showConfirmOrder() {
 
+    $('#exampleModal').modal()
+    var checkBox = document.getElementById("invoiceBtn");
+    var invoiceData = document.getElementById("invoiceData");
+    $("#city").append($("#cityInput").val());
+    $("#adress").append($("#adressInput").val());
+    $("#name").append($("#nameInput").val());
+    $("#lastName").append($("#lastNameInput").val());
+    $("#postCode").append($("#postCodeInput").val());
+    $("#telephone").append($("#telephoneInput").val());
+    $("#moreInfo").append($("#moreInfoInput").val());
+    $("#bulstad").append($("#bulstadInput").val());
+    $("#MOL").append($("#MOLInput").val());
+    $("#firmName").append($("#firmNameInput").val());
+    if (checkBox.checked == true) {
+
+        invoiceData.style.display = "block";
+    } else {
+        invoiceData.style.display = "none";
+    }
+}
+
+function addProductToBag(productName, id) {
+    $('#addProductToBagModal').modal()
+    $("#productId").val(id);
+    $("#title").text("Добави " + productName + " към кошницата.");
+}
 
 

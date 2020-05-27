@@ -13673,3 +13673,8 @@ select#shipping-address-select {
 	height: 160px;
 	width: 50px;
 }
+
+.productsImg{
+	width: 100px;
+	height:150px;
+}

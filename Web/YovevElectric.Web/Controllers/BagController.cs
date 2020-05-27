@@ -30,8 +30,8 @@ namespace YovevElectric.Web.Controllers
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             await this.bagService.AddProductToBagAsync(userId, input.AddToBagInputModel.Quantity, input.AddToBagInputModel.ProductId);
-
-            return this.Redirect($"/Products/Details?id={input.AddToBagInputModel.ProductId}");
+            this.TempData["addToBag"] = true;
+            return this.Redirect($"/Products/Products");
         }
 
         public async Task<IActionResult> Bag()
@@ -69,7 +69,7 @@ namespace YovevElectric.Web.Controllers
 
             user.BagId = null;
             await this.userManager.UpdateAsync(user);
-
+            this.TempData["orderSent"] = true;
             return this.Redirect("/Products/Products");
         }
     }

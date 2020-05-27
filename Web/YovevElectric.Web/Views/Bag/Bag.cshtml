@@ -232,7 +232,7 @@
                                     <ul class="checkout">
                                         <li>
 
-                                            <button type="button" class="button btn-proceed-checkout"  onclick="myfunction()">
+                                            <button type="button" class="button btn-proceed-checkout"  onclick="showConfirmOrder()">
                                                 <span>Направи поръчка</span>
                                             </button>
 
@@ -282,30 +282,6 @@
             </div>
 
         </div>
-        <div style="display: none;">@(this.TempData["orderSent"]=true);</div>
 
     </div>
-<script>
-    function myfunction() {
 
-        $('#exampleModal').modal()
-        var checkBox = document.getElementById("invoiceBtn");
-        var invoiceData = document.getElementById("invoiceData");
-        $("#city").append($("#cityInput").val());
-        $("#adress").append($("#adressInput").val());
-        $("#name").append($("#nameInput").val());
-        $("#lastName").append($("#lastNameInput").val());
-        $("#postCode").append($("#postCodeInput").val());
-        $("#telephone").append($("#telephoneInput").val());
-        $("#moreInfo").append($("#moreInfoInput").val());
-        $("#bulstad").append($("#bulstadInput").val());
-        $("#MOL").append($("#MOLInput").val());
-        $("#firmName").append($("#firmNameInput").val());
-        if (checkBox.checked == true) {
-
-            invoiceData.style.display = "block";
-        } else {
-            invoiceData.style.display = "none";
-        }
-    }
-</script>

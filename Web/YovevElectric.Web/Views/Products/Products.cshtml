@@ -10,53 +10,70 @@
 }
 
 
-<section class="main-container col2-left-layout bounceInUp animated">
-    <!-- For version 1, 2, 3, 8 -->
-    <!-- For version 1, 2, 3 -->
-    @if (TempData["orderSent"] != null)
-    {
-        <div class="alert alert-success" role="alert" style="text-align: center;">
-            Поръчката е изпратена успешно!
-        </div>
-    }
-    <div class="container">
-        <div class="row">
-            <div class="col-main col-sm-9 col-sm-push-3 product-grid">
-                <div class="pro-coloumn">
-                    <article class="col-main">
-                        <div class="toolbar">
+    <section class="main-container col2-left-layout bounceInUp animated">
+        <!-- For version 1, 2, 3, 8 -->
+        <!-- For version 1, 2, 3 -->
+        @if (TempData["orderSent"] != null)
+        {
+            <div class="alert alert-success" role="alert" style="text-align: center;">
+                Поръчката е изпратена успешно!
+            </div>
+        }
+        else if (TempData["addToBag"] != null && (bool)(TempData["addToBag"]))
+        {
+            <div class="alert alert-success" role="alert" style="text-align: center;">
+                Поръчката е изпратена успешно!
+            </div>
+        }
+        <div class="container">
+            <div class="row">
+                <div class="col-main col-sm-9 col-sm-push-3 product-grid">
+                    <div class="pro-coloumn">
+                        <article class="col-main">
+                            <div class="toolbar">
 
-                            <div id="sort-by">
-                                <label class="left">Подреди по: </label>
-                                <ul>
-                                    <li>
-                                        @if (Model.OrderBy == string.Empty)
-                                        {
-                                            <a asp-area=""
-                                               asp-controller="Products"
-                                               asp-action="Products"
-                                               asp-route-category="@this.ViewData["category"]"
-                                               asp-route-subCategory="@this.ViewData["subCategory"]"
-                                               asp-route-title="@this.ViewData["name"]"
-                                               asp-route-page="@Model.CurrentPage"
-                                               asp-route-orderBy="Добавени"><span class="right-arrow">Добавени</span></a>
-                                        }
-                                        else
-                                        {
-                                            <a asp-area=""
-                                               asp-controller="Products"
-                                               asp-action="Products"
-                                               asp-route-category="@this.ViewData["category"]"
-                                               asp-route-subCategory="@this.ViewData["subCategory"]"
-                                               asp-route-title="@this.ViewData["name"]"
-                                               asp-route-page="@Model.CurrentPage"
-                                               asp-route-orderBy="@Model.OrderBy"><span class="right-arrow">@Model.OrderBy</span></a>
-                                        }
-
-                                        <ul>
-
-                                            @if (Model.OrderBy != string.Empty)
+                                <div id="sort-by">
+                                    <label class="left">Подреди по: </label>
+                                    <ul>
+                                        <li>
+                                            @if (Model.OrderBy == string.Empty)
                                             {
+                                                <a asp-area=""
+                                                   asp-controller="Products"
+                                                   asp-action="Products"
+                                                   asp-route-category="@this.ViewData["category"]"
+                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                   asp-route-title="@this.ViewData["name"]"
+                                                   asp-route-page="@Model.CurrentPage"
+                                                   asp-route-orderBy="Добавени"><span class="right-arrow">Добавени</span></a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-area=""
+                                                   asp-controller="Products"
+                                                   asp-action="Products"
+                                                   asp-route-category="@this.ViewData["category"]"
+                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                   asp-route-title="@this.ViewData["name"]"
+                                                   asp-route-page="@Model.CurrentPage"
+                                                   asp-route-orderBy="@Model.OrderBy"><span class="right-arrow">@Model.OrderBy</span></a>
+                                            }
+
+                                            <ul>
+
+                                                @if (Model.OrderBy != string.Empty)
+                                                {
+                                                    <li>
+                                                        <a asp-area=""
+                                                           asp-controller="Products"
+                                                           asp-action="Products"
+                                                           asp-route-category="@this.ViewData["category"]"
+                                                           asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                           asp-route-title="@this.ViewData["name"]"
+                                                           asp-route-page="@Model.CurrentPage"
+                                                           asp-route-orderBy="Добавени"><span class="right-arrow">Добавени</span></a>
+                                                    </li>
+                                                }
                                                 <li>
                                                     <a asp-area=""
                                                        asp-controller="Products"
@@ -65,231 +82,215 @@
                                                        asp-route-subCategory="@this.ViewData["subCategory"]"
                                                        asp-route-title="@this.ViewData["name"]"
                                                        asp-route-page="@Model.CurrentPage"
-                                                       asp-route-orderBy="Добавени"><span class="right-arrow">Добавени</span></a>
+                                                       asp-route-orderBy="Име а-я">Име а-я</a>
                                                 </li>
-                                            }
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Име а-я">Име а-я</a>
-                                            </li>
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Име я-а">Име я-а</a>
-                                            </li>
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Ценa: най-висока">Ценa: най-висока</a>
-                                            </li>
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-page="@Model.CurrentPage"
-                                                   asp-route-orderBy="Цена: най-ниска">Цена: най-ниска</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-products">
-                            <ul class="products-grid">
-                                @foreach (var product in Model.AllProducts)
-                                {
-                                    <li class="item col-lg-4 col-md-3 col-sm-4 col-xs-6">
-                                        <div class="item-inner">
-                                            <div class="item-img">
-                                                <div class="item-img-info">
-                                                    <a href="product-detail.html" title="Retis lapen casen" class="product-image"><img src="@product.ImgPath" alt="Retis lapen casen"></a>
-                                                    <div class="item-box-hover">
-                                                        <div class="box-inner">
-                                                            <div class="add_cart">
-                                                                <button class="button btn-cart" type="button"></button>
-                                                            </div>
-                                                            <div class="product-detail-bnt"><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="button detail-bnt"><span>Преглед</span></a></div>
-                                                            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                                            {
-                                                                <div class="product-detail-bnt"><a href="/Administration/Administration/EditProduct?id=@product.Id" class="button edit-bnt"><span>Редактиране</span></a></div>
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title"><a href="product-detail.html" title="Retis lapen casen">@product.Title</a> </div>
-                                                    <div class="item-content">
-
-                                                        <div class="item-price">
-                                                            <div class="price-box"><span class="regular-price"><span class="price">@product.Price лв.</span> </span> </div>
-                                                        </div>
-                                                        <div class="other-info">
-                                                            <div class="col-km"><i class="fa fa-tachometer"></i> 4875km</div>
-                                                            <div class="col-engine"><i class="fa fa-gear"></i> Automatic</div>
-                                                            <div class="col-date"><i class="fa fa-calendar" aria-hidden="true"></i> 2018</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </li>
-                                }
-
-
-                            </ul>
-                        </div>
-                        <div class="toolbar bottom">
-
-
-                            <div class="pager">
-                                <div class="pages">
-                                    <label>Page:</label>
-                                    <ul class="pagination">
-                                        @if (Model.CurrentPage == 1)
-                                        {
-                                            <li><a class="disabled">&laquo;</a></li>
-                                        }
-                                        else
-                                        {
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-page="@(Model.CurrentPage - 1)"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-orderBy="@this.ViewData["orderBy"]">&laquo;</a>
-                                            </li>
-                                        }
-
-                                        @for (int i = 1; i <= Model.PagesCount; i++)
-                                        {
-                                            var active = i == this.Model.CurrentPage ? "active" : string.Empty;
-                                            <li class="@active">
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-page="@i"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-orderBy="@this.ViewData["orderBy"]">@i</a>
-                                            </li>
-                                        }
-                                        @if (this.Model.CurrentPage == this.Model.PagesCount)
-                                        {
-                                            <li><a class="disabled">&raquo;</a></li>
-                                        }
-                                        else
-                                        {
-                                            <li>
-                                                <a asp-area=""
-                                                   asp-controller="Products"
-                                                   asp-action="Products"
-                                                   asp-route-page="@(Model.CurrentPage + 1)"
-                                                   asp-route-category="@this.ViewData["category"]"
-                                                   asp-route-subCategory="@this.ViewData["subCategory"]"
-                                                   asp-route-title="@this.ViewData["name"]"
-                                                   asp-route-orderBy="@this.ViewData["orderBy"]">&raquo;</a>
-                                            </li>
-                                        }
-
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-page="@Model.CurrentPage"
+                                                       asp-route-orderBy="Име я-а">Име я-а</a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-page="@Model.CurrentPage"
+                                                       asp-route-orderBy="Ценa: най-висока">Ценa: най-висока</a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-page="@Model.CurrentPage"
+                                                       asp-route-orderBy="Цена: най-ниска">Цена: най-ниска</a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                            <div class="category-products">
+                                <ul class="products-grid">
+                                    @foreach (var product in Model.AllProducts)
+                                    {
+                                        <li class="item col-lg-4 col-md-3 col-sm-4 col-xs-6">
+                                            <div class="item-inner">
+                                                <div class="item-img">
+                                                    <div class="item-img-info">
+                                                        <a href="product-detail.html" title="Retis lapen casen" class="product-image"><img src="@product.ImgPath" class="productsImg" alt="Retis lapen casen"></a>
+                                                        <div class="item-box-hover">
+                                                            <div class="box-inner">
+                                                                <div class="add_cart">
+                                                                    <button class="button btn-cart" type="button" onclick="addProductToBag('@product.Title', '@product.Id')"></button>
+                                                                </div>
+                                                                <div class="product-detail-bnt"><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="button detail-bnt"><span>Преглед</span></a></div>
+                                                                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                                                {
+                                                                    <div class="product-detail-bnt"><a href="/Administration/Administration/EditProduct?id=@product.Id" class="button edit-bnt"><span>Редактиране</span></a></div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-info">
+                                                    <div class="info-inner">
+                                                        <div class="item-title"><a href="product-detail.html" title="Retis lapen casen">@product.Title</a> </div>
+                                                        <div class="item-content">
 
-                    </article>
-                </div>
-                <!--	///*///======    End article  ========= //*/// -->
-            </div>
-            <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
-
-                <!-- BEGIN SIDE-NAV-CATEGORY -->
-                <div class="side-nav-categories">
-                    <div class="block-title"> Categories </div>
-                    <!--block-title-->
-                    <!-- BEGIN BOX-CATEGORY -->
-                    <div class="box-content box-category">
-                        <ul>
-                            <form method="post" id="form"></form>
-                            @foreach (var category in Model.Categories)
-                            {
-                                <li>
-                                    <a class="active" asp-area="" asp-controller="Products" asp-action="Products" asp-route-category="@category.Name">@category.Name</a> <span onclick="loadSubCategoriesToSideBar('@category.Name',@counter)" class="subDropdown plus"></span>
-                                    <ul style="display:none" id="subCategories@(counter++)"></ul>
-                                </li>
-                            }
-
-                        </ul>
-
-                    </div>
-                    <!--box-content box-category-->
-                </div>
-                <!--side-nav-categories-->
-
-
-
-                <div class="block block-list block-cart">
-                    <div class="block-title"> Моята кошница </div>
-                    <div class="block-content">
-                        <div class="summary">
-                            <p class="amount">Има <a> @Model.ProductsCount продукти</a> в твоята кошница.</p>
-                            <p class="subtotal"> <span class="label">Обща сума:</span> <span class="price">@Model.TotalSum</span> </p>
-                        </div>
-                        <div class="ajax-checkout">
-                            <a asp-area="" asp-controller="Bag" asp-action="Bag" title="Checkout" class="button button-checkout"> <span>Кошница</span> </a>
-                        </div>
-                        <p class="block-subtitle">Наскоро добавени продукти</p>
-                        <ul id="cart-sidebar" class="mini-products-list">
-                            @foreach (var product in Model.ProductsInBag)
-                            {
-                                <li class="item">
-                                    <div class="item-inner">
-                                        <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId" class="product-image"><img src="@product.ProductImgPath" width="80" alt="product"></a>
-                                        <div class="product-details">
-                                            <div class="access">
-                                                <a asp-area="" asp-controller="Bag" asp-action="DeleteProductFromBag" asp-route-id="@product.Id" class="btn-remove1">Премахни</a>
+                                                            <div class="item-price">
+                                                                <div class="price-box"><span class="regular-price"><span class="price">@product.Price лв.</span> </span> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <strong>1</strong> x <span class="price">@product.ProductPrice лв.</span>
-                                            <p class="product-name"><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">@product.ProductTitle</a></p>
-                                        </div>
-                                        <!--product-details-bottoms-->
-                                    </div>
-                                </li>
-                            }
 
-                        </ul>
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            </div>
+                            <div class="toolbar bottom">
+
+
+                                <div class="pager">
+                                    <div class="pages">
+                                        <label>Page:</label>
+                                        <ul class="pagination">
+                                            @if (Model.CurrentPage == 1)
+                                            {
+                                                <li><a class="disabled">&laquo;</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-page="@(Model.CurrentPage - 1)"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-orderBy="@this.ViewData["orderBy"]">&laquo;</a>
+                                                </li>
+                                            }
+
+                                            @for (int i = 1; i <= Model.PagesCount; i++)
+                                            {
+                                                var active = i == this.Model.CurrentPage ? "active" : string.Empty;
+                                                <li class="@active">
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-page="@i"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-orderBy="@this.ViewData["orderBy"]">@i</a>
+                                                </li>
+                                            }
+                                            @if (this.Model.CurrentPage == this.Model.PagesCount)
+                                            {
+                                                <li><a class="disabled">&raquo;</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a asp-area=""
+                                                       asp-controller="Products"
+                                                       asp-action="Products"
+                                                       asp-route-page="@(Model.CurrentPage + 1)"
+                                                       asp-route-category="@this.ViewData["category"]"
+                                                       asp-route-subCategory="@this.ViewData["subCategory"]"
+                                                       asp-route-title="@this.ViewData["name"]"
+                                                       asp-route-orderBy="@this.ViewData["orderBy"]">&raquo;</a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <partial name="_AddProductToBagPartial">
+                        </article>
                     </div>
+                    <!--	///*///======    End article  ========= //*/// -->
                 </div>
-            </aside>
-            <!--col-right sidebar-->
+                <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9 wow bounceInUp animated">
+
+                    <!-- BEGIN SIDE-NAV-CATEGORY -->
+                    <div class="side-nav-categories">
+                        <div class="block-title"> Categories </div>
+                        <!--block-title-->
+                        <!-- BEGIN BOX-CATEGORY -->
+                        <div class="box-content box-category">
+                            <ul>
+                                <form method="post" id="form"></form>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li>
+                                        <a class="active" asp-area="" asp-controller="Products" asp-action="Products" asp-route-category="@category.Name">@category.Name</a> <span onclick="loadSubCategoriesToSideBar('@category.Name',@counter)" class="subDropdown plus"></span>
+                                        <ul style="display:none" id="subCategories@(counter++)"></ul>
+                                    </li>
+                                }
+
+                            </ul>
+
+                        </div>
+                        <!--box-content box-category-->
+                    </div>
+                    <!--side-nav-categories-->
+
+
+
+                    <div class="block block-list block-cart">
+                        <div class="block-title"> Моята кошница </div>
+                        <div class="block-content">
+                            <div class="summary">
+                                <p class="amount">Има <a> @Model.ProductsCount продукти</a> в твоята кошница.</p>
+                                <p class="subtotal"> <span class="label">Обща сума:</span> <span class="price">@Model.TotalSum</span> </p>
+                            </div>
+                            <div class="ajax-checkout">
+                                <a asp-area="" asp-controller="Bag" asp-action="Bag" title="Checkout" class="button button-checkout"> <span>Кошница</span> </a>
+                            </div>
+                            <p class="block-subtitle">Наскоро добавени продукти</p>
+                            <ul id="cart-sidebar" class="mini-products-list">
+                                @foreach (var product in Model.ProductsInBag)
+                                {
+                                    <li class="item">
+                                        <div class="item-inner">
+                                            <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId" class="product-image"><img src="@product.ProductImgPath" width="80" alt="product"></a>
+                                            <div class="product-details">
+                                                <div class="access">
+                                                    <a asp-area="" asp-controller="Bag" asp-action="DeleteProductFromBag" asp-route-id="@product.Id" class="btn-remove1">Премахни</a>
+                                                </div>
+                                                <strong>1</strong> x <span class="price">@product.ProductPrice лв.</span>
+                                                <p class="product-name"><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">@product.ProductTitle</a></p>
+                                            </div>
+                                            <!--product-details-bottoms-->
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <!--col-right sidebar-->
+            </div>
+            <!--row-->
         </div>
-        <!--row-->
-    </div>
-    <!--container-->
-</section>
+        <!--container-->
+    </section>
 <!--main-container col2-left-layout-->

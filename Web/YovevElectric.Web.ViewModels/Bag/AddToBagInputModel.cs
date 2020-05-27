@@ -10,6 +10,7 @@ namespace YovevElectric.Web.ViewModels.Bag
         public string ProductId { get; set; }
 
         [Required(ErrorMessage = "Попълни количество")]
+        [Range(0, int.MaxValue, ErrorMessage = "Количеството не може да бъде отрицателно число.")]
         public int Quantity { get; set; }
     }
 }

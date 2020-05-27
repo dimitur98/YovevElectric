@@ -1,0 +1,29 @@
+﻿@model YovevElectric.Web.ViewModels.Home.AllProductsViewModel;
+@{
+    ViewData["Title"] = "_AddProductToBagPartial";
+}
+
+<div class="modal" tabindex="-1" role="dialog" id="addProductToBagModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-area="" asp-controller="Bag" asp-action="AddToBag">
+                    <div style="text-align:center">
+                        <span>Избери количество</span>
+                        <input type="hidden" asp-for="@Model.AddToBagInputModel.ProductId" id="productId">
+                        <input type="number" asp-for="@Model.AddToBagInputModel.Quantity">
+                        <span asp-validation-for="@Model.AddToBagInputModel.Quantity" class="text-danger" />
+                        <button class="btn-primary" type="submit">Добави</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
