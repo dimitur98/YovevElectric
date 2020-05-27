@@ -1,0 +1,81 @@
+﻿@model YovevElectric.Web.ViewModels.Discounts.DiscountsModel;
+@{
+    ViewData["Title"] = "Discounts";
+}
+
+<body>
+    <div id="page">
+        <section class="main-container col2-right-layout">
+            <div class="main container">
+                <div class="row">
+                    <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                        <div class="my-account">
+                            <form asp-area="Administration" asp-controller="Administration" asp-action="AddDiscount" method="post">
+                                <div class="row">
+                                    <div class="form-group" style="float: left; width:200px;">
+                                        <label asp-for="@Model.DiscountInputModel.OverPrice">При сума над:</label>
+                                        <input asp-for="@Model.DiscountInputModel.OverPrice" type="number" placeholder="При сума над" class="form-control">
+                                        <span asp-validation-for="@Model.DiscountInputModel.OverPrice" class="text-danger" />
+                                    </div>
+                                    <div class="form-group" style="float: left; width:200px;">
+                                        <label asp-for="@Model.DiscountInputModel.Percents">Процент</label>
+                                        <input asp-for="@Model.DiscountInputModel.Percents" type="text" placeholder="Процент" class="form-control">
+                                        <span asp-validation-for="@Model.DiscountInputModel.Percents" class="text-danger" />
+                                    </div>
+                                    <div class="form-group" style="float: left; width:200px; margin-top: 20px;">
+                                        <button type="submit" title="submit" class="button"><span>Добави</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="dashboard">
+
+                                <div class="recent-orders">
+                                    <div class="table-responsive">
+                                        <table class="data-table table-striped" id="my-orders-table">
+                                            <colgroup>
+                                                <col width="">
+                                                <col width="">
+                                                <col>
+                                                <col width="1">
+                                                <col width="1">
+                                                <col width="20%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr class="first last">
+                                                    <th>Сума над</th>
+                                                    <th>Процент</th>
+                                                    <th>Изтрий</th>
+
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var discount in Model.Discounts)
+                                                {
+                                                    <tr class="first odd">
+                                                        <td><span class="nobr">@discount.OverPrice</span></td>
+                                                        <td>@discount.Percents%</td>
+                                                        <td class="a-center last details">
+                                                            <span class="nobr">
+                                                                <a data-toggle="tooltip" data-placement="top" title="Изтрий" style="display:inline-block;margin-left:10px;" asp-area="Administration" asp-controller="Administration" asp-action="DeleteDiscount" asp-route-id="@discount.Id"><img class="iconClass" src="~/images/icons8-delete-64.png"></a>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <partial name="~/Views/Shared/_AccountNavPartial.cshtml" />
+
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+

@@ -10,8 +10,12 @@ namespace YovevElectric.Web.ViewModels.Bag
 
         public decimal Price { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public decimal PriceWithDiscount { get; set; }
 
         public MakeOrderInputModel Order { get; set; }
+
+        public double Percent { get; set; }
+
+        public decimal DiscountOverPrice { get; set; }
     }
 }

@@ -36,6 +36,8 @@
 
         public DbSet<SubCategory> SubCategories { get; set; }
 
+        public DbSet<Discount> Discounts { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

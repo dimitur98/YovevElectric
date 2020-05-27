@@ -18,11 +18,13 @@ namespace YovevElectric.Web.Controllers
     {
         private readonly IBagService bagService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IDiscountsService discountsService;
 
-        public BagController(IBagService bagService, UserManager<ApplicationUser> userManager)
+        public BagController(IBagService bagService, UserManager<ApplicationUser> userManager, IDiscountsService discountsService)
         {
             this.bagService = bagService;
             this.userManager = userManager;
+            this.discountsService = discountsService;
         }
 
         [HttpPost]
@@ -38,11 +40,15 @@ namespace YovevElectric.Web.Controllers
         {
             var user = await this.userManager.GetUserAsync(this.User);
             var bagProducts = await this.bagService.GetProductsFromBagByIdAsync(user.BagId);
-
+            var price = await this.bagService.TotalPriceOfBagAsync(user.BagId);
+            var discount = await this.discountsService.ApplyDiscountIfNeedAsync(price);
             var output = new BagModel
             {
                 Products = bagProducts,
-                Price = await this.bagService.TotalPriceOfBagAsync(user.BagId),
+                Price = price,
+                PriceWithDiscount = discount == null ? price : discount.PriceWithDiscount,
+                Percent = discount == null ? 0 : discount.Percent,
+                DiscountOverPrice = discount == null ? 0 : discount.OverPrice,
             };
             return this.View(output);
         }

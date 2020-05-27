@@ -34,6 +34,10 @@ namespace YovevElectric.Web.ViewModels.Bag
 
         public ICollection<ProductInBagViewModel> Products { get; set; }
 
+        public decimal DiscountOverPrice { get; set; }
 
+        public double Percent { get; set; }
+
+        public decimal PriceWithDiscount { get; set; }
     }
 }

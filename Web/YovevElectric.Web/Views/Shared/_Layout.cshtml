@@ -62,17 +62,18 @@
 
                                                 @if (this.SignInManager.IsSignedIn(this.User))
                                                 {
-                                                    <ul class="links">
-                                                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                                        {
-                                                            <li><span> <h3>Админ</h3></span></li>
-                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Добави продукт</span></a></li>
-                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory"><span>Добави категория</span></a></li>
-                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateSubCategory"><span>Добави подкатегория</span></a></li>
-                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="AllCategoriesAndSubCategories"><span>Всички категории и подкатегория</span></a></li>
-                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="Orders"><span>Поръчки</span></a></li>
-                                                        }
-                                                    </ul>
+                                                <ul class="links">
+                                                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                                    {
+                                                        <li><span> <h3>Админ</h3></span></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Добави продукт</span></a></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory"><span>Добави категория</span></a></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateSubCategory"><span>Добави подкатегория</span></a></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="AllCategoriesAndSubCategories"><span>Всички категории и подкатегория</span></a></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="Orders"><span>Поръчки</span></a></li>
+                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="Discounts"><span>Отстъпки</span></a></li>
+                                                    }
+                                                </ul>
                                                     <a><h3>Профил</h3></a>
                                                     <ul class="links">
                                                         <li><a asp-area="" asp-controller="MyAccount" asp-action="ChangePassword"><span>Промени парола</span></a></li>

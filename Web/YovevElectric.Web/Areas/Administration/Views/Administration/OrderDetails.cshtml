@@ -159,26 +159,50 @@
                                     <col>
                                     <col width="1">
                                 </colgroup>
-                                <tfoot>
-                                    <tr>
-                                        <td style="" class="a-left" colspan="1">
-                                            <strong>Сума с отстъпка</strong>
-                                        </td>
-                                        <td style="" class="a-right">
-                                            <strong><span class="price">@Model.TotalPrice лв.</span></strong>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td style="" class="a-left" colspan="1">
-                                            Обща сума
-                                        </td>
-                                        <td style="" class="a-right">
-                                            <span class="price">@Model.Price лв.</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                @if (Model.PriceWithDiscount != Model.Price)
+                                {
+                                    <tfoot>
+                                        <tr>
+                                            <td style="" class="a-left" colspan="1">
+                                                <strong>Отстъпка при поръчка над @Model.DiscountOverPrice лв.</strong>
+                                            </td>
+                                            <td style="" class="a-right">
+                                                <strong><span class="price">@Model.Percent%</span></strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="" class="a-left" colspan="1">
+                                                <strong>Сума с отстъпка</strong>
+                                            </td>
+                                            <td style="" class="a-right">
+                                                <strong><span class="price">@Model.PriceWithDiscount лв.</span></strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td style="" class="a-left" colspan="1">
+                                                Обща сума
+                                            </td>
+                                            <td style="" class="a-right">
+                                                <span class="price">@Model.Price лв.</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                }
+                                else
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td style="" class="a-left" colspan="1">
+                                                <strong>Обща сума</strong>
+                                            </td>
+                                            <td style="" class="a-right">
+                                                <strong><span class="price">@Model.Price лв.</span></strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                }
                             </table>
                         </div>
                     </div><!--totals-->

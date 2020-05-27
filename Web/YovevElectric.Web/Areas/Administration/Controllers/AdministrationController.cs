@@ -12,6 +12,7 @@
     using YovevElectric.Web.Controllers;
     using YovevElectric.Web.ViewModels.Bag;
     using YovevElectric.Web.ViewModels.Category;
+    using YovevElectric.Web.ViewModels.Discounts;
     using YovevElectric.Web.ViewModels.Home;
     using YovevElectric.Web.ViewModels.Img;
     using YovevElectric.Web.ViewModels.Product;
@@ -25,19 +26,22 @@
         private readonly ICategoryService categoryService;
         private readonly IBagService bagService;
         private readonly IOrderDataService orderDataService;
+        private readonly IDiscountsService discountsService;
 
         public AdministrationController(
             IProductsService productsService,
             IImgService imgService,
             ICategoryService categoryService,
             IBagService bagService,
-            IOrderDataService orderDataService)
+            IOrderDataService orderDataService,
+            IDiscountsService discountsService)
         {
             this.productsService = productsService;
             this.imgService = imgService;
             this.categoryService = categoryService;
             this.bagService = bagService;
             this.orderDataService = orderDataService;
+            this.discountsService = discountsService;
         }
 
         public IActionResult CreateProduct()
@@ -174,6 +178,8 @@
         {
             var bag = await this.bagService.GetSentBagByIdAsync(id);
             var orderData = await this.orderDataService.GetOrderDataByIdAsync(bag.OrderDataId);
+            var price = await this.bagService.TotalPriceOfBagAsync(id);
+            var discount = await this.discountsService.ApplyDiscountIfNeedAsync(price);
             var model = new SentBagViewModel
             {
                 Adress = orderData.Adress,
@@ -187,10 +193,43 @@
                 PostCode = orderData.PostCode,
                 MoreInfo = orderData.MoreInfo,
                 Products = await this.bagService.GetProductsFromBagByIdAsync(id),
-                Price = await this.bagService.TotalPriceOfBagAsync(id),
+                Price = price,
+                PriceWithDiscount = discount == null ? price : discount.PriceWithDiscount,
+                Percent = discount == null ? 0 : discount.Percent,
+                DiscountOverPrice = discount == null ? 0 : discount.OverPrice,
             };
 
             return this.View(model);
+        }
+
+        public async Task<IActionResult> Discounts()
+        {
+            var discounts = await this.discountsService.GetDiscountsAsync();
+            var output = new DiscountsModel
+            {
+                Discounts = discounts.Select(x => new DiscountsViewModel
+                {
+                    Id = x.Id,
+                    OverPrice = x.OverPrice,
+                    Percents = x.Percents,
+                }),
+            };
+            return this.View(output);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDiscount(DiscountsModel input)
+        {
+            await this.discountsService.AddNewDiscountAsync(input.DiscountInputModel.Percents, input.DiscountInputModel.OverPrice);
+
+            return this.RedirectToAction("Discounts");
+        }
+
+        public async Task<IActionResult> DeleteDiscount(int id)
+        {
+            await this.discountsService.DeleteDiscountByIdAsync(id);
+
+            return this.RedirectToAction("Discounts");
         }
     }
 }

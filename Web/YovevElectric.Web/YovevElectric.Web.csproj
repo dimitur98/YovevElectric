@@ -198,6 +198,9 @@
     <Content Update="wwwroot\images\icon-cart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\images\icons8-delete-64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\icons8-facebook-64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
