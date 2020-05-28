@@ -15,11 +15,14 @@
             <div class="modal-body">
                 <form method="post" asp-area="" asp-controller="Bag" asp-action="AddToBag">
                     <div style="text-align:center">
+                        <div>
                         <span>Избери количество</span>
                         <input type="hidden" asp-for="@Model.AddToBagInputModel.ProductId" id="productId">
                         <input type="number" asp-for="@Model.AddToBagInputModel.Quantity">
                         <span asp-validation-for="@Model.AddToBagInputModel.Quantity" class="text-danger" />
-                        <button class="btn-primary" type="submit">Добави</button>
+                        </div>
+                        <button class="btn-primary" type="submit" style="float:right">Добави</button>
+                        <br/>
                     </div>
                 </form>
             </div>

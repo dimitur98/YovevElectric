@@ -18,17 +18,20 @@ namespace YovevElectric.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly IBagService bagService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IDiscountsService discountsService;
 
         public ProductsController(
             IProductsService productsService,
             ICategoryService categoryService,
             IBagService bagService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IDiscountsService discountsService)
         {
             this.productsService = productsService;
             this.categoryService = categoryService;
             this.bagService = bagService;
             this.userManager = userManager;
+            this.discountsService = discountsService;
         }
 
         public async Task<IActionResult> Products(int page = 1, string category = null, string subCategory = null, string title = null, string orderBy = null)
@@ -43,7 +46,10 @@ namespace YovevElectric.Web.Controllers
                 user = new ApplicationUser();
                 user.BagId = string.Empty;
             }
+
             var productsInBag = await this.bagService.GetProductsFromBagByIdAsync(user.BagId);
+            var totalSum = await this.bagService.TotalPriceOfBagAsync(user.BagId);
+            var discount = await this.discountsService.ApplyDiscountIfNeedAsync(totalSum);
             var output = new AllProductsViewModel
             {
                 AllProducts = products.Select(x => new ProductViewModel
@@ -60,8 +66,9 @@ namespace YovevElectric.Web.Controllers
                 Categories = await this.categoryService.GetAllCategoriesAsync(),
                 ProductsCount = await this.bagService.GetProductsCountInBagAsync(user.BagId),
                 ProductsInBag = productsInBag.Take(4).ToList(),
-                TotalSum = await this.bagService.TotalPriceOfBagAsync(user.BagId),
+                TotalSum = totalSum,
                 OrderBy = orderBy == null ? string.Empty : orderBy,
+                PriceWithDiscount = discount == null ? totalSum : discount.PriceWithDiscount,
             };
             if (category != null)
             {

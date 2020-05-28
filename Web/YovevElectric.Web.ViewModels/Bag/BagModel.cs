@@ -17,5 +17,7 @@ namespace YovevElectric.Web.ViewModels.Bag
         public double Percent { get; set; }
 
         public decimal DiscountOverPrice { get; set; }
+
+        public string DiscountsTable { get; set; }
     }
 }

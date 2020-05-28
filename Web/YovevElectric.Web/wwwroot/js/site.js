@@ -59,7 +59,7 @@ function loadAllSubCategories() {
             }
         }
     });
-    
+
 }
 
 function loadSubCategoriesToSideBar(input, num) {

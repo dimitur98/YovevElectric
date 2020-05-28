@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using YovevElectric.Data.Models;
 using YovevElectric.Services.Data;
@@ -49,6 +50,7 @@ namespace YovevElectric.Web.Controllers
                 PriceWithDiscount = discount == null ? price : discount.PriceWithDiscount,
                 Percent = discount == null ? 0 : discount.Percent,
                 DiscountOverPrice = discount == null ? 0 : discount.OverPrice,
+                DiscountsTable = await this.PopOverTableOfDiscounts(),
             };
             return this.View(output);
         }
@@ -77,6 +79,32 @@ namespace YovevElectric.Web.Controllers
             await this.userManager.UpdateAsync(user);
             this.TempData["orderSent"] = true;
             return this.Redirect("/Products/Products");
+        }
+
+        private async Task<string> PopOverTableOfDiscounts()
+        {
+            var discounts = await this.discountsService.GetDiscountsAsync();
+            var sb = new StringBuilder();
+            sb.AppendLine("<table>");
+            sb.AppendLine("<thead>");
+            sb.AppendLine("<tr>");
+            sb.AppendLine("<td>Сума над</td>");
+            sb.AppendLine("<td>процент</td>");
+            sb.AppendLine("</tr>");
+            sb.AppendLine("</thead>");
+            sb.AppendLine("<tbody>");
+            foreach (var discount in discounts)
+            {
+                sb.AppendLine("<tr>");
+                sb.AppendLine("<td>" + discount.OverPrice + "лв.</td>");
+                sb.AppendLine("<td>" + discount.Percents + "%</td>");
+                sb.AppendLine("</tr>");
+            }
+
+            sb.AppendLine("</tbody>");
+            sb.AppendLine("</table>");
+
+            return sb.ToString();
         }
     }
 }

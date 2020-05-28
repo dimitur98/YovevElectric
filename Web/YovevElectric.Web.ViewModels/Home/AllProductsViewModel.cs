@@ -26,5 +26,6 @@
 
         public AddToBagInputModel AddToBagInputModel { get; set; }
 
+        public decimal PriceWithDiscount { get; set; }
     }
 }

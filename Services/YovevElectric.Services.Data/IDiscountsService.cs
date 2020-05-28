@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using YovevElectric.Data.Models;
-using YovevElectric.Web.ViewModels.Discounts;
-
-namespace YovevElectric.Services.Data
+﻿namespace YovevElectric.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using YovevElectric.Data.Models;
+    using YovevElectric.Web.ViewModels.Discounts;
+
     public interface IDiscountsService
     {
         Task<ApplyDiscountModel> ApplyDiscountIfNeedAsync(decimal totalPrice);

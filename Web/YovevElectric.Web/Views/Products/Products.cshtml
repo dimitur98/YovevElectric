@@ -259,7 +259,15 @@
                         <div class="block-content">
                             <div class="summary">
                                 <p class="amount">Има <a> @Model.ProductsCount продукти</a> в твоята кошница.</p>
-                                <p class="subtotal"> <span class="label">Обща сума:</span> <span class="price">@Model.TotalSum</span> </p>
+                                @if (Model.TotalSum == Model.PriceWithDiscount)
+                                {
+                                    <p class="subtotal"> <span class="label">Обща сума:</span> <span class="price">@Model.TotalSum</span> </p>
+                                }
+                                else
+                                {
+                                    <p class="subtotal"> <span class="label">Обща сума(с отстъпка):</span> <span class="price">@Model.PriceWithDiscount</span> </p>
+                                }
+
                             </div>
                             <div class="ajax-checkout">
                                 <a asp-area="" asp-controller="Bag" asp-action="Bag" title="Checkout" class="button button-checkout"> <span>Кошница</span> </a>

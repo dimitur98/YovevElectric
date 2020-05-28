@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "_ConfirmOrderPartial";
+}
+
+    <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Данни за поръчка</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="city">Град: </p>
+                    <p id="adress">Адрес: </p>
+                    <p id="postCode">Пощенски код: </p>
+                    <p id="name">Име: </p>
+                    <p id="lastName">Фамилия: </p>
+                    <p id="telephone">Телефон: </p>
+                    <p id="moreInfo">Допълнителна информация: </p>
+                    <div id="invoiceData" style="display: none">
+                        <p id="firmName">Име на фирма: </p>
+                        <p id="MOL">МОЛ: </p>
+                        <p id="bulstad">Булстад: </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="button btn-proceed-checkout"><span>Направи поръчка</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
