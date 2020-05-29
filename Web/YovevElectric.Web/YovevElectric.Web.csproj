@@ -291,6 +291,9 @@
     <Content Update="wwwroot\images\speakers.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\images\test.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\testimonials-bg-img1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

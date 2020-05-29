@@ -13,7 +13,7 @@
                         <div id="thmg-slideshow" class="thmg-slideshow">
                             <div id='rev_slider_4_wrapper' class='rev_slider_wrapper fullwidthbanner-container'>
                                 <div>
-                                    <img src='~/images/test.jpg' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner" />
+                                    <img style="width:1600px; height:600px;" src='~/images/tabelaa.jpg' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner" />
                                     <div class="tp-bannertimer"></div>
                                 </div>
                             </div>
@@ -23,34 +23,15 @@
             </div>
 
             <!--Category slider Start-->
-            <div class="section-filter">
-                <div class="b-filter__inner bg-grey container" >
-                    <div class="container bg-img">
-                        <h2></h2>
-                        <form class="b-filter" method="get" asp-area="" asp-controller="Products" asp-action="Products">
-                            <!--<div class="row" style="border:1px solid grey; border-spacing:-10px">-->
-                                <div class="form-group" style="display:inline;">
-                                    <select class="form-group" style="width: 618px;" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">
-                                    </select>
-                                </div>
-                                <div class="form-group" style="display:inline;">
-                                    <select class="form-group" style="width: 618px;" name="subCategory" id="subCategories">
-                                    </select>
-                                </div>
-                                <div class="b-filter__btns">
-                                    <button class="btn btn-lg btn-primary" style="width: 1236px;">Търси</button>
-                                </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            
             <br />
+            
             <!-- best Pro Slider -->
             <section class=" wow bounceInUp animated">
-                <div class="hot_deals slider-items-products container">
+                <div class="hot_deals slider-items-products container" style=" margin-top:60px; width:1090px; right:115px;">
 
-                    <div id="hot_deals" class="product-flexslider hidden-buttons">
-                        <div class="slider-items slider-width-col4 products-grid">
+                    <div id="hot_deals" class="product-flexslider hidden-buttons " >
+                        <div class="slider-items slider-width-col4 products-grid" >
                             @foreach (var category in Model.Categories)
                             {
                                 <div class="item">
@@ -73,8 +54,28 @@
                                     </div>
                                 </div>
                             }
+
                         </div>
                     </div>
+                </div>
+                <div style="margin-left:1200px; margin-top: -305px">
+                    <a style="margin-top: -60px;"><h2>Тъпсене по категория <br /> и подкатегория</h2></a>
+
+                    <form class="b-filter" method="get" asp-area="" asp-controller="Products" asp-action="Products">
+                        <div>
+                            <div class="form-group" style="width:650px;">
+                                <select class="form-group" name="category" onchange="loadSubCategoriesToDropDown()" id="categories">
+                                </select>
+                            </div>
+                            <div class="form-group" style="width:650px;">
+                                <select class="form-group" name="subCategory" id="subCategories">
+                                </select>
+                            </div>
+                            <div class="b-filter__btns">
+                                <button class="btn btn-primary" style="width:227px;">Търси</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </section>
 
@@ -83,62 +84,21 @@
 
 
 
-            <div class="logo-brand container">
+            <div class="logo-brand container" style="margin-top:50px;width: 1100px;" >
                 <div class="brand-title">
-                    <h2>Popular Brands</h2>
+                    <h2>Партньори</h2>
                 </div>
                 <div class="slider-items-products">
                     <div id="brand-slider" class="product-flexslider hidden-buttons">
-                        <div class="slider-items slider-width-col6">
+                        <div >
                             <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand1.png" alt="Image"></a></div>
+                            <div class="item" style="float:left;">
+                                <div class="logo-item "><a href="https://new.abb.com/bg" ><img class="brandsLogo" src="~/images/TMH_ABB_img.jpg" alt="Image"></a></div>
                             </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand2.png" alt="Image"></a></div>
+                            <div class="item" style="float:right;">
+                                <div class="logo-item "><a href="#" ><img class="brandsLogo" src="~/images/chintel.jpg" alt="Image"></a></div>
                             </div>
-                            <!-- End Item -->
-                            <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand3.png" alt="Image"></a></div>
-                            </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand4.png" alt="Image"></a></div>
-                            </div>
-                            <!-- End Item -->
-                            <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand5.png" alt="Image"></a></div>
-                            </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand6.png" alt="Image"></a></div>
-                            </div>
-                            <!-- End Item -->
-                            <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand1.png" alt="Image"></a></div>
-                            </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand2.png" alt="Image"></a></div>
-                            </div>
-                            <!-- End Item -->
-                            <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand3.png" alt="Image"></a></div>
-                            </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand4.png" alt="Image"></a></div>
-                            </div>
-                            <!-- End Item -->
-                            <!-- Item -->
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand5.png" alt="Image"></a></div>
-                            </div>
-                            <div class="item">
-                                <div class="logo-item"><a href="#"><img src="images/brand6.png" alt="Image"></a></div>
-                            </div>
-                            <!-- End Item -->
-
+                           
                         </div>
                     </div>
                 </div>

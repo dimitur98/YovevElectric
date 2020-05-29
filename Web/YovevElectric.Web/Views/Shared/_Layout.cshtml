@@ -38,7 +38,7 @@
                     <div id="header">
                         <div class="header-container">
                             <div class="header-logo">
-                                <a href="index-2.html" title="Car HTML" class="logo">
+                                <a class="logo">
                                     <div><img src="~/images/yovev.png" style="width:230px;" alt="Car Store"></div>
                                 </a>
                             </div>
@@ -62,18 +62,18 @@
 
                                                 @if (this.SignInManager.IsSignedIn(this.User))
                                                 {
-                                                <ul class="links">
-                                                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-                                                    {
-                                                        <li><span> <h3>Админ</h3></span></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Добави продукт</span></a></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory"><span>Добави категория</span></a></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateSubCategory"><span>Добави подкатегория</span></a></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="AllCategoriesAndSubCategories"><span>Всички категории и подкатегория</span></a></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="Orders"><span>Поръчки</span></a></li>
-                                                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="Discounts"><span>Отстъпки</span></a></li>
-                                                    }
-                                                </ul>
+                                                    <ul class="links">
+                                                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                                                        {
+                                                            <li><span> <h3>Админ</h3></span></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateProduct"><span>Добави продукт</span></a></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateCategory"><span>Добави категория</span></a></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="CreateSubCategory"><span>Добави подкатегория</span></a></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="AllCategoriesAndSubCategories"><span>Всички категории и подкатегория</span></a></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="Orders"><span>Поръчки</span></a></li>
+                                                            <li><a asp-area="Administration" asp-controller="Administration" asp-action="Discounts"><span>Отстъпки</span></a></li>
+                                                        }
+                                                    </ul>
                                                     <a><h3>Профил</h3></a>
                                                     <ul class="links">
                                                         <li><a asp-area="" asp-controller="MyAccount" asp-action="ChangePassword"><span>Промени парола</span></a></li>
@@ -142,237 +142,193 @@
         <footer class="border-top footer text-muted">
 
             <!-- BEGIN INFORMATIVE FOOTER -->
-            <div class="footer-inner">
-                <div class="our-features-box wow bounceInUp animated animated">
-                    <div class="container">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12 col-lg-4">
+                        <div class="co-info">
+                            <h4>За нас</h4>
+                            <address>
+                                <div>
+                                    <span>
+                                        Булевард Христо Ботев 16, гр. Лясковец
+                                    </span>
+                                </div>
+                                <div> <span> +1 800 789 0000</span></div>
+                                <div> <span><a>yovevelectric2@gmail.com</a></span></div>
+                                <div> <span>Понеделни - Събота : от 8:30 до 18:30</span></div>
+                            </address>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-xs-12 col-lg-8">
+                        <div class="footer-column">
+
+                        </div>
+                        <div class="footer-column">
+                            <h4>Информация</h4>
+
+                            <ul class="links">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Shippment">Доставка и плащане</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="Refusal">Право на отказ</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="TermsAndConditionsOfUse">Правила за ползване на сайта</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="CookiePolicy">Политика за бисквитки ("cookies")</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="LegalNotice">Решаване на спорове</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Полезно</h4>
+                            <ul class="links">
+                                <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="SiteMap">Карта на сайта</a></li>
+                                <li><a href="#">Отстъпки</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--col-sm-12 col-xs-12 col-lg-8-->
+                    <!--col-xs-12 col-lg-4-->
+                </div>
+                <!--row-->
+
+            </div>
+
+            <!--container-->
+    <!--footer-inner-->
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="social">
                         <ul>
-                            <li>
-                                <div class="feature-box">
-                                    <div class="icon-truck"><img src="~/images/world-icon.png" alt="Image"></div>
-                                    <div class="content">
-                                        <h6>World's #1</h6>
-                                        <p>Largest Auto portal</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="feature-box">
-                                    <div class="icon-support"><img src="~/images/car-sold-icon.png" alt="Image"></div>
-                                    <div class="content">
-                                        <h6>Car Sold</h6>
-                                        <p>Every 4 minute</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="feature-box">
-                                    <div class="icon-money"><img src="~/images/tag-icon.png" alt="Image"></div>
-                                    <div class="content">
-                                        <h6>Offers</h6>
-                                        <p>Stay updated pay less</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="last">
-                                <div class="feature-box">
-                                    <div class="icon-return"><img src="~/images/compare-icon.png" alt="Image"></div>
-                                    <div class="content">
-                                        <h6>Compare</h6>
-                                        <p>Decode the right car</p>
-                                    </div>
-                                </div>
-                            </li>
+                            <li class="fb"><a></a></li>
+                            <li class="googleplus"><a></a></li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4 col-xs-12 col-lg-4">
-                            <div class="co-info">
-                                <h4>За нас</h4>
-                                <address>
-                                    <div>
-                                        <span>
-                                            Булевард Христо Ботев 16, гр. Лясковец
-                                        </span>
-                                    </div>
-                                    <div> <span> +1 800 789 0000</span></div>
-                                    <div> <span><a>yovevelectric2@gmail.com</a></span></div>
-                                    <div> <span>Понеделни - Събота : от 8:30 до 18:30</span></div>
-                                </address>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-xs-12 col-lg-8">
-                            <div class="footer-column">
-
-                            </div>
-                            <div class="footer-column">
-                                <h4>Информация</h4>
-
-                                <ul class="links">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Shippment">Доставка и плащане</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Refusal">Право на отказ</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="TermsAndConditionsOfUse">Правила за ползване на сайта</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="CookiePolicy">Политика за бисквитки ("cookies")</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="LegalNotice">Решаване на спорове</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-column">
-                                <h4>Полезно</h4>
-                                <ul class="links">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="AboutUs">За нас</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="SiteMap">Карта на сайта</a></li>
-                                    <li><a href="#">Отстъпки</a></li>                                   
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!--col-sm-12 col-xs-12 col-lg-8-->
-                        <!--col-xs-12 col-lg-4-->
-                    </div>
-                    <!--row-->
-
-                </div>
-
-                <!--container-->
-            </div>
-            <!--footer-inner-->
-
-            <div class="footer-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="social">
-                                <ul>
-                                    <li class="fb"><a></a></li>
-                                    <li class="googleplus"><a></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-xs-12 coppyright"><a>YovevElectric</a></div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="payment-accept"> <img src="~/images/payment-1.png" alt=""> </div>
-                        </div>
-                    </div>
+                <div class="col-sm-4 col-xs-12 coppyright"><a>YovevElectric</a></div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="payment-accept"> <img src="~/images/payment-1.png" alt=""> </div>
                 </div>
             </div>
-            <!-- BEGIN SIMPLE FOOTER -->
-        </footer>
-        </footer>
+        </div>
+    </div>
 
-        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
-        <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    </footer>
 
-        <script type="text/javascript" src="~/js/jquery.min.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/bootstrap.min.js" asp-append-version="true"></script>
-        <script src="~/js/bootstrap-slider.min.js" asp-append-version="true"></script>
-        <script src="~/js/bootstrap-select.min.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/parallax.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/revslider.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/common.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/jquery.bxslider.min.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/owl.carousel.min.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/js/jquery.mobile-menu.min.js" asp-append-version="true"></script>
-        <script src="~/js/countdown.js" asp-append-version="true"></script>
-        <script>
-            jQuery(document).ready(function () {
-                jQuery('#rev_slider_4').show().revolution({
-                    dottedOverlay: 'none',
-                    delay: 5000,
-                    startwidth: 1170,
-                    startheight: 650,
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+    <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-                    hideThumbs: 200,
-                    thumbWidth: 200,
-                    thumbHeight: 50,
-                    thumbAmount: 2,
+    <script type="text/javascript" src="~/js/jquery.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap-slider.min.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap-select.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/parallax.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/revslider.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/common.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/jquery.bxslider.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/owl.carousel.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/jquery.mobile-menu.min.js" asp-append-version="true"></script>
+    <script src="~/js/countdown.js" asp-append-version="true"></script>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('#rev_slider_4').show().revolution({
+                dottedOverlay: 'none',
+                delay: 5000,
+                startwidth: 1170,
+                startheight: 650,
 
-                    navigationType: 'thumb',
-                    navigationArrows: 'solo',
-                    navigationStyle: 'round',
+                hideThumbs: 200,
+                thumbWidth: 200,
+                thumbHeight: 50,
+                thumbAmount: 2,
 
-                    touchenabled: 'on',
-                    onHoverStop: 'on',
+                navigationType: 'thumb',
+                navigationArrows: 'solo',
+                navigationStyle: 'round',
 
-                    swipe_velocity: 0.7,
-                    swipe_min_touches: 1,
-                    swipe_max_touches: 1,
-                    drag_block_vertical: false,
+                touchenabled: 'on',
+                onHoverStop: 'on',
 
-                    spinner: 'spinner0',
-                    keyboardNavigation: 'off',
+                swipe_velocity: 0.7,
+                swipe_min_touches: 1,
+                swipe_max_touches: 1,
+                drag_block_vertical: false,
 
-                    navigationHAlign: 'center',
-                    navigationVAlign: 'bottom',
-                    navigationHOffset: 0,
-                    navigationVOffset: 20,
+                spinner: 'spinner0',
+                keyboardNavigation: 'off',
 
-                    soloArrowLeftHalign: 'left',
-                    soloArrowLeftValign: 'center',
-                    soloArrowLeftHOffset: 20,
-                    soloArrowLeftVOffset: 0,
+                navigationHAlign: 'center',
+                navigationVAlign: 'bottom',
+                navigationHOffset: 0,
+                navigationVOffset: 20,
 
-                    soloArrowRightHalign: 'right',
-                    soloArrowRightValign: 'center',
-                    soloArrowRightHOffset: 20,
-                    soloArrowRightVOffset: 0,
+                soloArrowLeftHalign: 'left',
+                soloArrowLeftValign: 'center',
+                soloArrowLeftHOffset: 20,
+                soloArrowLeftVOffset: 0,
 
-                    shadow: 0,
-                    fullWidth: 'on',
-                    fullScreen: 'off',
+                soloArrowRightHalign: 'right',
+                soloArrowRightValign: 'center',
+                soloArrowRightHOffset: 20,
+                soloArrowRightVOffset: 0,
 
-                    stopLoop: 'off',
-                    stopAfterLoops: -1,
-                    stopAtSlide: -1,
+                shadow: 0,
+                fullWidth: 'on',
+                fullScreen: 'off',
 
-                    shuffle: 'off',
+                stopLoop: 'off',
+                stopAfterLoops: -1,
+                stopAtSlide: -1,
 
-                    autoHeight: 'off',
-                    forceFullWidth: 'on',
-                    fullScreenAlignForce: 'off',
-                    minFullScreenHeight: 0,
-                    hideNavDelayOnMobile: 1500,
+                shuffle: 'off',
 
-                    hideThumbsOnMobile: 'off',
-                    hideBulletsOnMobile: 'off',
-                    hideArrowsOnMobile: 'off',
-                    hideThumbsUnderResolution: 0,
+                autoHeight: 'off',
+                forceFullWidth: 'on',
+                fullScreenAlignForce: 'off',
+                minFullScreenHeight: 0,
+                hideNavDelayOnMobile: 1500,
 
-                    hideSliderAtLimit: 0,
-                    hideCaptionAtLimit: 0,
-                    hideAllCaptionAtLilmit: 0,
-                    startWithSlide: 0,
-                    fullScreenOffsetContainer: ''
-                });
+                hideThumbsOnMobile: 'off',
+                hideBulletsOnMobile: 'off',
+                hideArrowsOnMobile: 'off',
+                hideThumbsUnderResolution: 0,
+
+                hideSliderAtLimit: 0,
+                hideCaptionAtLimit: 0,
+                hideAllCaptionAtLilmit: 0,
+                startWithSlide: 0,
+                fullScreenOffsetContainer: ''
             });
-        </script>
-        <script type="text/javascript">
-            function HideMe() {
-                jQuery('.popup1').hide();
-                jQuery('#fade').hide();
-            }
-        </script>
-        <script>
-            var dthen1 = new Date("12/25/17 11:59:00 PM");
-            start = "08/04/15 03:02:11 AM";
-            start_date = Date.parse(start);
-            var dnow1 = new Date(start_date);
-            if (CountStepper > 0)
-                ddiff = new Date((dnow1) - (dthen1));
-            else
-                ddiff = new Date((dthen1) - (dnow1));
-            gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+        });
+    </script>
+    <script type="text/javascript">
+        function HideMe() {
+            jQuery('.popup1').hide();
+            jQuery('#fade').hide();
+        }
+    </script>
+    <script>
+        var dthen1 = new Date("12/25/17 11:59:00 PM");
+        start = "08/04/15 03:02:11 AM";
+        start_date = Date.parse(start);
+        var dnow1 = new Date(start_date);
+        if (CountStepper > 0)
+            ddiff = new Date((dnow1) - (dthen1));
+        else
+            ddiff = new Date((dthen1) - (dnow1));
+        gsecs1 = Math.floor(ddiff.valueOf() / 1000);
 
-            var iid1 = "countbox_1";
-            CountBack_slider(gsecs1, "countbox_1", 1);
-        </script>
+        var iid1 = "countbox_1";
+        CountBack_slider(gsecs1, "countbox_1", 1);
+    </script>
 
-        @this.RenderSection("Scripts", required: false)
+    @this.RenderSection("Scripts", required: false)
     </div>
     <div id="mobile-menu">
         <ul>
