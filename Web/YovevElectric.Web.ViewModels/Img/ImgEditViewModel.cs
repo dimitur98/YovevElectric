@@ -8,6 +8,12 @@ namespace YovevElectric.Web.ViewModels.Img
     {
         public string ProductId { get; set; }
 
-        public string ImgPath { get; set; }
+        public string ImgPath1 { get; set; }
+
+        public string ImgPath2 { get; set; }
+
+        public string ImgPath3 { get; set; }
+
+        public string ImgPath4 { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model YovevElectric.Web.ViewModels.Category.AllCategoriesAndSubCategoriesViewModell;
-<body onload="loadCategories()">
-    <div id="page">
+<body onload="loadCategories()" >
+    <div id="page" style="position:relative;">
 
         <!--container-->
 
@@ -12,9 +12,13 @@
                     <div class="home-slider5">
                         <div id="thmg-slideshow" class="thmg-slideshow">
                             <div id='rev_slider_4_wrapper' class='rev_slider_wrapper fullwidthbanner-container'>
-                                <div>
-                                    <img style="width:1600px; height:600px;" src='~/images/tabelaa.jpg' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner" />
-                                    <div class="tp-bannertimer"></div>
+                                <div id='rev_slider_4' class='rev_slider fullwidthabanner'>
+                                    <ul>
+                                        <li data-slotamount='7' data-masterspeed='1000' data-thumb='~/images/tabelaa.jpg'>
+                                            <img style="width:1600px; height:700px; " src='~/images/tabelaa.jpg' data-bgfit='cover' data-bgrepeat='no-repeat' alt="banner" />
+                                            <div class="tp-bannertimer"></div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -23,15 +27,15 @@
             </div>
 
             <!--Category slider Start-->
-            
+
             <br />
-            
+
             <!-- best Pro Slider -->
             <section class=" wow bounceInUp animated">
                 <div class="hot_deals slider-items-products container" style=" margin-top:60px; width:1090px; right:115px;">
 
-                    <div id="hot_deals" class="product-flexslider hidden-buttons " >
-                        <div class="slider-items slider-width-col4 products-grid" >
+                    <div id="hot_deals" class="product-flexslider hidden-buttons ">
+                        <div class="slider-items slider-width-col4 products-grid">
                             @foreach (var category in Model.Categories)
                             {
                                 <div class="item">
@@ -84,31 +88,43 @@
 
 
 
-            <div class="logo-brand container" style="margin-top:50px;width: 1100px;" >
+            <div class="logo-brand container" style="margin-top:50px;">
                 <div class="brand-title">
                     <h2>Партньори</h2>
                 </div>
                 <div class="slider-items-products">
                     <div id="brand-slider" class="product-flexslider hidden-buttons">
-                        <div >
+                        <div class="slider-items slider-width-col6">
                             <!-- Item -->
-                            <div class="item" style="float:left;">
-                                <div class="logo-item "><a href="https://new.abb.com/bg" ><img class="brandsLogo" src="~/images/TMH_ABB_img.jpg" alt="Image"></a></div>
+                            <div class="item">
+                                <div class="logo-item">
+                                </div>
                             </div>
-                            <div class="item" style="float:right;">
-                                <div class="logo-item "><a href="#" ><img class="brandsLogo" src="~/images/chintel.jpg" alt="Image"></a></div>
+                            <div class="item">
+                                <div class="logo-item"><a href="https://new.abb.com/bg"><img class="brandsLogo" src="~/images/TMH_ABB_img.jpg" alt="Image"></a></div>
                             </div>
-                           
+
+                            <div class="item">
+                                <div class="logo-item">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="logo-item">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="logo-item"><a><img class="brandsLogo" src="~/images/chintel.jpg" alt="Image"></a></div>
+                            </div>
+                            <div class="item">
+                                <div class="logo-item">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- For version 1,2,3,4,6 -->
-            <!-- End For version 1,2,3,4,6 -->
-
         </div>
-        <!--page-->
+    </div>
 </body>
 
 <style>

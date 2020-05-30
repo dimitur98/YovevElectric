@@ -14,18 +14,39 @@
                             <div class="box-account">
                                 <h3>Качи снимка.</h3>
                                 <form method="post" dasp-controller="Files" runat="server" enctype="multipart/form-data" asp-area="Administration" asp-controller="Img" asp-action="ImgUpload">
-                                    <div id="pic1">
-                                        <br>
-                                        <input type="hidden" asp-for="@Model.ProductId" name="ProductId" />
-                                        <img id="img" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
-                                        <br>
-                                        <input type='file' name="productImg" onchange="readURL(this)" id="productImg" />
-                                        <br>
-                                        <button onclick="upload()" id="btnSubmit" type="submit" value="Upload Imgs" class="btn btn-primary">Качи снимката</button>
-                                        <br>
+                                    <div class="row">
+                                        <div id="pic1" style="float:left;">
+                                            <br>
+                                            <input type="hidden" asp-for="@Model.ProductId" name="ProductId" />
+                                            <img id="img1" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                            <br>
+                                            <input type='file' name="productImg1" onchange="readURL(this)" />
+                                        </div>
+                                        <div id="pic2" style="float:left;">
+                                            <br>
+                                            <img id="img2" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                            <br>
+                                            <input type='file' name="productImg2" onchange="readURL2(this)" />
+                                        </div>
+                                        <div id="pic3" style="float:left;">
+                                            <br>
+                                            <img id="img3" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                            <br>
+                                            <input type='file' name="productImg3" onchange="readURL3(this)" />
+                                        </div>
+                                        <div id="pic4" style="float:left;">
+                                            <br>
+                                            <img id="img4" src="@GlobalConstants.DefaultImgProduct" class="defaultImg" alt="your image" />
+                                            <br>
+                                            <input type='file' name="productImg4" onchange="readURL4(this)" />
+                                        </div>
+
+                                    </div>
+                                    <div style="float:right; margin-top: -20px;">
+                                        <button type="submit" value="Upload Imgs" class="btn btn-primary">Качи снимките</button>
                                     </div>
                                 </form>
-
+                                
                             </div>
                         </div>
                     </section>

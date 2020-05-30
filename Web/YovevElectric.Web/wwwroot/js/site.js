@@ -5,45 +5,98 @@ function readURL(input, id) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $("#img")
+            $("#img1")
                 .attr('src', e.target.result);
         };
 
         reader.readAsDataURL(input.files[0]);
-        $("#btn").show();
+        $("#btn1").show();
         $("#btnSubmit").show();
     } else {
-        $("#input").val(null);
-        $("#img").attr("src", defaultProductImg);
-        $("#btn").hide();
+        $("#productImg1").val(null);
+        $("#img1").attr("src", defaultProductImg);
+        $("#btn1").hide();
         $("#btnSubmit").hide();
     }
 }
+function readURL2(input, id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-function loadImg(input) {
-    var img = $("#img");
-    if (img.attr("src") != defaultProductImg) {
-        $("#btn").show();
-        $("#btnSubmit").hide();
-        $("#input").hide();
+        reader.onload = function (e) {
+            $("#img2")
+                .attr('src', e.target.result);
+        };
 
-        console.log(input);
+        reader.readAsDataURL(input.files[0]);
+        $("#btn2").show();
+        $("#btnSubmit").show();
     } else {
-        $("#btn").hide();
+        $("#productImg2").val(null);
+        $("#img2").attr("src", defaultProductImg);
+        $("#btn2").hide();
         $("#btnSubmit").hide();
-        $("#input").show();
-        console.log("2");
     }
-    if (input == "editProduct") {
-        console.log("1");
-        if ($("#img").attr("src") != defaultProductImg) {
-            $("#productImg").hide();
-            console.log($("#productImg"));
+}
+function readURL3(input, id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#img3")
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+        $("#btn3").show();
+        $("#btnSubmit").show();
+    } else {
+        $("#productImg3").val(null);
+        $("#img3").attr("src", defaultProductImg);
+        $("#btn3").hide();
+        $("#btnSubmit").hide();
+    }
+}
+function readURL4(input, id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#img4")
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+        $("#btn4").show();
+        $("#btnSubmit").show();
+    } else {
+        $("#productImg4").val(null);
+        $("#img4").attr("src", defaultProductImg);
+        $("#btn4").hide();
+        $("#btnSubmit").hide();
+    }
+}
+function loadImg(input) {
+    for (var i = 1; i <= 4; i++) {
+        var img = $("#img" + i);
+
+        if (img.attr("src") != defaultProductImg) {
+            $("#btn" + i).show();
+            $("#productImg" + i).hide();
         } else {
-            $("#productImg").show();
-            console.log("2");
+            $("#btn" + i).hide();
+            $("#productImg" + i).show();
+        }
+        if (input == "editProduct") {
+            console.log("1");
+            if ($("#img" + i).attr("src") != defaultProductImg) {
+                $("#productImg" + i).hide();
+            } else {
+                $("#productImg" + i).show();
+            }
         }
     }
+    
 }
 function loadAllSubCategories() {
     var token = $("#form input[name=__RequestVerificationToken]").val();
@@ -61,7 +114,6 @@ function loadAllSubCategories() {
     });
 
 }
-
 function loadSubCategoriesToSideBar(input, num) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
     $.ajax({
@@ -79,7 +131,6 @@ function loadSubCategoriesToSideBar(input, num) {
         }
     });
 }
-
 function loadSubCategoriesToSideBarForAdmin(input, num) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
     console.log("start");
@@ -101,10 +152,6 @@ function loadSubCategoriesToSideBarForAdmin(input, num) {
         }
     });
 }
-function loadCategoriesToDropDown() {
-
-}
-
 function loadSubCategoriesToDropDown(category) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
     if (category == null) {
@@ -137,7 +184,6 @@ function loadSubCategoriesToDropDown(category) {
         }
     });
 }
-
 function loadCategories(category) {
     var token = $("#form input[name=__RequestVerificationToken]").val();
     $.ajax({
@@ -163,8 +209,6 @@ function loadCategories(category) {
         }
     });
 }
-
-
 function invoiceFnc() {
 
     var checkBox = document.getElementById("invoiceBtn");
@@ -189,7 +233,6 @@ $(function () {
         $(e).attr("title", $(e).attr("datetime"));
     });
 });
-
 function searchByTitle() {
     var input = document.getElementById("titleInput");
     // Execute a function when the user releases a key on the keyboard
@@ -225,11 +268,16 @@ function showConfirmOrder() {
         invoiceData.style.display = "none";
     }
 }
-
 function addProductToBag(productName, id) {
     $('#addProductToBagModal').modal()
     $("#productId").val(id);
     $("#title").text("Добави " + productName + " към кошницата.");
 }
 
+function changeImg(imgNum) {
+    $("#product-zoom").attr("src", $("#product-zoom" + imgNum).attr("src"));
+    $("#product-zoom").attr("data-zoom-image", $("#product-zoom" + imgNum).attr("src"));
+    console.log($("#product-zoom1").attr("src"));
+    console.log($("#product-zoom1").attr("src"));
 
+}

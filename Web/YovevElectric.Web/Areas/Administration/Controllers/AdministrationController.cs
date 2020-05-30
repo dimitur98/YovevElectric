@@ -1,5 +1,6 @@
 ﻿namespace YovevElectric.Web.Areas.Administration.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -64,6 +65,13 @@
         public async Task<IActionResult> EditProduct(string id)
         {
             var product = await this.productsService.GetProductByIdAsync(id);
+            var uploadedImgs = product.ImgPath.Split(",", StringSplitOptions.RemoveEmptyEntries).ToArray();
+            var imgPaths = new string[4];
+            for (int i = 0; i < uploadedImgs.Length; i++)
+            {
+                imgPaths[i] = uploadedImgs[i];
+            }
+
             var output = new EditProductModel
             {
                 EditProductInputModel = new EditProductInputModel
@@ -78,7 +86,10 @@
                 {
                     ImgEditViewModel = new ImgEditViewModel
                     {
-                        ImgPath = product.ImgPath,
+                        ImgPath1 = imgPaths[0] ?? GlobalConstants.DefaultImgProduct,
+                        ImgPath2 = imgPaths[1] ?? GlobalConstants.DefaultImgProduct,
+                        ImgPath3 = imgPaths[2] ?? GlobalConstants.DefaultImgProduct,
+                        ImgPath4 = imgPaths[3] ?? GlobalConstants.DefaultImgProduct,
                         ProductId = product.Id,
                     },
                 },

@@ -1,6 +1,7 @@
 ﻿@model YovevElectric.Web.ViewModels.Product.ProductDetailsModel;
 @{
     ViewData["Title"] = "Details";
+    var counter = 0;
 }
 
 <div class="main-container col1-layout wow bounceInUp animated">
@@ -15,19 +16,24 @@
                         <!--End For version 1, 2, 6 -->
                         <!-- For version 3 -->
                         <div class="product-img-box col-lg-5 col-sm-5 col-xs-12">
-                            <div class="new-label new-top-left">Hot</div>
                             <div class="product-image">
-                                <div class="product-full"> <img id="product-zoom1" src="@Model.ProductDetailsViewModel.ImgPath" data-zoom-image="@Model.ProductDetailsViewModel.ImgPath" alt="product-image" /> </div>
+                                <div class="product-full"> <img id="product-zoom" src="@Model.ProductDetailsViewModel.FirstImg" data-zoom-image="@Model.ProductDetailsViewModel.FirstImg" alt="product-image" /> </div>
                                 <div class="more-views">
                                     <div class="slider-items-products">
-
+                                        <div id="gallery_02" class="product-flexslider hidden-buttons product-img-thumb">
+                                            <div class="slider-items slider-width-col4 block-content">
+                                                @foreach (var img in Model.ProductDetailsViewModel.ImgList)
+                                                {
+                                                    <div class="more-views-items"> <a href="#" data-image="@img" data-zoom-image="@img"> <img id="product-zoom@(counter)" src="@img" alt="product-image" onclick="changeImg(@counter)" /> </a></div>
+                                                    @(counter++)
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- end: more-images -->
-                            <div class="toll-free"><a href="#"><i class="fa fa-phone"></i> +1 800 789 0000</a></div>
-                            <div class="ask-question"><a href="#" onClick="ShowMe();"><i class="fa fa-question"></i> Ask a Question</a></div>
-                            <div class="request-call"><a href="#" onClick="ShowMe1();"><i class="fa fa-money"></i> Finance Calculator</a></div>
+                           
+                            
                         </div>
                         <!--End For version 1,2,6-->
                         <!-- For version 3 -->
@@ -77,9 +83,9 @@
                                 </form>
                             </div>
                             <ul class="shipping-pro">
-                                <li>Free Servicing</li>
-                                <li>Free Monthly Checkup</li>
-                                <li>Extended Warrenty</li>
+                                <li>Отстъпки при определена сума</li>
+                                <li>Доставка по Еконт</li>
+                                <li>Бърза обработка на поръчките</li>
                             </ul>
                         </div>
                         <!--product-shop-->

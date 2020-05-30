@@ -4,20 +4,52 @@
     ViewData["Title"] = "EditImg";
 }
 
-
+<div style="margin-bottom:60px;">
     <form method="post" dasp-controller="Files" runat="server" enctype="multipart/form-data" asp-area="Administration" asp-controller="Img" asp-action="ImgUpload">
-        <div id="pic1">
-            <br>
-            <input type="hidden" asp-for="@Model.ImgEditModel.ImgEditViewModel.ProductId" name="ProductId" />
-            <img id="img" src="@Model.ImgEditModel.ImgEditViewModel.ImgPath" class="defaultImg" alt="your image" />
-            <br>
-            <input type='file' name="productImg" onchange="readURL(this)" id="productImg" />
-            <br>
-            <button onclick="upload()" id="btnSubmit" type="submit" value="Upload Imgs" class="btn btn-primary">Качи снимката</button>
-            <a onclick="readURL(this);" href="/Administration/Img/DeleteImg?id=@Model.ImgEditModel.ImgEditViewModel.ProductId" id="btn" class="btn btn-outline-secondary">Изтрий снимката</a>
-            <br>
+        <div class="row">
+            <div id="pic1" style="float:left">
+                <br>
+                <input type="hidden" asp-for="@Model.ImgEditModel.ImgEditViewModel.ProductId" name="ProductId" />
+                <img id="img1" src="@Model.ImgEditModel.ImgEditViewModel.ImgPath1" class="defaultImg" alt="your image" />
+                <br>
+                <input type='file' name="productImg1" onchange="readURL(this)" id="productImg1" />
+                <br>
+                <a onclick="readURL(this);" asp-area="Administration" asp-controller="Img" asp-action="DeleteImg" asp-route-id="@Model.ImgEditModel.ImgEditViewModel.ProductId" asp-route-imgNumber="1" id="btn1" class="btn btn-outline-secondary">Изтрий снимката</a>
+                <br>
+            </div>
+            <div id="pic2" style="float:left">
+                <br>
+                <img id="img2" src="@Model.ImgEditModel.ImgEditViewModel.ImgPath2" class="defaultImg" alt="your image" />
+                <br>
+                <input type='file' name="productImg2" onchange="readURL2(this)" id="productImg2" />
+                <br>
+                <a onclick="readURL2(this);" asp-area="Administration" asp-controller="Img" asp-action="DeleteImg" asp-route-id="@Model.ImgEditModel.ImgEditViewModel.ProductId" asp-route-imgNumber="2" id="btn2" class="btn btn-outline-secondary">Изтрий снимката</a>
+                <br>
+            </div>
+            <div id="pic3" style="float:left">
+                <br>
+                <img id="img3" src="@Model.ImgEditModel.ImgEditViewModel.ImgPath3" class="defaultImg" alt="your image" />
+                <br>
+                <input type='file' name="productImg3" onchange="readURL3(this)" id="productImg3" />
+                <br>
+                <a onclick="readURL3(this);" asp-area="Administration" asp-controller="Img" asp-action="DeleteImg" asp-route-id="@Model.ImgEditModel.ImgEditViewModel.ProductId" asp-route-imgNumber="3" id="btn3" class="btn btn-outline-secondary">Изтрий снимката</a>
+                <br>
+            </div>
+            <div id="pic4" style="float:left">
+                <br>
+                <img id="img4" src="@Model.ImgEditModel.ImgEditViewModel.ImgPath4" class="defaultImg" alt="your image" />
+                <br>
+                <input type='file' name="productImg4" onchange="readURL4(this)" id="productImg4" />
+                <br>
+                <a onclick="readURL4(this);" asp-area="Administration" asp-controller="Img" asp-action="DeleteImg" asp-route-id="@Model.ImgEditModel.ImgEditViewModel.ProductId" asp-route-imgNumber="4" id="btn4" class="btn btn-outline-secondary">Изтрий снимката</a>
+                <br>
+            </div>
+        </div>
+        <div style="float:right;">
+            <button onclick="upload()" id="btnSubmit" style="display:none;" type="submit" value="Upload Imgs" class="btn btn-primary">Качи снимката</button> <br />
         </div>
     </form>
+</div>
 
 
 

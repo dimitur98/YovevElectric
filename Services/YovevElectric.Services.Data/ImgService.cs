@@ -73,7 +73,14 @@
                 throw new NullReferenceException();
             }
 
-            product.ImgPath = imgPath;
+            if (product.ImgPath == GlobalConstants.DefaultImgProduct)
+            {
+                product.ImgPath = imgPath;
+            }
+            else
+            {
+                product.ImgPath += "," + imgPath;
+            }
 
             this.productRepository.Update(product);
             await this.productRepository.SaveChangesAsync();
@@ -106,22 +113,34 @@
             return true;
         }
 
-        public async Task<bool> DeleteProductImg(string id)
+        public async Task<bool> DeleteProductImg(string id, int imgNumber)
         {
-            var product = await this.productRepository.All().FirstOrDefaultAsync(x => x.Id == id);
-            product.ImgPath = GlobalConstants.DefaultImgProduct;
-
-            this.productRepository.Update(product);
-            await this.productRepository.SaveChangesAsync();
-
-            if (product.ImgPath != GlobalConstants.DefaultImgProduct)
+            if (id != null)
             {
-                DeletionParams deletionParams = new DeletionParams(product.ImgPath)
+                var product = await this.productRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+                var imgPaths = product.ImgPath.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
+                var imgForDel = imgPaths[imgNumber - 1];
+                imgPaths.RemoveAt(imgNumber - 1);
+                if (imgPaths.Count == 0)
                 {
-                    PublicId = product.ImgPath,
-                };
-                await this.cloudinary.DestroyAsync(deletionParams);
-                return true;
+                    imgPaths.Add(GlobalConstants.DefaultImgProduct);
+                }
+
+                product.ImgPath = string.Join(",", imgPaths);
+                this.productRepository.Update(product);
+                await this.productRepository.SaveChangesAsync();
+
+                if (imgForDel != GlobalConstants.DefaultImgProduct)
+                {
+                    imgForDel = imgForDel.Split("/", StringSplitOptions.RemoveEmptyEntries).Last();
+                    imgForDel = imgForDel.Split(".", StringSplitOptions.RemoveEmptyEntries).First();
+                    DeletionParams deletionParams = new DeletionParams(imgForDel)
+                    {
+                        PublicId = imgForDel,
+                    };
+                    await this.cloudinary.DestroyAsync(deletionParams);
+                    return true;
+                }
             }
 
             return false;

@@ -10,6 +10,13 @@
     {
         public string ProductId { get; set; }
 
-        public IFormFile ProductImg { get; set; }
+        public IFormFile ProductImg1 { get; set; }
+
+        public IFormFile ProductImg2 { get; set; }
+
+        public IFormFile ProductImg3 { get; set; }
+
+        public IFormFile ProductImg4 { get; set; }
+
     }
 }

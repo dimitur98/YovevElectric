@@ -18,6 +18,8 @@ namespace YovevElectric.Web.ViewModels.Product
 
         public string SubCategory { get; set; }
 
-        public string ImgPath { get; set; }
+        public string FirstImg { get; set; }
+
+        public IEnumerable<string> ImgList { get; set; }
     }
 }

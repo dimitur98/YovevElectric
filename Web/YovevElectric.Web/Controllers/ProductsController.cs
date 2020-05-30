@@ -57,7 +57,7 @@ namespace YovevElectric.Web.Controllers
                     Id = x.Id,
                     Category = x.Category,
                     Description = x.Description,
-                    ImgPath = x.ImgPath,
+                    ImgPath = x.ImgPath.Split(",",StringSplitOptions.RemoveEmptyEntries).First(),
                     Price = x.Price,
                     Title = x.Title,
                 }).ToList(),
@@ -96,7 +96,7 @@ namespace YovevElectric.Web.Controllers
         public async Task<IActionResult> Details(string id)
         {
             var product = await this.productsService.GetProductByIdAsync(id);
-
+            var imgs = product.ImgPath.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
             var output = new ProductDetailsModel
             {
                 ProductDetailsViewModel = new ProductDetailsViewModel
@@ -107,7 +107,8 @@ namespace YovevElectric.Web.Controllers
                     Category = product.Category,
                     SubCategory = product.SubCategory,
                     Price = product.Price,
-                    ImgPath = product.ImgPath,
+                    FirstImg = imgs.First(),
+                    ImgList = imgs,
                 },
             };
             return this.View(output);

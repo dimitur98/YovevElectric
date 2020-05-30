@@ -10,6 +10,7 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using YovevElectric.Common;
     using YovevElectric.Services.Data;
@@ -41,59 +42,27 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> ImgUpload(ImgUploadInputModel input)
         {
-
             if (input.ProductId == null)
             {
                 return this.View("Error");
             }
 
-            var imgPath = await this.imgService.UploadImgAsync(input.ProductImg);
+            var imgPath = string.Empty;
+            for (int i = 1; i <= 4; i++)
+            {
+                var file = (IFormFile)input.GetType().GetProperty("ProductImg" + i).GetValue(input, null);
+                imgPath += await this.imgService.UploadImgAsync(file) + ",";
+            }
 
             await this.imgService.AddImgToCurrentProductAsync(imgPath, input.ProductId);
             return this.Redirect($"/Administration/Administration/EditProduct?id={input.ProductId}");
-
         }
 
-        
-        
-
-        public async Task<IActionResult> EditImg(string id)
+        public async Task<IActionResult> DeleteImg(string id, string imgNumber)
         {
-            var product = await this.productsService.GetProductWithDeletedByIdAsync(id);
-
-            var output = new EditProductModel
-            {
-                ImgEditModel = new ImgEditModel
-                {
-                    ImgEditViewModel = new ImgEditViewModel
-                    {
-                        ProductId = product.Id,
-                        ImgPath = product.ImgPath,
-                    },
-                },
-            };
-
-            return this.RedirectToAction("EditProduct", output);
-        }
-
-
-        
-        public async Task<IActionResult> DeleteImg(string id)
-        {
-            var isDeleted = await this.imgService.DeleteProductImg(id);
-            if (isDeleted)
-            {
-                this.ViewBag["deleteImg"] = true;
-            }
-
+            await this.imgService.DeleteProductImg(id, int.Parse(imgNumber));
 
             return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
-        }
-
-        [HttpPost]
-        public bool ImgValidation(ImgValidationInputModel input)
-        {
-            return true;
         }
     }
 }

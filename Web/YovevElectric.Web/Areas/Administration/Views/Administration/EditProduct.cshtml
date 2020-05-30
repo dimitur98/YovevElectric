@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "EditProduct";
 }
-<body onload="functions('@Model.EditProductInputModel.Category')">
+<body onload="editProductFunctions('@Model.EditProductInputModel.Category')">
     <div id="page">
         <section class="main-container col2-right-layout">
             <div class="main container">
@@ -58,7 +58,7 @@
 </body>
 
 <script>
-    function functions(input) {
+    function editProductFunctions(input) {
         loadImg('editProduct');
         loadCategories(input);
         loadSubCategoriesToDropDown(input);
