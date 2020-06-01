@@ -281,3 +281,7 @@ function changeImg(imgNum) {
     console.log($("#product-zoom1").attr("src"));
 
 }
+
+function showDiscounts() {
+    $("#table").toggle()
+}

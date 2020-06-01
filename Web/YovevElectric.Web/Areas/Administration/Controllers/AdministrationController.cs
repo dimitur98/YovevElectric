@@ -242,5 +242,11 @@
 
             return this.RedirectToAction("Discounts");
         }
+
+        public async Task<IActionResult> DeleteProduct(string id)
+        {
+            await this.productsService.DeleteProductAsync(id);
+            return this.Redirect("/Products/Products");
+        }
     }
 }

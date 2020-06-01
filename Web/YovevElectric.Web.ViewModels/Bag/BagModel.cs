@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using YovevElectric.Data.Models;
 
 namespace YovevElectric.Web.ViewModels.Bag
 {
@@ -18,6 +19,6 @@ namespace YovevElectric.Web.ViewModels.Bag
 
         public decimal DiscountOverPrice { get; set; }
 
-        public string DiscountsTable { get; set; }
+        public IEnumerable<Discount> Discounts { get; set; }
     }
 }

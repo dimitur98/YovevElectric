@@ -15,10 +15,17 @@
     public class ProductsService : IProductsService
     {
         private readonly IDeletableEntityRepository<Product> productsRepository;
+        private readonly IImgService imgService;
+        private readonly IDeletableEntityRepository<ProductQuantity> productsQuantityRepository;
 
-        public ProductsService(IDeletableEntityRepository<Product> productsRepository)
+        public ProductsService(
+            IDeletableEntityRepository<Product> productsRepository,
+            IImgService imgService,
+            IDeletableEntityRepository<ProductQuantity> productsQuantityRepository)
         {
             this.productsRepository = productsRepository;
+            this.imgService = imgService;
+            this.productsQuantityRepository = productsQuantityRepository;
         }
 
         public async Task<int> GetProductsCount(string category = null, string subCategory = null, string title = null)
@@ -119,21 +126,26 @@
         public async Task DeleteProductAsync(string id)
         {
             var product = await this.GetProductByIdAsync(id);
-            product.IsDeleted = true;
+            var imgs = product.ImgPath.Split(",", StringSplitOptions.RemoveEmptyEntries);
+            foreach (var img in imgs)
+            {
+                await this.imgService.DeleteImgFromCloudAsync(img);
+            }
 
-            this.productsRepository.Update(product);
+            var recordsOfProductsInBagsOfUsers = await this.productsQuantityRepository.All().Where(x => x.ProductId == product.Id).ToListAsync();
+            if (recordsOfProductsInBagsOfUsers != null)
+            {
+                foreach (var record in recordsOfProductsInBagsOfUsers)
+                {
+                    this.productsQuantityRepository.HardDelete(record);
+                }
+
+                await this.productsQuantityRepository.SaveChangesAsync();
+            }
+
+            this.productsRepository.HardDelete(product);
             await this.productsRepository.SaveChangesAsync();
         }
-
-        public async Task UnDeleteProductAsync(string id)
-        {
-            var product = await this.GetProductByIdAsync(id);
-            product.IsDeleted = false;
-
-            this.productsRepository.Update(product);
-            await this.productsRepository.SaveChangesAsync();
-        }
-
 
     }
 }

@@ -28,7 +28,6 @@
 
         public async Task<string> UploadImgAsync(IFormFile file)
         {
-
             if (file == null)
             {
                 return string.Empty;
@@ -113,7 +112,7 @@
             return true;
         }
 
-        public async Task<bool> DeleteProductImg(string id, int imgNumber)
+        public async Task<bool> DeleteProductImgFromProductAsync(string id, int imgNumber)
         {
             if (id != null)
             {
@@ -130,20 +129,24 @@
                 this.productRepository.Update(product);
                 await this.productRepository.SaveChangesAsync();
 
-                if (imgForDel != GlobalConstants.DefaultImgProduct)
-                {
-                    imgForDel = imgForDel.Split("/", StringSplitOptions.RemoveEmptyEntries).Last();
-                    imgForDel = imgForDel.Split(".", StringSplitOptions.RemoveEmptyEntries).First();
-                    DeletionParams deletionParams = new DeletionParams(imgForDel)
-                    {
-                        PublicId = imgForDel,
-                    };
-                    await this.cloudinary.DestroyAsync(deletionParams);
-                    return true;
-                }
+                await this.DeleteImgFromCloudAsync(imgForDel);
             }
 
             return false;
+        }
+
+        public async Task DeleteImgFromCloudAsync(string imgForDel)
+        {
+            if (imgForDel != GlobalConstants.DefaultImgProduct)
+            {
+                imgForDel = imgForDel.Split("/", StringSplitOptions.RemoveEmptyEntries).Last();
+                imgForDel = imgForDel.Split(".", StringSplitOptions.RemoveEmptyEntries).First();
+                DeletionParams deletionParams = new DeletionParams(imgForDel)
+                {
+                    PublicId = imgForDel,
+                };
+                await this.cloudinary.DestroyAsync(deletionParams);
+            }
         }
     }
 }

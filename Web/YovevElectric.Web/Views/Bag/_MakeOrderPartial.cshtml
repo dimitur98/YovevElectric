@@ -2,83 +2,97 @@
 @{
     ViewData["Title"] = "_MakeOrderPartial";
 }
-<body onload="f()">
-<div class="col-sm-4">
-    <div class="totals">
-        <div>
-            <h3 style="float: left;">Обща сума</h3>
-            <a href="#" data-toggle="popover" style="float:right; margin-top:13px;" id="discountsListPopOver" data-html="true" data-placement="left" title="Отстъпки"  data-content="@Model.DiscountsTable">(виж отстъпките тук)</a>
-        </div>
-        <div class="inner">
-            <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
-                <colgroup>
-                    <col>
-                    <col width="1">
-                </colgroup>
-                @if (Model.PriceWithDiscount != Model.Price)
-                {
-                    <tfoot>
-                        <tr>
-                            <td style="" class="a-left" colspan="1">
-                                <strong>Отстъпка при поръчка над @Model.DiscountOverPrice лв.</strong>
-                            </td>
-                            <td style="" class="a-right">
-                                <strong><span class="price">@Model.Percent%</span></strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="" class="a-left" colspan="1">
-                                <strong>Сума с отстъпка</strong>
-                            </td>
-                            <td style="" class="a-right">
-                                <strong><span class="price">@Model.PriceWithDiscount лв.</span></strong>
-                            </td>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr>
-                            <td style="" class="a-left" colspan="1">
-                                Обща сума
-                            </td>
-                            <td style="" class="a-right">
-                                <span class="price">@Model.Price лв.</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                }
-                else
-                {
-                    <tbody>
-                        <tr>
-                            <td style="" class="a-left" colspan="1">
-                                <strong>Обща сума</strong>
-                            </td>
-                            <td style="" class="a-right">
-                                <strong><span class="price">@Model.Price лв.</span></strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                }
+<body >
+    <div class="col-sm-4">
+        <div class="totals">
+            <div>
+                <h3 style="float: left;">Обща сума</h3>
+                <a href="#" onclick="showDiscounts()" style="float:right; margin-top:13px;" id="discountsListPopOver">(виж отстъпките тук)</a>
 
-            </table>
+            </div>
+            <div style="display:none;position:relative; top:50px;margin-bottom:50px;" id="table">
+                <table style="border:1px solid black;">
+                    <thead>
+                        <tr>
+                            <td>Сума над</td>
+                            <td>процент</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var discount in Model.Discounts)
+                        {
+                            <tr>
+                                <td>@discount.OverPrice лв.</td>
+                                <td>@discount.Percents%</td>
+                            </tr>
+                        }
 
-            <ul class="checkout">
-                <li>
-                    <button type="button" class="button btn-proceed-checkout" onclick="showConfirmOrder()">
-                        <span>Направи поръчка</span>
-                    </button>
-                    <partial name="_ConfirmOrderPartial">
-                </li>
-                <br>
-            </ul>
+                    </tbody>
+                </table>
+            </div>
+            <div class="inner">
+                <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
+                    <colgroup>
+                        <col>
+                        <col width="1">
+                    </colgroup>
+                    @if (Model.PriceWithDiscount != Model.Price)
+                    {
+                        <tfoot>
+                            <tr>
+                                <td style="" class="a-left" colspan="1">
+                                    <strong>Отстъпка при поръчка над @Model.DiscountOverPrice лв.</strong>
+                                </td>
+                                <td style="" class="a-right">
+                                    <strong><span class="price">@Model.Percent%</span></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="" class="a-left" colspan="1">
+                                    <strong>Сума с отстъпка</strong>
+                                </td>
+                                <td style="" class="a-right">
+                                    <strong><span class="price">@Model.PriceWithDiscount лв.</span></strong>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td style="" class="a-left" colspan="1">
+                                    Обща сума
+                                </td>
+                                <td style="" class="a-right">
+                                    <span class="price">@Model.Price лв.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            <tr>
+                                <td style="" class="a-left" colspan="1">
+                                    <strong>Обща сума</strong>
+                                </td>
+                                <td style="" class="a-right">
+                                    <strong><span class="price">@Model.Price лв.</span></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+
+                <ul class="checkout">
+                    <li>
+                        <button type="button" class="button btn-proceed-checkout" onclick="showConfirmOrder()">
+                            <span>Направи поръчка</span>
+                        </button>
+                        <partial name="_ConfirmOrderPartial">
+                    </li>
+                    <br>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 </body>
-<script>
-    function f() {
-        $(document).ready(function () {
-            $('[data-toggle="popover"]').popover();
-        });
-    }
-</script>

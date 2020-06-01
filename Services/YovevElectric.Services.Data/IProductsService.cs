@@ -22,8 +22,6 @@
 
         Task<Product> GetProductWithDeletedByIdAsync(string id);
 
-        Task UnDeleteProductAsync(string id);
-
         Task<int> GetProductsCount(string category = null, string subCategory = null, string title = null);
     }
 }

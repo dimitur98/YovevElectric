@@ -42,7 +42,7 @@
                                         </div>
 
                                         <button type="submit" title="submit" class="button"><span>Редактиране</span></button>
-                                        @*<a href="/Administration/Img/EditImg?id=@Model.Id">Редактиране на снимка</a>*@
+                                        <a  class="button" style="float:right;" asp-area="Administration" asp-controller="Administration" asp-action="DeleteProduct" asp-route-id="@Model.EditProductInputModel.Id">Изтриване</a>
 
                                     </form>
 

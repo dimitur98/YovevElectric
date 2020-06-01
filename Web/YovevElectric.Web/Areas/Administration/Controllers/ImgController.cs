@@ -60,7 +60,7 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
 
         public async Task<IActionResult> DeleteImg(string id, string imgNumber)
         {
-            await this.imgService.DeleteProductImg(id, int.Parse(imgNumber));
+            await this.imgService.DeleteProductImgFromProductAsync(id, int.Parse(imgNumber));
 
             return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
         }
