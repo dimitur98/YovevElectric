@@ -19,11 +19,16 @@
     {
         private readonly Cloudinary cloudinary;
         private readonly IDeletableEntityRepository<Product> productRepository;
+        private readonly IDeletableEntityRepository<Category> categoryRepository;
 
-        public ImgService(Cloudinary cloudinary, IDeletableEntityRepository<Product> productRepository)
+        public ImgService(
+            Cloudinary cloudinary,
+            IDeletableEntityRepository<Product> productRepository,
+            IDeletableEntityRepository<Category> categoryRepository)
         {
             this.cloudinary = cloudinary;
             this.productRepository = productRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         public async Task<string> UploadImgAsync(IFormFile file)
@@ -133,6 +138,17 @@
             }
 
             return false;
+        }
+
+        public async Task DeleteCategoryImgByIdAsync(string id)
+        {
+            var category = await this.categoryRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+
+            await this.DeleteImgFromCloudAsync(category.ImgPath);
+
+            category.ImgPath = GlobalConstants.DefaultImgProduct;
+            this.categoryRepository.Update(category);
+            await this.categoryRepository.SaveChangesAsync();
         }
 
         public async Task DeleteImgFromCloudAsync(string imgForDel)

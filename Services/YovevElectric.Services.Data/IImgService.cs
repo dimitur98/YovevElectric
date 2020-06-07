@@ -18,5 +18,7 @@
         bool IsValidImg(string fileExtension, string contentType, long size);
 
         Task DeleteImgFromCloudAsync(string imgForDel);
+
+        Task DeleteCategoryImgByIdAsync(string id);
     }
 }

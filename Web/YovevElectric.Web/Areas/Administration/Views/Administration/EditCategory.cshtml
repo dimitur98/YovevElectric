@@ -1,0 +1,48 @@
+﻿@model YovevElectric.Web.ViewModels.Category.EditCategoryModel
+@using YovevElectric.Common;
+@{
+    ViewData["Title"] = "EditCategory";
+}
+
+<body>
+    <div id="page">
+        <section class="main-container col2-right-layout">
+            <div class="main container">
+                <div class="row">
+                    <section class="col-main col-sm-9 col-xs-12 wow bounceInUp animated animated" style="visibility: visible;">
+                        <div class="my-account">
+
+                            <div class="box-account">
+                                <div class="page-title">
+                                    <h2>Редактирай кагетория</h2>
+                                </div>
+                                <form id="form" dasp-controller="Files" runat="server" enctype="multipart/form-data" asp-area="Administration" asp-controller="Administration" asp-action="EditCategory" asp-route-id="@Model.CategoryViewModel.Id" method="post" class="form">
+                                    <div id="pic1">
+                                        <br>
+                                        <img id="img1" src="@Model.CategoryViewModel.ImgPath" class="defaultImg" alt="your image" />
+                                        <br>
+                                        <input type='file' asp-for="@Model.CategoryInputModel.Img" onchange="readURL(this)" id="productImg" />
+                                        <br>
+                                        <a onclick="readURL(this);" asp-area="Administration" asp-controller="Img" asp-action="DeleteCategoryImg" asp-route-id="@Model.CategoryViewModel.Id" id="btn1" class="btn btn-outline-secondary">Изтрий снимката</a>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="@Model.CategoryInputModel.Name">Име</label>
+                                        <input asp-for="@Model.CategoryInputModel.Name" type="text" value="@Model.CategoryViewModel.Name" class="form-control">
+                                        <span asp-validation-for="@Model.CategoryInputModel.Name" class="text-danger" />
+                                    </div>
+                                    <button type="submit" title="submit" class="button"><span>Редактирай</span></button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </section>
+                    <partial name="~/Views/Shared/_AccountNavPartial.cshtml" />
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+

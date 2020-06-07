@@ -58,11 +58,18 @@ namespace YovevElectric.Web.Areas.Administration.Controllers
             return this.Redirect($"/Administration/Administration/EditProduct?id={input.ProductId}");
         }
 
-        public async Task<IActionResult> DeleteImg(string id, string imgNumber)
+        public async Task<IActionResult> DeleteProductImg(string id, string imgNumber)
         {
             await this.imgService.DeleteProductImgFromProductAsync(id, int.Parse(imgNumber));
 
             return this.Redirect($"/Administration/Administration/EditProduct?id={id}");
+        }
+
+        public async Task<IActionResult> DeleteCategoryImg(string id)
+        {
+            await this.imgService.DeleteCategoryImgByIdAsync(id);
+
+            return this.Redirect($"/Administration/Administration/EditCategory?id={id}");
         }
     }
 }

@@ -231,7 +231,7 @@
 
                     <!-- BEGIN SIDE-NAV-CATEGORY -->
                     <div class="side-nav-categories">
-                        <div class="block-title"> Categories </div>
+                        <div class="block-title"> Категории </div>
                         <!--block-title-->
                         <!-- BEGIN BOX-CATEGORY -->
                         <div class="box-content box-category">
@@ -278,7 +278,7 @@
                                 {
                                     <li class="item">
                                         <div class="item-inner">
-                                            <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId" class="product-image"><img src="@product.ProductImgPath" width="80" alt="product"></a>
+                                            <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId" class="product-image"><img src="@product.ProductImgPath.Split(",").First()" width="80" alt="product"></a>
                                             <div class="product-details">
                                                 <div class="access">
                                                     <a asp-area="" asp-controller="Bag" asp-action="DeleteProductFromBag" asp-route-id="@product.Id" class="btn-remove1">Премахни</a>

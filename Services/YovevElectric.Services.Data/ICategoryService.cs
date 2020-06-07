@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using YovevElectric.Data.Models;
+using YovevElectric.Web.ViewModels.Category;
 
 namespace YovevElectric.Services.Data
 {
@@ -21,10 +22,15 @@ namespace YovevElectric.Services.Data
 
         Task<ICollection<Category>> GetAllCategoriesAsync();
 
-        Task DeleteUnDeleteCategoryByNameAsync(string name);
-
-        Task DeleteUnDeleteSubCategoryByNameAsync(string name);
 
         Task<ICollection<Category>> GetAllCategoriesWithDeletedAsync();
+
+        Task HardDeleteCategoryByIdAsync(string id);
+
+        Task HardDeleteSubCategoryByIdAsync(string id);
+
+        Task<Category> GetCategoryByIdAsync(string id);
+
+        Task EditCategoryByIdAsync(string id, CategoryInputModel input);
     }
 }

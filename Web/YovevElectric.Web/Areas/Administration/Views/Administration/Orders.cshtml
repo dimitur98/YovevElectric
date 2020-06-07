@@ -14,9 +14,24 @@
                             <!--page-title-->
                             <!-- BEGIN DASHBOARD-->
                             <div class="dashboard">
-                                
+                                <form asp-area="Administration" asp-controller="Administration" asp-action="OrdersFromDateToDate" method="get">
+                                    <div class="row">
+                                        <div style="display:inline">
+                                            <label asp-for="@Model.OrderSearch.DateFrom">Дата от</label>
+                                            <input type="date" asp-for="@Model.OrderSearch.DateFrom">
+                                            <span asp-validation-for="@Model.OrderSearch.DateFrom" class="text-danger" />
+                                        </div>
+                                        <div style="display:inline">
+                                            <label asp-for="@Model.OrderSearch.DateTo">Дата до</label>
+                                            <input type="date" asp-for="@Model.OrderSearch.DateTo">
+                                            <span asp-validation-for="@Model.OrderSearch.DateTo" class="text-danger" />
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Търси</button>
+                                    </div>
+                                </form>
                                 <div class="recent-orders">
                                     <div class="table-responsive">
+
                                         <table class="data-table table-striped" id="my-orders-table">
                                             <colgroup>
                                                 <col width="">
@@ -32,28 +47,28 @@
                                                     <th>Име</th>
                                                     <th>Фамилия</th>
                                                     <th>Телефон</th>
-                                                    <th>Нова</th>                                                   
+                                                    <th>Нова</th>
                                                     <th>&nbsp;</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
-                                                    @foreach (var bag in Model.Bags)
-                                                    {
-                                                        <tr class="first odd">
-                                                            <td><span class="nobr"><time datetime="@(bag.DateOfSent.ToString("O"))"></time></span></td>
-                                                            <td>@bag.OrderDataFirstName</td>
-                                                            <td>@bag.OrderDataLastName</td>
-                                                            <td>@bag.OrderDataMobileNumber</td>
-                                                            <td><em>@(bag.IsNew ? "Нова поръчка" : "видяна")</em></td>
-                                                            <td class="a-center last details">
-                                                                <span class="nobr">
-                                                                    <a data-toggle="tooltip" data-placement="top" title="Details" style="display:inline-block;margin-left:10px;" asp-area="Administration" asp-controller="Administration" asp-action="OrderDetails" asp-route-id="@bag.Id"><img class="iconClass" src="~/images/detailsIcon.png"></a>                                                                    
-                                                                </span>
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                
+
+                                                @foreach (var bag in Model.Bags)
+                                                {
+                                                    <tr class="first odd">
+                                                        <td><span class="nobr"><time datetime="@(bag.DateOfSent.ToString("O"))"></time></span></td>
+                                                        <td>@bag.OrderDataFirstName</td>
+                                                        <td>@bag.OrderDataLastName</td>
+                                                        <td>@bag.OrderDataMobileNumber</td>
+                                                        <td><em>@(bag.IsNew ? "Нова поръчка" : "видяна")</em></td>
+                                                        <td class="a-center last details">
+                                                            <span class="nobr">
+                                                                <a data-toggle="tooltip" data-placement="top" title="Details" style="display:inline-block;margin-left:10px;" asp-area="Administration" asp-controller="Administration" asp-action="OrderDetails" asp-route-id="@bag.Id"><img class="iconClass" src="~/images/detailsIcon.png"></a>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                }
+
 
 
                                             </tbody>

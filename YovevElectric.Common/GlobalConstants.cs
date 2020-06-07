@@ -12,6 +12,6 @@
 
         public const string AdminUser = "Admin@admin.bg";
 
-        public const int ItemsPerPage = 3;
+        public const int ItemsPerPage = 12;
     }
 }

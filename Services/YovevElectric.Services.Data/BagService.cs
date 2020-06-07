@@ -118,14 +118,29 @@
             await this.productQuantityRepository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<AllSentBagViewModel>> GetAllSentBags() =>
-            await this.bagRepository.All().Where(x => x.Sent == true).OrderByDescending(x => x.IsNew).ThenByDescending(x => x.DateOfSent).To<AllSentBagViewModel>().ToListAsync();
+        public async Task<IEnumerable<AllSentBagViewModel>> GetAllSentBags()
+            => await this.bagRepository
+            .All()
+            .Where(x => x.Sent == true)
+            .OrderByDescending(x => x.IsNew)
+            .ThenByDescending(x => x.DateOfSent)
+            .To<AllSentBagViewModel>()
+            .ToListAsync();
 
         public int GetCountOfProductsInBagByIdAsync(string id)
             => this.productQuantityRepository.All().Where(x => x.BagId == id).Count();
 
         public async Task<int> GetProductsCountInBagAsync(string id)
             => await this.productQuantityRepository.All().Where(x => x.BagId == id).CountAsync();
+
+        public async Task<IEnumerable<AllSentBagViewModel>> GetSentBagsFromDateToDateAsync(OrderSearchInputModel input)
+            => await this.bagRepository
+                .All()
+                .Where(x => x.DateOfSent >= input.DateFrom && x.DateOfSent <= input.DateTo && x.Sent == true)
+                .OrderByDescending(x => x.IsNew)
+                .ThenByDescending(x => x.DateOfSent)
+                .To<AllSentBagViewModel>()
+                .ToListAsync();
 
         private async Task<string> CreateBagAsync(string userId)
         {

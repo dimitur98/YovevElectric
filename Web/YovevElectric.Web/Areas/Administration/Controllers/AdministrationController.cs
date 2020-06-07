@@ -153,6 +153,7 @@
             {
                 Categories = categories.Select(x => new CategoryViewModel
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     IsDeleted = x.IsDeleted,
                 }).ToList(),
@@ -161,16 +162,16 @@
             return this.View(output);
         }
 
-        public async Task<IActionResult> DeleteUndeleteCategory(string name)
+        public async Task<IActionResult> DeleteCategory(string id)
         {
-            await this.categoryService.DeleteUnDeleteCategoryByNameAsync(name);
+            await this.categoryService.HardDeleteCategoryByIdAsync(id);
 
             return this.RedirectToAction("AllCategoriesAndSubCategories");
         }
 
-        public async Task<IActionResult> DeleteUndeleteSubCategory(string name)
+        public async Task<IActionResult> DeleteSubCategory(string id)
         {
-            await this.categoryService.DeleteUnDeleteSubCategoryByNameAsync(name);
+            await this.categoryService.HardDeleteSubCategoryByIdAsync(id);
 
             return this.RedirectToAction("AllCategoriesAndSubCategories");
         }
@@ -183,6 +184,16 @@
             };
 
             return this.View(output);
+        }
+
+        public async Task<IActionResult> OrdersFromDateToDate(AllSentBagsViewModel input)
+        {
+            var output = new AllSentBagsViewModel
+            {
+                Bags = await this.bagService.GetSentBagsFromDateToDateAsync(input.OrderSearch),
+            };
+
+            return this.View("Orders", output);
         }
 
         public async Task<IActionResult> OrderDetails(string id)
@@ -247,6 +258,30 @@
         {
             await this.productsService.DeleteProductAsync(id);
             return this.Redirect("/Products/Products");
+        }
+
+        public async Task<IActionResult> EditCategory(string id)
+        {
+            var category = await this.categoryService.GetCategoryByIdAsync(id);
+            var output = new EditCategoryModel
+            {
+                CategoryViewModel = new CategoryViewModel
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    ImgPath = category.ImgPath,
+                },
+            };
+
+            return this.View(output);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditCategory(string id, EditCategoryModel input)
+        {
+            await this.categoryService.EditCategoryByIdAsync(id, input.CategoryInputModel);
+
+            return this.RedirectToAction("AllCategoriesAndSubCategories");
         }
     }
 }

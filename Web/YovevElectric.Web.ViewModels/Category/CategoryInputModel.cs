@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace YovevElectric.Web.ViewModels.Category
+﻿namespace YovevElectric.Web.ViewModels.Category
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
+
+    using Microsoft.AspNetCore.Http;
+
     public class CategoryInputModel
     {
         public IFormFile Img { get; set; }

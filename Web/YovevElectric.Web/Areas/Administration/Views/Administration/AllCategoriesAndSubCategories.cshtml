@@ -21,7 +21,7 @@
                                             @foreach (var category in Model.Categories)
                                             {
                                                 <li>
-                                                    <a asp-area="Administration" asp-controller="Administration" asp-action="DeleteUndeleteCategory" asp-route-name="@category.Name">@category.Name  (@category.Statuse)</a><span onclick="loadSubCategoriesToSideBarForAdmin('@category.Name',@counter)" class="subDropdown plus"></span>
+                                                    <a href="/Administration/Administration/EditCategory?id=@category.Id">@category.Name</a><a asp-area="Administration" asp-controller="Administration" asp-action="DeleteCategory" asp-route-id="@category.Id">(изтрий)</a><span onclick="loadSubCategoriesToSideBarForAdmin('@category.Name',@counter)" class="subDropdown plus"></span>
                                                     <ul style="display:none" id="subCategories@(counter++)"></ul>
                                                 </li>
                                             }

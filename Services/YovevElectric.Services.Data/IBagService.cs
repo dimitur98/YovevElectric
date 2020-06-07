@@ -15,7 +15,7 @@
 
         Task<Bag> GetBagByIdAsync(string id);
 
-        Task<ICollection<AllSentBagViewModel>> GetAllSentBags();
+        Task<IEnumerable<AllSentBagViewModel>> GetAllSentBags();
 
         Task MakeOrderAsync(string bagId, MakeOrderInputModel input);
 
@@ -34,5 +34,7 @@
         int GetCountOfProductsInBagByIdAsync(string id);
 
         Task<int> GetProductsCountInBagAsync(string id);
+
+        Task<IEnumerable<AllSentBagViewModel>> GetSentBagsFromDateToDateAsync(OrderSearchInputModel input);
     }
 }

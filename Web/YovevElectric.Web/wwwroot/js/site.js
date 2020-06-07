@@ -144,9 +144,7 @@ function loadSubCategoriesToSideBarForAdmin(input, num) {
             console.log(data);
             if ($('ul#subCategories' + num + ' li').length == 0) {
                 data.forEach((item) => {
-                    var status = item["isDeleted"] ? "Неактивно" : "Активно";
-                    $("#subCategories" + num).append("<li><a href='/Administration/Administration/DeleteUndeleteSubCategory?name=" + item["name"] + "'>" + item["name"] + " (" + status + ")</a > <span></span></li > ");
-                    console.log("<li><a asp-area='Administration' asp-controller='Administration' asp-action='DeleteUndeleteSubCategory' asp-route-name='" + item + "'>" + item + "</a><span></span></li>");
+                    $("#subCategories" + num).append("<li><a href='/Administration/Administration/DeleteSubCategory?id=" + item["id"] + "'>" + item["name"] + "</a > <span></span></li > ");
                 });
             }
         }

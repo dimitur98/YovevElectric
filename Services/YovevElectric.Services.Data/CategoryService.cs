@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YovevElectric.Common;
 using YovevElectric.Data.Common.Repositories;
 using YovevElectric.Data.Models;
+using YovevElectric.Web.ViewModels.Category;
 
 namespace YovevElectric.Services.Data
 {
@@ -44,7 +46,15 @@ namespace YovevElectric.Services.Data
 
         public async Task CreateCategoryAsync(string name, IFormFile img)
         {
-            var imgPath = await this.imgService.UploadImgAsync(img);
+            var imgPath = string.Empty;
+            if (img != null)
+            {
+                imgPath = await this.imgService.UploadImgAsync(img);
+            }
+            else
+            {
+                imgPath = GlobalConstants.DefaultImgProduct;
+            }
 
             var category = new Category
             {
@@ -68,36 +78,43 @@ namespace YovevElectric.Services.Data
             await this.subCategoryRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteUnDeleteCategoryByNameAsync(string name)
+        public async Task HardDeleteCategoryByIdAsync(string id)
         {
-            var category = await this.categoryRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Name == name);
-            if (category.IsDeleted)
+            var category = await this.categoryRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
+            var subCategories = await this.subCategoryRepository.AllWithDeleted().Where(x => x.CategoryId == id).ToListAsync();
+            if (subCategories != null)
             {
-                category.IsDeleted = false;
-            }
-            else
-            {
-                category.IsDeleted = true;
+                foreach (var subCategory in subCategories)
+                {
+                    this.subCategoryRepository.HardDelete(subCategory);
+                    await this.subCategoryRepository.SaveChangesAsync();
+                }
             }
 
-            this.categoryRepository.Update(category);
+            this.categoryRepository.HardDelete(category);
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteUnDeleteSubCategoryByNameAsync(string name)
+        public async Task HardDeleteSubCategoryByIdAsync(string id)
         {
-            var subCategory = await this.subCategoryRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Name == name);
-            if (subCategory.IsDeleted)
-            {
-                subCategory.IsDeleted = false;
-            }
-            else
-            {
-                subCategory.IsDeleted = true;
-            }
+            var subCategory = await this.subCategoryRepository.AllWithDeleted().FirstOrDefaultAsync(x => x.Id == id);
 
-            this.subCategoryRepository.Update(subCategory);
+            this.subCategoryRepository.HardDelete(subCategory);
             await this.subCategoryRepository.SaveChangesAsync();
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(string id)
+            => await this.categoryRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task EditCategoryByIdAsync(string id, CategoryInputModel input)
+        {
+            var category = await this.GetCategoryByIdAsync(id);
+
+            category.ImgPath = await this.imgService.UploadImgAsync(input.Img);
+            category.Name = input.Name;
+
+            this.categoryRepository.Update(category);
+            await this.categoryRepository.SaveChangesAsync();
         }
     }
 }
